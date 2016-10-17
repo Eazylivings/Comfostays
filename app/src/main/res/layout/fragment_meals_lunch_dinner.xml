@@ -1,0 +1,539 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="com.comfostays.activities.MealsActivity$PlaceholderFragment">
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:id="@+id/fragmentMealsLunchAndDinner_gridLayout_time"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <TextClock
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/fragmentMealsLunchAndDinner_textClock_startTime"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_margin="5dp" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_clock"
+            android:contentDescription="@string/description"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:src="@drawable/clock" />
+
+        <TextClock
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/fragmentMealsLunchAndDinner_textClock_endTime"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_margin="5dp" />
+
+    </GridLayout>
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragmentMealsLunchAndDinner_scrollView"
+        android:layout_below="@+id/fragmentMealsLunchAndDinner_gridLayout_time"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragmentMealsLunchAndDinner_gridLayout_schedule">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/monday"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_monday"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:gravity="center"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_mondayMenuCurry"
+            android:contentDescription="@string/description"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:src="@drawable/curries_icon"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_mondayMenuRotiRice"
+            android:contentDescription="@string/description"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:src="@drawable/rice_icon"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_mondayMenuExtras"
+            android:contentDescription="@string/description"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:src="@drawable/extras"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_mondayMenuCurry"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_mondayMenuRiceRoti"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_mondayMenuExtras"
+            android:layout_row="2"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/tuesday"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_tuesday"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_tuesdayMenuCurry"
+            android:contentDescription="@string/description"
+            android:layout_row="3"
+            android:layout_column="1"
+            android:src="@drawable/curries_icon"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_tuesdayMenuRotiRice"
+            android:contentDescription="@string/description"
+            android:layout_row="4"
+            android:layout_column="1"
+            android:src="@drawable/rice_icon"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_tuesdayMenuExtras"
+            android:contentDescription="@string/description"
+            android:layout_row="5"
+            android:layout_column="1"
+            android:src="@drawable/extras"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_tuesdayMenuCurry"
+            android:layout_row="3"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_tuesdayMenuRiceRoti"
+            android:layout_row="4"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_tuesdayMenuExtras"
+            android:layout_row="5"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/wednesday"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_wednesday"
+            android:layout_row="7"
+            android:layout_column="0"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:foregroundGravity="center" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_wednesdayMenuCurry"
+            android:contentDescription="@string/description"
+            android:layout_row="6"
+            android:layout_column="1"
+            android:src="@drawable/curries_icon"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_wednesdayMenuRotiRice"
+            android:contentDescription="@string/description"
+            android:layout_row="7"
+            android:layout_column="1"
+            android:src="@drawable/rice_icon"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_wednesdayMenuExtras"
+            android:contentDescription="@string/description"
+            android:layout_row="8"
+            android:layout_column="1"
+            android:src="@drawable/extras"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_wednesdayMenuCurry"
+            android:layout_row="6"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_wednesdayMenuRiceRoti"
+            android:layout_row="7"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_wednesdayMenuExtras"
+            android:layout_row="8"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/thursday"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_thursday"
+            android:layout_row="10"
+            android:layout_column="0"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_thursdayMenuCurry"
+            android:contentDescription="@string/description"
+            android:layout_row="9"
+            android:layout_column="1"
+            android:src="@drawable/curries_icon"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_thursdayMenuRotiRice"
+            android:contentDescription="@string/description"
+            android:layout_row="10"
+            android:layout_column="1"
+            android:src="@drawable/rice_icon"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_thursdayMenuExtras"
+            android:contentDescription="@string/description"
+            android:layout_row="11"
+            android:layout_column="1"
+            android:src="@drawable/extras"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_thursdayMenuCurry"
+            android:layout_row="9"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_thursdayMenuRiceRoti"
+            android:layout_row="10"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_thursdayMenuExtras"
+            android:layout_row="11"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/friday"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_friday"
+            android:layout_row="13"
+            android:layout_column="0"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_fridayMenuCurry"
+            android:contentDescription="@string/description"
+            android:layout_row="12"
+            android:layout_column="1"
+            android:src="@drawable/curries_icon"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_fridayMenuRotiRice"
+            android:contentDescription="@string/description"
+            android:layout_row="13"
+            android:layout_column="1"
+            android:src="@drawable/rice_icon"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_fridayMenuExtras"
+            android:contentDescription="@string/description"
+            android:layout_row="14"
+            android:layout_column="1"
+            android:src="@drawable/extras"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_fridayMenuCurry"
+            android:layout_row="12"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_fridayMenuRiceRoti"
+            android:layout_row="13"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_fridayMenuExtras"
+            android:layout_row="14"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/saturday"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_saturday"
+            android:layout_row="16"
+            android:layout_column="0"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_saturdayMenuCurry"
+            android:contentDescription="@string/description"
+            android:layout_row="15"
+            android:layout_column="1"
+            android:src="@drawable/curries_icon"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_saturdayMenuRotiRice"
+            android:contentDescription="@string/description"
+            android:layout_row="16"
+            android:layout_column="1"
+            android:src="@drawable/rice_icon"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_saturdayMenuExtras"
+            android:contentDescription="@string/description"
+            android:layout_row="17"
+            android:layout_column="1"
+            android:src="@drawable/extras"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_saturdayMenuCurry"
+            android:layout_row="15"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_saturdayMenuRiceRoti"
+            android:layout_row="16"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_saturdayMenuExtras"
+            android:layout_row="17"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/sunday"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_sunday"
+            android:layout_row="19"
+            android:layout_column="0"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_sundayMenuCurry"
+            android:contentDescription="@string/description"
+            android:layout_row="18"
+            android:layout_column="1"
+            android:src="@drawable/curries_icon"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_sundayMenuRotiRice"
+            android:contentDescription="@string/description"
+            android:layout_row="19"
+            android:layout_column="1"
+            android:src="@drawable/rice_icon"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_imageView_sundayMenuExtras"
+            android:contentDescription="@string/description"
+            android:layout_row="20"
+            android:layout_column="1"
+            android:src="@drawable/extras"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_sundayMenuCurry"
+            android:layout_row="18"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_sundayMenuRiceRoti"
+            android:layout_row="19"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentMealsLunchAndDinner_textView_sundayMenuExtras"
+            android:layout_row="20"
+            android:layout_column="2"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp" />
+
+
+    </GridLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

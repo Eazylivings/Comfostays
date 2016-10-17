@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layoutRoomOccupancyChild_relativeLayout">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:id="@+id/layoutRoomOccupancyChild_imageView_singleOccupancy"
+        android:src="@drawable/ic_profile_pic"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:padding="2dp" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:id="@+id/layoutRoomOccupancyChild_imageView_doubleOccupancy"
+        android:src="@drawable/ic_profile_pic"
+        android:padding="3dp"
+        android:layout_below="@+id/layoutRoomOccupancyChild_imageView_singleOccupancy"
+        android:layout_alignLeft="@+id/layoutRoomOccupancyChild_imageView_singleOccupancy"
+        android:layout_alignStart="@+id/layoutRoomOccupancyChild_imageView_singleOccupancy" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:id="@+id/layoutRoomOccupancyChild_imageView_tripleOccupancy"
+        android:layout_below="@+id/layoutRoomOccupancyChild_imageView_doubleOccupancy"
+        android:layout_alignLeft="@+id/layoutRoomOccupancyChild_imageView_singleOccupancy"
+        android:layout_alignStart="@+id/layoutRoomOccupancyChild_imageView_singleOccupancy"
+        android:src="@drawable/ic_profile_pic"
+        android:padding="3dp" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:id="@+id/layoutRoomOccupancyChild_imageView_tetraOccupancy"
+        android:src="@drawable/ic_profile_pic"
+        android:padding="3dp"
+        android:layout_below="@+id/layoutRoomOccupancyChild_imageView_tripleOccupancy"
+        android:layout_alignLeft="@+id/layoutRoomOccupancyChild_imageView_tripleOccupancy"
+        android:layout_alignStart="@+id/layoutRoomOccupancyChild_imageView_tripleOccupancy" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutRoomOccupancyChild_radioGroup"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/layoutRoomOccupancyChild_imageView_doubleOccupancy"
+        android:layout_toEndOf="@+id/layoutRoomOccupancyChild_imageView_doubleOccupancy"
+        android:layout_marginLeft="10dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Single Occupancy"
+            android:id="@+id/layoutRoomOccupancyChild_radioButton_singleOccupancy"
+            android:padding="2dp"
+            android:layout_marginTop="5dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Double Occupancy"
+            android:id="@+id/layoutRoomOccupancyChild_radioButton_doubleOccupancy"
+            android:padding="2dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Triple Occupancy"
+            android:id="@+id/layoutRoomOccupancyChild_radioButton_tripleOccupancy"
+            android:padding="2dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tetra Occupancy"
+            android:id="@+id/layoutRoomOccupancyChild_radioButton_tetraOccupancy"
+            android:padding="2dp"
+            android:layout_marginBottom="5dp" />
+    </RadioGroup>
+
+
+
+</RelativeLayout>

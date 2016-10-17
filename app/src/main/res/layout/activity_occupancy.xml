@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="com.comfostays.activities.OccupancyActivity">
+
+    <include android:id="@+id/layout_header"
+        layout="@layout/layout_header"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageView_currentOccupancy"
+        android:layout_below="@+id/layout_header"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/current_occupancy"
+        android:layout_marginTop="10dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/get_current_occupancy"
+        android:id="@+id/checkBox_getCurrentOccupancy"
+        android:layout_alignStart="@+id/imageView_currentOccupancy"
+        android:layout_below="@+id/layout_header"
+        android:onClick="onClickGetCurrentOccupancy"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkBox_getCurrentOccupancy"
+        android:layout_alignParentStart="true"
+        android:id="@+id/occupancy_relativeLayout_range">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/year"
+            android:id="@+id/occupancy_textView_year"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/from"
+            android:id="@+id/occupancy_textView_fromYear"
+            android:layout_below="@+id/occupancy_textView_year"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="14dp" />
+
+        <Spinner
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:id="@+id/occupancy_spinner_fromYear"
+            android:layout_below="@+id/occupancy_textView_year"
+            android:layout_toEndOf="@+id/occupancy_textView_fromYear" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/to"
+            android:id="@+id/occupancy_textView_toYear"
+            android:layout_below="@+id/occupancy_textView_year"
+            android:layout_toEndOf="@+id/occupancy_spinner_fromYear"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="65dp" />
+
+        <Spinner
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:id="@+id/occupancy_spinner_toYear"
+            android:layout_below="@+id/occupancy_textView_year"
+            android:layout_toEndOf="@+id/occupancy_textView_toYear"
+            android:padding="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/month"
+            android:id="@+id/occupancy_textView_month"
+            android:layout_below="@+id/occupancy_textView_fromYear"
+            android:layout_alignParentStart="true"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/from"
+            android:id="@+id/occupancy_textView_fromMonth"
+            android:layout_below="@+id/occupancy_textView_month"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="14dp" />
+
+        <Spinner
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/occupancy_spinner_fromMonth"
+            android:layout_below="@+id/occupancy_textView_month"
+            android:layout_toEndOf="@+id/occupancy_textView_fromMonth" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/to"
+            android:id="@+id/occupancy_textView_toMonth"
+            android:layout_below="@+id/occupancy_textView_month"
+            android:layout_toEndOf="@+id/occupancy_spinner_fromMonth"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="15dp" />
+
+        <Spinner
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/occupancy_spinner_toMonth"
+            android:layout_below="@+id/occupancy_textView_month"
+            android:layout_toEndOf="@+id/occupancy_textView_toMonth"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView_pieChart"
+        android:layout_below="@+id/occupancy_relativeLayout_range"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" >
+
+        <LinearLayout
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/occupancy_button_getOccupancy"
+        android:onClick="onClickGetOccupancy"
+        android:background="#2E9AFE"
+        android:textColor="@drawable/button_text_color"
+        android:text="@string/get_occupancy"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
+
+</RelativeLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="com.comfostays.activities.ContactUsActivity">
+
+    <include android:id="@+id/layout_header"
+        layout="@layout/layout_header"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/feel_that_tingling_in_your_fingertips"
+        android:id="@+id/contactUs_textView_heading1"
+        android:layout_below="@+id/layout_header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/that_apos_s_the_magnetic_urge_to_contact_us"
+        android:id="@+id/contactUs_textView_heading2"
+        android:layout_below="@+id/contactUs_textView_heading1"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/message"
+        android:id="@+id/contactUs_textView_message"
+        android:layout_below="@+id/contactUs_textView_heading2" />
+
+    <EditText
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:minLines="6"
+        android:gravity="top|start"
+        android:maxLines="10"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/contactUs_textView_message"
+        android:layout_alignEnd="@+id/contactUs_textView_heading1"
+        android:layout_marginTop="57dp"
+        android:id="@+id/contactUs_editText_messageText"
+        android:background="@drawable/layout_border"
+        android:hint="@string/enter_your_message_here" />
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/contactUs_button_submit"
+        android:onClick="onClickSubmitButton"
+        android:background="#2E9AFE"
+        android:textColor="@drawable/button_text_color"
+        android:text="@string/submit"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

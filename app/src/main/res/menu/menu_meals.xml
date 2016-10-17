@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.comfostays.activities.MealsActivity">
+    <item
+        android:id="@+id/action_change"
+        android:orderInCategory="100"
+        android:title="Change"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_polling"
+        android:orderInCategory="100"
+        android:title="Poll Meal"
+        app:showAsAction="never" />
+</menu>

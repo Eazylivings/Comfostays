@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="com.comfostays.activities.editactivities.EditBuildingDetailsActivity">
+
+    <include android:id="@+id/layout_header"
+        layout="@layout/layout_header"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:id="@+id/editText_buildingName"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:hint="@string/building_name"
+        android:inputType="textCapSentences"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/layout_header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:id="@+id/editText_addressLine1"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:hint="@string/address_line_1"
+        android:inputType="textCapSentences"
+        android:background="@drawable/rounded_edittext"
+        android:layout_below="@+id/editText_buildingName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:id="@+id/editText_addressLine2"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:hint="@string/address_line_2"
+        android:inputType="textCapSentences"
+        android:background="@drawable/rounded_edittext"
+        android:layout_below="@+id/editText_addressLine1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
+
+    <EditText
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:inputType="number"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:id="@+id/editText_postalCode"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:hint="@string/postal_code"
+        android:background="@drawable/rounded_edittext"
+        android:layout_below="@+id/editText_addressLine2" />
+
+
+
+    <EditText
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:id="@+id/editText_state"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:hint="@string/state"
+        android:inputType="textCapSentences"
+        android:background="@drawable/rounded_edittext"
+        android:layout_alignBottom="@+id/editText_postalCode"
+        android:layout_toEndOf="@+id/editText_postalCode"
+        android:layout_marginStart="24dp" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText_postalCode"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+        android:id="@+id/radioGroup_type"
+        android:layout_marginTop="20dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pgs"
+            android:layout_weight="1"
+            android:id="@+id/radioButton_PGs"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/flats"
+            android:layout_weight="1"
+            android:id="@+id/addProperty_radioButton_flat" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hotels"
+            android:layout_weight="1"
+            android:id="@+id/radioButton_hotels"/>
+    </RadioGroup>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton_myLocation"
+        android:contentDescription="@string/description"
+        android:src="@android:drawable/ic_menu_mylocation"
+        android:onClick="onClickGetLocation"
+        android:layout_below="@+id/radioGroup_type"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/tap_to_get_current_location"
+        android:id="@+id/addProperty_textView_myLocationText"
+        android:layout_below="@+id/imageButton_myLocation"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/button_update"
+        android:onClick="onClickUpdate"
+        android:background="#2E9AFE"
+        android:textColor="@drawable/button_text_color"
+        android:text="UPDATE"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

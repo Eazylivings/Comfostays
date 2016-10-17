@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context=".activities.buildingsetup.FinalPortfolioActivity">
+
+    <include android:id="@+id/layout_header"
+        layout="@layout/layout_header"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/finalPortfolio_scrollView"
+        android:layout_above="@+id/viewButton_button_finish"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/layout_header">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/finalPortfolio_relativeLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/building_name"
+                android:id="@+id/finalPortfolio_textView_buildingName"
+                android:gravity="center_horizontal"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/edit"
+                android:id="@+id/textView_editBuildingLayout"
+                android:textStyle="bold"
+                android:textColor="#FF0000"
+                android:typeface="serif"
+                android:onClick="onClickEditBuildingLayout"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_above="@+id/finalPortfolio_linearLayout"
+                android:layout_alignParentEnd="true" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/finalPortfolio_linearLayout"
+                android:layout_below="@+id/finalPortfolio_textView_buildingName"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/home">
+
+            </LinearLayout>
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/finalPortfolio_gridLayout_colorCodes"
+                android:layout_below="@+id/finalPortfolio_linearLayout"
+                android:layout_centerHorizontal="true">
+
+            </GridLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/finalPortfolio_imageView_buildingDetails"
+                android:contentDescription="@string/description"
+                android:src="@drawable/ic_drop_down"
+                android:layout_below="@+id/finalPortfolio_gridLayout_colorCodes"
+                android:layout_alignParentStart="true"
+                android:onClick="onClickBuildingDetails" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/building_details"
+                android:id="@+id/finalPortfolio_textView_buildingDetails"
+                android:layout_centerVertical="true"
+                android:layout_below="@+id/finalPortfolio_gridLayout_colorCodes"
+                android:layout_toEndOf="@+id/finalPortfolio_imageView_buildingDetails"
+                android:onClick="onClickBuildingDetails" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/edit"
+                android:id="@+id/finalPortfolio_textView_editBuildingDetails"
+                android:layout_below="@+id/finalPortfolio_gridLayout_colorCodes"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:textStyle="bold"
+                android:textColor="#FF0000"
+                android:typeface="serif"
+                android:onClick="onClickEditBuildingProperties"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/finalPortfolio_textView_buildingDetails"
+        android:id="@+id/finalPortfolio_linearLayout_buildingDetails"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/layout_border"
+        android:layout_margin="5dp">
+
+    </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/finalPortfolio_imageView_facilitiesProvided"
+                android:contentDescription="@string/description"
+                android:src="@drawable/ic_drop_down"
+                android:layout_below="@+id/finalPortfolio_linearLayout_buildingDetails"
+                android:layout_alignParentStart="true"
+                android:onClick="onClickFacilitiesProvided"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/facilities_provided"
+                android:id="@+id/finalPortfolio_textView_facilitiesProvided"
+                android:layout_centerVertical="true"
+                android:layout_below="@+id/finalPortfolio_linearLayout_buildingDetails"
+                android:layout_toEndOf="@+id/finalPortfolio_imageView_buildingDetails"
+                android:onClick="onClickFacilitiesProvided"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/edit"
+                android:id="@+id/finalPortfolio_textView_editFacilitiesProvided"
+                android:layout_below="@+id/finalPortfolio_linearLayout_buildingDetails"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:textStyle="bold"
+                android:textColor="#FF0000"
+                android:typeface="serif"
+                android:onClick="onClickEditFacilitiesProvided"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="25dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/finalPortfolio_textView_facilitiesProvided"
+                android:id="@+id/finalPortfolio_linearLayout_facilitiesProvided"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/layout_border"
+                android:layout_margin="5dp">
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/finalPortfolio_imageView_costAndCharges"
+                android:contentDescription="@string/description"
+                android:src="@drawable/ic_drop_down"
+                android:layout_below="@+id/finalPortfolio_linearLayout_facilitiesProvided"
+                android:layout_alignParentStart="true"
+                android:onClick="onClickCostAndCharges"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/cost_and_charges"
+                android:id="@+id/finalPortfolio_textView_costAndCharges"
+                android:layout_centerVertical="true"
+                android:layout_below="@+id/finalPortfolio_linearLayout_facilitiesProvided"
+                android:layout_toEndOf="@+id/finalPortfolio_imageView_buildingDetails"
+                android:onClick="onClickCostAndCharges"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/edit"
+                android:id="@+id/finalPortfolio_textView_editCostAndCharges"
+                android:layout_below="@+id/finalPortfolio_linearLayout_facilitiesProvided"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:textStyle="bold"
+                android:textColor="#FF0000"
+                android:typeface="serif"
+                android:onClick="onClickEditCostAndCharges"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/finalPortfolio_textView_costAndCharges"
+                android:id="@+id/finalPortfolio_linearLayout_costAndCharges"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/layout_border"
+                android:layout_margin="5dp">
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/viewButton_button_finish"
+        android:onClick="onClickFinishButton"
+        android:background="#2E9AFE"
+        android:textColor="@drawable/button_text_color"
+        android:text="@string/finish"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

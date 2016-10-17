@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.comfostays.WelcomeScreen"
+    tools:showIn="@layout/app_bar_welcome_screen">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent">
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/welcomeScreen_linearLayout_upperView"
+            android:background="@drawable/view_property_image" >
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:id="@+id/welcomeScreen_linearLayout_lowerView"
+            android:layout_marginTop="10dp">
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:rowOrderPreserved="false"
+                android:useDefaultMargins="true"
+                android:transitionGroup="false"
+                android:touchscreenBlocksFocus="true">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/welcomeScreen_imageView_0_0"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:src="@drawable/my_property_new"
+                    android:onClick="onClickMyProperty" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/welcomeScreen_imageView_0_1"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:src="@drawable/occupancy_new"
+                    android:onClick="onClickOccupancy" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/welcomeScreen_imageView_0_2"
+                    android:layout_row="0"
+                    android:layout_column="2"
+                    android:src="@drawable/tenants_new"
+                    android:onClick="onClickTenant" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/welcomeScreen_imageView_1_0"
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:src="@drawable/my_finances"
+                    android:onClick="onClickFinances" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/welcomeScreen_imageView_1_1"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:src="@drawable/add_property_new"
+                    android:onClick="onClickAddProperty" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/welcomeScreen_imageView_1_2"
+                    android:layout_row="1"
+                    android:layout_column="2"
+                    android:src="@drawable/notifications_new"
+                    android:onClick="onClickNotifications" />
+            </GridLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

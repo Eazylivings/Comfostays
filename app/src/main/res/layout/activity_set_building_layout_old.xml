@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.buildingsetup.SetBuildingLayoutActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/set_building_layout_backButton"
+            android:onClick="onClickBackButton"
+            android:layout_gravity="top|start"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/set_building_layout_titleBar"
+            android:layout_toStartOf="@+id/set_building_layout_titleBar"
+            android:src="@drawable/arrow_back"
+            android:layout_marginRight="2dp" />
+
+        <TextView
+            android:layout_height="50dp"
+            android:layout_width="200dp"
+            android:id="@+id/set_building_layout_titleBar"
+            android:background="#2E9AFE"
+            android:textColor="#FFFFFF"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_gravity="top"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/set_building_layout_homeButton"
+            android:src="@drawable/home_icon"
+            android:onClick="onClickHomeButton"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="top|end"
+            android:layout_toRightOf="@+id/set_building_layout_titleBar"
+            android:layout_toEndOf="@+id/set_building_layout_titleBar"
+            android:layout_marginLeft="2dp" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/setBuildingLayout_listView"
+            android:layout_below="@+id/set_building_layout_titleBar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp"
+            android:layout_above="@+id/setBuildingLayout_gridLayout"/>
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/setBuildingLayout_gridLayout"
+            android:layout_above="@+id/setBuildingLayout_button_continue"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/setBuildingLayout_imageButton_addFloor"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:src="@android:drawable/ic_input_add"
+                android:onClick="onClickAddFloor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/add_floor"
+                android:id="@+id/setBuildingLayout_textView_addFloor"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:textColor="#2E9AFE"
+                android:textStyle="bold"
+                android:onClick="onClickAddFloor" />
+        </GridLayout>
+
+        <Button
+            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/setBuildingLayout_button_continue"
+            android:onClick="onClickContinueButton"
+            android:background="#2E9AFE"
+            android:textColor="@drawable/button_text_color"
+            android:text="Continue"
+            android:textSize="18dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+
+

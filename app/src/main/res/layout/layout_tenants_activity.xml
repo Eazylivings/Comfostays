@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/layoutTenantsActivity_imageView_profilePic"
+        android:contentDescription="@string/description"
+        android:src="@drawable/profile_pic_one"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="NAME : "
+        android:id="@+id/layoutTenantsActivity_textView_nameHeading"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/layoutTenantsActivity_imageView_profilePic"
+        android:layout_margin="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/layoutTenantsActivity_textView_name"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/layoutTenantsActivity_textView_nameHeading"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Room Number :"
+        android:id="@+id/layoutTenantsActivity_textView_roomNumberHeading"
+        android:layout_toEndOf="@+id/layoutTenantsActivity_imageView_profilePic"
+        android:layout_margin="5dp"
+        android:layout_below="@+id/layoutTenantsActivity_textView_nameHeading" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/layoutTenantsActivity_textView_roomNumber"
+        android:layout_toEndOf="@+id/layoutTenantsActivity_textView_roomNumberHeading"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@+id/layoutTenantsActivity_textView_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Rent Paid :"
+        android:id="@+id/layoutTenantsActivity_textView_rentPaidHeading"
+        android:layout_below="@+id/layoutTenantsActivity_textView_roomNumberHeading"
+        android:layout_toEndOf="@+id/layoutTenantsActivity_imageView_profilePic"
+        android:layout_margin="5dp" />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/layoutTenantsActivity_imageView_rentPaid"
+        android:contentDescription="@string/description"
+        android:layout_below="@+id/layoutTenantsActivity_textView_roomNumber"
+        android:layout_toEndOf="@+id/layoutTenantsActivity_textView_rentPaidHeading"
+        android:src="@drawable/correct_icon"
+        android:layout_margin="5dp" />
+</RelativeLayout>

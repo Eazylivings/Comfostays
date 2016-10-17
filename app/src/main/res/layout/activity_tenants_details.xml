@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="com.comfostays.activities.TenantsDetailsActivity">
+
+    <include android:id="@+id/layout_header"
+        layout="@layout/layout_header"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:layout_below="@+id/layout_header"
+        android:layout_marginTop="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/description"
+                android:id="@+id/tenantsDetails_imageView_profilePic"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/default_profile_pic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/tenantsDetails_textView_tenantName"
+                android:layout_below="@+id/tenantsDetails_imageView_profilePic"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/tenantsDetails_textView_tenantEmailAddress"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="136dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tenantsDetails_linearLayout"
+        android:layout_below="@+id/tenantsDetails_textView_tenantEmailAddress"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/tenantsDetails_textView_roomNumberHeading"
+            android:textAlignment="center"
+            android:layout_margin="5dp" />
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#000000"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/tenantsDetails_textView_durationOfStayHeading"
+            android:textAlignment="center"
+            android:layout_margin="5dp" />
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#000000"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/tenantsDetails_textView_complaintsLoggedHeading"
+            android:textAlignment="center"
+            android:layout_margin="5dp" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_below="@+id/tenantsDetails_linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="#000000"
+        android:layout_marginTop="40dp"
+        android:id="@+id/tenantsDetails_customView_one"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/about"
+        android:id="@+id/tenantsDetails_textView_aboutHeading"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tenantsDetails_customView_one"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/tenantsDetails_textView_aboutValue"
+        android:layout_below="@+id/tenantsDetails_textView_aboutHeading"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp" />
+
+    <View
+        android:layout_below="@+id/tenantsDetails_textView_aboutValue"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="#000000"
+        android:layout_marginTop="5dp"
+        android:id="@+id/tenantsDetails_customView_two"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/contact_details"
+        android:id="@+id/tenantsDetails_textView_contactDetailsHeading"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tenantsDetails_customView_two"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/tenantsDetails_textView_contactDetailsValue"
+        android:layout_below="@+id/tenantsDetails_textView_contactDetailsHeading"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp" />
+
+    <View
+        android:layout_below="@+id/tenantsDetails_textView_contactDetailsValue"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="#000000"
+        android:layout_marginTop="5dp"
+        android:id="@+id/tenantsDetails_customView_three"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/residing_since"
+        android:id="@+id/tenantsDetails_textView_residingSinceHeading"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tenantsDetails_customView_three"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/tenantsDetails_textView_residingSinceValue"
+        android:layout_below="@+id/tenantsDetails_textView_residingSinceHeading"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp" />
+
+    <View
+        android:layout_below="@+id/tenantsDetails_textView_residingSinceValue"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="#000000"
+        android:layout_marginTop="5dp"
+        android:id="@+id/tenantsDetails_customView_four"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/id_proofs"
+        android:id="@+id/tenantsDetails_textView_idProofsHeading"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tenantsDetails_customView_four"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tenantsDetails_linearLayout_idProofs"
+                android:layout_below="@+id/tenantsDetails_textView_idProofsHeading">
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

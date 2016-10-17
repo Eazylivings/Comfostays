@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.comfostays.activities.buildingsetup.AddMealsScheduleActivity$PlaceholderFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="TIMINGS"
+        android:id="@+id/fragmentAddMealsScheduleLunchAndDinner_textView_timeHeading"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:background="#2E9AFE"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:gravity="center" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragmentAddMealsScheduleLunchAndDinner_gridLayout_time"
+        android:layout_below="@+id/fragmentAddMealsScheduleLunchAndDinner_textView_timeHeading"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="From :"
+            android:id="@+id/fragmentAddMealsScheduleLunchAndDinner_textView_fromTime"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:gravity="center" />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/fragmentAddMealsScheduleLunchAndDinner_editText_fromTime"
+            android:layout_row="0"
+            android:layout_column="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="To :"
+            android:id="@+id/fragmentAddMealsScheduleLunchAndDinner_textView_toTime"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_marginStart="10dp"
+            android:gravity="center" />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/fragmentAddMealsScheduleLunchAndDinner_editText_toTime"
+            android:layout_row="0"
+            android:layout_column="3" />
+    </GridLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragmentAddMeallsScheduleLunchAndDinner_scrollView"
+        android:layout_below="@+id/fragmentAddMealsScheduleLunchAndDinner_gridLayout_time"
+        android:layout_alignParentStart="true">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragmentAddMealsScheduleLunchAndDinner_gridLayout_schedule">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/monday"
+            android:id="@+id/fragmentAddMealsScheduleLunchAndDinner_textView_monday"
+            android:layout_row="1"
+            android:layout_column="0" />
+
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleLunchAndDinner_editText_mondayCurry"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/curries" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleLunchAndDinner_editText_mondayRiceRoti"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/rice_chapattis"/>
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleLunchAndDinner_editText_mondayExtras"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/extras_curd_salad_pickle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/tuesday"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_textView_tuesday"
+            android:layout_row="4"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_tuesdayCurry"
+            android:layout_row="3"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/curries" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_tuesdayRiceRoti"
+            android:layout_row="4"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/rice_chapattis" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_tuesdayExtras"
+            android:layout_row="5"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/extras_curd_salad_pickle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/wednesday"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_textView_wednesday"
+            android:layout_row="7"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_wednesdayCurry"
+            android:layout_row="6"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/curries" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_wednesdayRiceRoti"
+            android:layout_row="7"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/rice_chapattis" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_wednesdayExtras"
+            android:layout_row="8"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/extras_curd_salad_pickle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/thursday"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_textView_thursday"
+            android:layout_row="10"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_thursdayCurry"
+            android:layout_row="9"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/curries"/>
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_thursdayRiceRoti"
+            android:layout_row="10"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/rice_chapattis"/>
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_thursdayExtras"
+            android:layout_row="11"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/extras_curd_salad_pickle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/friday"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_textView_friday"
+            android:layout_row="13"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_fridayCurry"
+            android:layout_row="12"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/curries"/>
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_fridayRiceRoti"
+            android:layout_row="13"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/rice_chapattis"/>
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_fridayExtras"
+            android:layout_row="14"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/extras_curd_salad_pickle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/saturday"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_textView_saturday"
+            android:layout_row="16"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_saturdayCurry"
+            android:layout_row="15"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/curries"/>
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_saturdayRiceRoti"
+            android:layout_row="16"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/rice_chapattis"/>
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_saturdayExtras"
+            android:layout_row="17"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/extras_curd_salad_pickle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/sunday"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_textView_sunday"
+            android:layout_row="19"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_sundayCurry"
+            android:layout_row="18"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/curries"/>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_sundayRiceRoti"
+            android:layout_row="19"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/rice_chapattis"/>
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:id="@+id/fragmentAddMealsScheduleBreakfast_editText_sundayExtras"
+            android:layout_row="20"
+            android:layout_column="1"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/extras_curd_salad_pickle"/>
+    </GridLayout>
+
+    </ScrollView>
+
+
+
+</RelativeLayout>
