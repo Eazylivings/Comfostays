@@ -1,9 +1,6 @@
 package com.comfostays.activities;
 
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,13 +8,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.comfostays.CommonFunctionality;
 import com.comfostays.R;
@@ -49,7 +43,9 @@ public class TutorialActivity extends AppCompatActivity {
 
         // Set up the ViewPager with the sections adapter.
         ViewPager mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        if(mViewPager!=null) {
+            mViewPager.setAdapter(mSectionsPagerAdapter);
+        }
     }
 
     /**
@@ -135,8 +131,6 @@ public class TutorialActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
 
-        CommonFunctionality commonFunctionality=new CommonFunctionality(getApplicationContext(),this);
-
-        commonFunctionality.onBackPressed(WelcomeScreen.class);
+        CommonFunctionality.onBackPressed(this,WelcomeScreen.class);
     }
 }

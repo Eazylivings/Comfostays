@@ -1,6 +1,7 @@
 package com.comfostays.Adaptors;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ public class TenantsAdaptor extends ArrayAdapter<String> {
 
     Context context;
 
-    List<String> currentResidingTenantsName =new ArrayList<String>();
+    List<String> currentResidingTenantsName =new ArrayList<>();
     ArrayList<TenantDetailsVO> listOfTenantDetailsVO=new ArrayList<>();
 
     public TenantsAdaptor(Context context, List<String> currentResidingTenantsName, ArrayList<TenantDetailsVO> listOfTenantDetailsVO) {
@@ -44,22 +45,20 @@ public class TenantsAdaptor extends ArrayAdapter<String> {
 
             TextView tenantName = (TextView) view.findViewById(R.id.layoutTenantsActivity_textView_name);
             TextView roomNumber=(TextView)view.findViewById(R.id.layoutTenantsActivity_textView_roomNumber);
-            ImageView rentPaidImageView=(ImageView)view.findViewById(R.id.layoutTenantsActivity_imageView_rentPaid);
-            ImageView tenantProfilePic=(ImageView)view.findViewById(R.id.layoutTenantsActivity_imageView_profilePic);
+            TextView rentStatus=(TextView)view.findViewById(R.id.textView_rentStatus);
 
-            if (tenantName != null && roomNumber != null && rentPaidImageView != null && tenantProfilePic != null) {
+            if (tenantName != null && roomNumber != null && rentStatus != null) {
 
                 tenantName.setText(tenantDetailsVO.getTenantName());
                 roomNumber.setText(tenantDetailsVO.getTenantRoomNumber());
 
                 if(tenantDetailsVO.isRentPaid()){
-                    rentPaidImageView.setImageResource(R.drawable.correct_icon);
+                    rentStatus.setBackgroundColor(Color.GREEN);
 
                 }else{
-                    rentPaidImageView.setImageResource(R.drawable.incorrect_icon);
+                    rentStatus.setBackgroundColor(Color.RED);
 
                 }
-                tenantProfilePic.setImageResource(Integer.parseInt(tenantDetailsVO.getTenantProfilePic()));
             }
         }
         return view;

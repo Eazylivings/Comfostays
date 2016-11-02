@@ -27,9 +27,8 @@ import com.comfostays.sharedpreference.SharedPreference;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    CommonFunctionality commonFunctionality;
-    ProgressBar progressBar;
-    SharedPreference preference;
+    private ProgressBar progressBar;
+    private SharedPreference preference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,19 +46,19 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         setTitleBar(R.id.register_backButton,R.id.register_titleBar,Constants.TITLE_REGISTER);
-        commonFunctionality=new CommonFunctionality(getApplicationContext(),this);
-        commonFunctionality.onClickListenerForImage(R.id.register_backButton);
+
+        CommonFunctionality.onClickListenerForImage(this,R.id.register_backButton);
     }
 
     @Override
     public void onBackPressed(){
 
-        commonFunctionality.onBackPressed(LoginActivity.class);
+        CommonFunctionality.onBackPressed(this,LoginActivity.class);
     }
 
     public void onClickBackButton(View view){
 
-        commonFunctionality.onBackPressed(LoginActivity.class);
+        CommonFunctionality.onBackPressed(this,LoginActivity.class);
     }
 
     public void onClickRegister(View view){
@@ -68,6 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
         EditText emailAddress=(EditText)findViewById(R.id.register_editText_email);
         EditText contactNumber=(EditText)findViewById(R.id.register_editText_contactNumber);
         EditText password=(EditText)findViewById(R.id.register_editText_password);
+        EditText dateOfBirth=(EditText)findViewById(R.id.editText_dateOfBirth);
         RadioButton customerRadio=(RadioButton)findViewById(R.id.register_radioButton_customer);
         RadioButton ownerRadio=(RadioButton)findViewById(R.id.register_radioButton_owner);
 
@@ -75,10 +75,11 @@ public class RegisterActivity extends AppCompatActivity {
         boolean isEmailAddressNotNull=Validators.checkEmptyInput(emailAddress);
         boolean isContactNumberNotNull=Validators.checkEmptyInput(contactNumber);
         boolean isPasswordNotNull=Validators.checkEmptyInput(password);
+        boolean isDateOfBirthNotNull=Validators.checkEmptyInput(dateOfBirth);
 
         if(Validators.isInternetAvailable(getApplicationContext())) {
 
-            if (isUserNameNotNull && isEmailAddressNotNull && isContactNumberNotNull && isPasswordNotNull) {
+            if (isUserNameNotNull && isEmailAddressNotNull && isContactNumberNotNull && isPasswordNotNull && isDateOfBirthNotNull) {
 
                 OwnerServerDatabaseHandler handler = new OwnerServerDatabaseHandler(getApplicationContext(), this);
                 OwnerLocalDatabaseHandler localDatabaseHandler=new OwnerLocalDatabaseHandler(getApplicationContext(),this);
@@ -86,11 +87,11 @@ public class RegisterActivity extends AppCompatActivity {
 
                 preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_USERNAME,userName.getText().toString());
                 preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_EMAIL_ADDRESS,emailAddress.getText().toString());
-                preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PASSWORD,password.getText().toString());
 
                 userDetailsVO.setUserName(userName.getText().toString());
                 userDetailsVO.setEmailAddress(emailAddress.getText().toString());
                 userDetailsVO.setContactNumber(contactNumber.getText().toString());
+                userDetailsVO.setDateOfBirth(dateOfBirth.getText().toString());
 
                 if (customerRadio!=null && customerRadio.isChecked()) {
 
@@ -103,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.VISIBLE);
                     }
 
-                    handler.execute(Constants.ACTION_REGISTER, userName.getText().toString(), emailAddress.getText().toString(), contactNumber.getText().toString(), password.getText().toString(), Constants.CUSTOMER);
+                    handler.execute(Constants.ACTION_REGISTER, userName.getText().toString(), emailAddress.getText().toString(), contactNumber.getText().toString(), password.getText().toString(),dateOfBirth.getText().toString(), Constants.CUSTOMER);
                 } else if (ownerRadio!=null && ownerRadio.isChecked()) {
 
                     preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_ACCOUNT_TYPE,Constants.OWNER);
@@ -115,19 +116,22 @@ public class RegisterActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.VISIBLE);
                     }
 
-                    handler.execute(Constants.ACTION_REGISTER, userName.getText().toString(), emailAddress.getText().toString(), contactNumber.getText().toString(), password.getText().toString(), Constants.OWNER);
+                    handler.execute(Constants.ACTION_REGISTER, userName.getText().toString(), emailAddress.getText().toString(), contactNumber.getText().toString(), password.getText().toString(),dateOfBirth.getText().toString(), Constants.OWNER);
 
                 } else {
-                    commonFunctionality.generatePopupMessage(Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_TYPE_SELECTION);
+                    CommonFunctionality.generatePopupMessage(this,Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_TYPE_SELECTION);
                 }
             } else if (!isUserNameNotNull) {
-                commonFunctionality.generatePopupMessage(Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_USERNAME);
+                CommonFunctionality.generatePopupMessage(this,Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_USERNAME);
             } else if (!isContactNumberNotNull) {
-                commonFunctionality.generatePopupMessage(Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_CONTACT_NUMBER);
+                CommonFunctionality.generatePopupMessage(this,Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_CONTACT_NUMBER);
             } else if (!isEmailAddressNotNull) {
-                commonFunctionality.generatePopupMessage(Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_EMAIL_ADDRESS);
+                CommonFunctionality.generatePopupMessage(this,Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_EMAIL_ADDRESS);
             } else if (!isPasswordNotNull) {
-                commonFunctionality.generatePopupMessage(Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_PASSWORD);
+                CommonFunctionality.generatePopupMessage(this,Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_PASSWORD);
+            }else if(!isDateOfBirthNotNull){
+
+                CommonFunctionality.generatePopupMessage(this,Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_DATE_OF_BIRTH);
             }
         }else{
 
@@ -171,7 +175,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         } catch (Exception e) {
 
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(this);
         }
     }
 }

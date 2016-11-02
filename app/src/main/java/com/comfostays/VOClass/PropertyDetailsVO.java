@@ -15,8 +15,8 @@ public class PropertyDetailsVO implements Serializable{
     private String propertyType;
     private boolean isMealOffered;
     private boolean isMealScheduleAvailable;
-    private ArrayList<String> listOfFacilities;
-    private ArrayList<String> typeOfRooms;
+    private String[] listOfFacilities;
+    private String[] typeOfRooms;
     private String facilitiesProvided;
     private String roomTypes;
     private String furnishedFlatItems;
@@ -49,11 +49,11 @@ public class PropertyDetailsVO implements Serializable{
 
 
 
-    public ArrayList<String> getTypeOfRooms() {
+    public String[] getTypeOfRooms() {
         return typeOfRooms;
     }
 
-    public void setTypeOfRooms(ArrayList<String> typeOfRooms) {
+    public void setTypeOfRooms(String[] typeOfRooms) {
         this.typeOfRooms = typeOfRooms;
     }
 
@@ -65,11 +65,11 @@ public class PropertyDetailsVO implements Serializable{
         isMealScheduleAvailable = mealScheduleAvailable;
     }
 
-    public ArrayList<String> getListOfFacilities() {
+    public String[] getListOfFacilities() {
         return listOfFacilities;
     }
 
-    public void setListOfFacilities(ArrayList<String> listOfFacilities) {
+    public void setListOfFacilities(String[] listOfFacilities) {
         this.listOfFacilities = listOfFacilities;
     }
 

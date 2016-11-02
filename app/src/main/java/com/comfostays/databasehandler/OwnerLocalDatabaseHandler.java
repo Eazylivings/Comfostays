@@ -8,18 +8,22 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.comfostays.CommonFunctionality;
+import com.comfostays.Constants;
 import com.comfostays.VOClass.CostAndChargesVO;
 import com.comfostays.VOClass.FloorToRoomVO;
+import com.comfostays.VOClass.MealScheduleVO;
 import com.comfostays.VOClass.PropertyDetailsVO;
 import com.comfostays.VOClass.PropertyLayoutDetailsVO;
 import com.comfostays.VOClass.TenantDetailsVO;
 import com.comfostays.VOClass.UserDetailsVO;
+import com.comfostays.sharedpreference.SharedPreference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
@@ -30,29 +34,29 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
     Context context;
     Activity activity;
 
-    private static final String TABLE_USER_DETAILS = "userDetails";
+    private static final String TABLE_USER_DETAILS = "user_details";
     private static final String KEY_SERVER_ENTRY_ID="serverEntryId";
-    private static final String KEY_USER_NAME = "userName";
-    private static final String KEY_EMAIL_ADDRESS = "emailAddress";
-    private static final String KEY_CONTACT_NUMBER = "contactNumber";
-    private static final String KEY_DATE_OF_BIRTH = "dateOfBirth";
+    private static final String KEY_USER_NAME = "user_name";
+    private static final String KEY_EMAIL_ADDRESS = "email_address";
+    private static final String KEY_CONTACT_NUMBER = "contact_number";
+    private static final String KEY_DATE_OF_BIRTH = "date_of_birth";
     private static final String KEY_GENDER = "gender";
-    private static final String KEY_ACCOUNT_TYPE = "accountType";
-    private static final String KEY_REGISTRATION_DATE="registrationDate";
+    private static final String KEY_ACCOUNT_TYPE = "account_type";
+    private static final String KEY_REGISTRATION_DATE="registration_date";
 
-    private static final String TABLE_PROPERTY_DETAILS="propertyDetails";
-    private static final String KEY_PROPERTY_ID="propertyId";
-    private static final String KEY_PROPERTY_NAME="propertyName";
-    private static final String KEY_ADDRESS_LINE_ONE="addressLineOne";
-    private static final String KEY_ADDRESS_LINE_TWO="addressLineTwo";
-    private static final String KEY_POSTAL_CODE="postalCode";
+    private static final String TABLE_PROPERTY_DETAILS="property_details";
+    private static final String KEY_PROPERTY_ID="property_id";
+    private static final String KEY_PROPERTY_NAME="property_name";
+    private static final String KEY_ADDRESS_LINE_ONE="address_line_one";
+    private static final String KEY_ADDRESS_LINE_TWO="address_line_two";
+    private static final String KEY_POSTAL_CODE="postal_code";
     private static final String KEY_STATE="state";
-    private static final String KEY_GEO_LOCATION="geoLocation";
-    private static final String KEY_PROPERTY_TYPE="propertyType";
-    private static final String KEY_IS_MEAL_OFFERED="isMealOffered";
-    private static final String KEY_IS_MEAL_SCHEDULE_AVAILABLE="isMealScheduleAvailable";
-    private static final String KEY_FACILITIES_PROVIDED="facilitiesProvided";
-    private static final String KEY_ROOM_TYPES="roomTypes";
+    private static final String KEY_GEO_LOCATION="geo_location";
+    private static final String KEY_PROPERTY_TYPE="property_type";
+    private static final String KEY_IS_MEAL_OFFERED="is_meal_offered";
+    private static final String KEY_IS_MEAL_SCHEDULE_AVAILABLE="is_meal_schedule_available";
+    private static final String KEY_FACILITIES_PROVIDED="facilities_provided";
+    private static final String KEY_ROOM_TYPES="room_types";
     private static final String KEY_FURNISHED_FLAT_ITEMS="furnished_flat_items";
 
     private static final String TABLE_TENANT_DETAILS="tenant_details";
@@ -65,7 +69,7 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_PROFILE_PIC="profile_pic_source";
     private static final String KEY_PROFESSION="profession";
     private static final String KEY_ROOM_NUMBER="room_number";
-    private static final String KEY_COMPLAINTS_LOGGED="complaintsLogged";
+    private static final String KEY_COMPLAINTS_LOGGED="complaints_logged";
     private static final String KEY_NUMBER_OF_OCCUPANCY="occupancy";
 
     private static final String TABLE_PROPERTY_LAYOUT_DETAILS="property_layout_details";
@@ -76,6 +80,21 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_CHARGES="charges";
     private static final String KEY_DURATION="floor_number";
     private static final String KEY_CHARGE_TYPE="charge_type";
+
+    private static final String TABLE_MEAL_SCHEDULE="meal_timing_and_schedule";
+    private static final String KEY_BREAKFAST_FROM_TIME="breakfast_from_time";
+    private static final String KEY_BREAKFAST_TO_TIME="breakfast_to_time";
+    private static final String KEY_LUNCH_FROM_TIME="lunch_from_time";
+    private static final String KEY_LUNCH_TO_TIME="lunch_to_time";
+    private static final String KEY_DINNER_FROM_TIME="dinner_from_time";
+    private static final String KEY_DINNER_TO_TIME="dinner_to_time";
+    private static final String KEY_MONDAY_MEALS="monday_meals";
+    private static final String KEY_TUESDAY_MEALS="tuesday_meals";
+    private static final String KEY_WEDNESDAY_MEALS="wednesday_meals";
+    private static final String KEY_THURSDAY_MEALS="thursday_meals";
+    private static final String KEY_FRIDAY_MEALS="friday_meals";
+    private static final String KEY_SATURDAY_MEALS="saturday_meals";
+    private static final String KEY_SUNDAY_MEALS="sunday_meals";
 
 
     public OwnerLocalDatabaseHandler(Context context, Activity activity) {
@@ -91,7 +110,7 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
             String CREATE_USER_DETAILS_TABLE = "CREATE TABLE " + TABLE_USER_DETAILS + "("
                     + KEY_ID + " INTEGER PRIMARY KEY," + KEY_SERVER_ENTRY_ID + " INTEGER," + KEY_PROPERTY_ID + " INTEGER," + KEY_USER_NAME + " TEXT," + KEY_EMAIL_ADDRESS + " TEXT ," + KEY_CONTACT_NUMBER
-                    + " TEXT," + KEY_DATE_OF_BIRTH + " TEXT," + KEY_GENDER + " TEXT," + KEY_ACCOUNT_TYPE + " TEXT," + KEY_REGISTRATION_DATE + " TEXT)";
+                    + " TEXT," + KEY_DATE_OF_BIRTH + " TEXT," + KEY_GENDER + " TEXT,"+ KEY_ACCOUNT_TYPE + " TEXT," + KEY_REGISTRATION_DATE + " TEXT)";
 
             String CREATE_PROPERTY_DETAILS_TABLE = "CREATE TABLE " + TABLE_PROPERTY_DETAILS + "("
                     + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PROPERTY_ID + " INTEGER," + KEY_PROPERTY_NAME + " TEXT," + KEY_ADDRESS_LINE_ONE + " TEXT," + KEY_ADDRESS_LINE_TWO
@@ -111,15 +130,23 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
                     + " TEXT," + KEY_IS_APPROVED + " TEXT," + KEY_STAY_FREQUENCY + " TEXT," + KEY_ID_PROOFS + " TEXT," + KEY_ID_PROOFS_TYPES + " TEXT," + KEY_PROFILE_PIC + " TEXT,"
                     + KEY_PROFESSION + " TEXT," + KEY_ROOM_NUMBER + " TEXT," + KEY_COMPLAINTS_LOGGED + " TEXT," + KEY_PROPERTY_NAME + " TEXT)";
 
+            String CREATE_MEAL_SCHEDULE= "CREATE TABLE " + TABLE_MEAL_SCHEDULE + "("
+                    + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PROPERTY_ID + " INTEGER," + KEY_BREAKFAST_FROM_TIME + " TEXT," + KEY_BREAKFAST_TO_TIME + " TEXT," + KEY_LUNCH_FROM_TIME
+                    + " TEXT,"+ KEY_LUNCH_TO_TIME + " TEXT,"+ KEY_DINNER_FROM_TIME + " TEXT,"+ KEY_DINNER_TO_TIME + " TEXT,"+ KEY_MONDAY_MEALS + " TEXT,"
+                    + KEY_TUESDAY_MEALS + " TEXT,"+ KEY_WEDNESDAY_MEALS + " TEXT,"+ KEY_THURSDAY_MEALS + " TEXT,"+ KEY_FRIDAY_MEALS + " TEXT,"+ KEY_SATURDAY_MEALS + " TEXT,"
+                    + KEY_SUNDAY_MEALS + " TEXT)";
+
+
             db.execSQL(CREATE_USER_DETAILS_TABLE);
             db.execSQL(CREATE_PROPERTY_DETAILS_TABLE);
             db.execSQL(CREATE_PROPERTY_LAYOUT_DETAILS);
+            db.execSQL(CREATE_MEAL_SCHEDULE);
+            db.execSQL(CREATE_COST_AND_CHARGES_TABLE);
             db.execSQL(CREATE_CURRENT_TENANT_DETAILS);
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
         }
     }
 
@@ -147,18 +174,182 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
             values.put(KEY_GENDER, userDetails.getGender());
             values.put(KEY_ACCOUNT_TYPE, userDetails.getAccountType());
 
-
             // Inserting Row
             db.insertOrThrow(TABLE_USER_DETAILS, null, values);
             db.close(); // Closing database connection
         }catch(Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
         }
     }
 
-    public UserDetailsVO getUserDetails(int id) {
+    public void setPropertyDetails(PropertyDetailsVO propertyDetails) {
+
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(KEY_PROPERTY_ID, propertyDetails.getPropertyId());
+            values.put(KEY_PROPERTY_NAME, propertyDetails.getPropertyName());
+            values.put(KEY_ADDRESS_LINE_ONE, propertyDetails.getAddressLineOne());
+            values.put(KEY_ADDRESS_LINE_TWO, propertyDetails.getAddressLineTwo());
+            values.put(KEY_POSTAL_CODE, propertyDetails.getPostalCode());
+            values.put(KEY_STATE, propertyDetails.getState());
+            values.put(KEY_GEO_LOCATION, propertyDetails.getGeoLocation());
+            values.put(KEY_PROPERTY_TYPE, propertyDetails.getPropertyType());
+            values.put(KEY_IS_MEAL_OFFERED, String.valueOf(propertyDetails.isMealOffered()));
+            values.put(KEY_IS_MEAL_SCHEDULE_AVAILABLE, String.valueOf(propertyDetails.isMealScheduleAvailable()));
+            values.put(KEY_FACILITIES_PROVIDED, propertyDetails.getFacilitiesProvided());
+            values.put(KEY_ROOM_TYPES, propertyDetails.getRoomTypes());
+            values.put(KEY_FURNISHED_FLAT_ITEMS,propertyDetails.getFurnishedFlatItems());
+
+            // Inserting Row
+            db.insertOrThrow(TABLE_PROPERTY_DETAILS, null, values);
+            db.close(); // Closing database connection
+        }catch (Exception e){
+
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
+        }
+    }
+
+    public void setPropertyLayoutDetails(PropertyLayoutDetailsVO layoutDetailsVO){
+
+        try {
+
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(KEY_PROPERTY_ID, layoutDetailsVO.getPropertyId());
+            values.put(KEY_FLOOR_NUMBER, layoutDetailsVO.getFloorNumber());
+            values.put(KEY_ROOM_NUMBER, layoutDetailsVO.getRoomNumber());
+            values.put(KEY_ROOM_TYPE, layoutDetailsVO.getRoomType());
+            values.put(KEY_NUMBER_OF_OCCUPANCY, layoutDetailsVO.getOccupancy());
+
+            db.insertOrThrow(TABLE_PROPERTY_LAYOUT_DETAILS, null, values);
+            db.close(); // Closing database connection
+
+        }catch (Exception e){
+
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
+        }
+    }
+
+    public void setCostAndCharges(CostAndChargesVO costAndCharges){
+
+        try {
+
+            LinkedHashMap<String,String> otherChargesMap=costAndCharges.getOtherChargesMap();
+            ArrayList<String> listOfRoomTypesAndChargesWithDuration=costAndCharges.getListOfRoomTypesAndChargesWithDuration();
+
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            for(int i=0;i<listOfRoomTypesAndChargesWithDuration.size();i++){
+
+                String[] array=listOfRoomTypesAndChargesWithDuration.get(i).split(":");
+
+                if(array.length==3) {
+
+                    ContentValues values = new ContentValues();
+                    values.put(KEY_PROPERTY_ID, costAndCharges.getPropertyId());
+                    values.put(KEY_ROOM_TYPE, array[0]);
+                    values.put(KEY_CHARGES, array[1]);
+                    values.put(KEY_DURATION, array[2]);
+
+                    db.insertOrThrow(TABLE_COST_AND_CHARGES, null, values);
+                }
+            }
+
+            for(Map.Entry<String,String> entry : otherChargesMap.entrySet()){
+
+                String chargeType=entry.getKey();
+                String charges=entry.getValue();
+
+                ContentValues values = new ContentValues();
+                values.put(KEY_PROPERTY_ID, costAndCharges.getPropertyId());
+                values.put(KEY_CHARGE_TYPE,chargeType);
+                values.put(KEY_CHARGES, charges);
+
+                db.insertOrThrow(TABLE_COST_AND_CHARGES, null, values);
+            }
+
+
+            db.close(); // Closing database connection
+
+        }catch (Exception e){
+
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
+        }
+
+    }
+
+    public void setMealSchedule(MealScheduleVO mealScheduleVO){
+
+        try {
+
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(KEY_PROPERTY_ID, mealScheduleVO.getPropertyId());
+            values.put(KEY_BREAKFAST_FROM_TIME, mealScheduleVO.getBreakfastFromTime());
+            values.put(KEY_BREAKFAST_TO_TIME, mealScheduleVO.getBreakfastToTime());
+            values.put(KEY_LUNCH_FROM_TIME, mealScheduleVO.getLunchFromTime());
+            values.put(KEY_LUNCH_TO_TIME, mealScheduleVO.getLunchToTime());
+            values.put(KEY_DINNER_FROM_TIME, mealScheduleVO.getDinnerFromTime());
+            values.put(KEY_DINNER_TO_TIME, mealScheduleVO.getDinnerToTime());
+
+            List<String> listOfMeals=mealScheduleVO.getListOfMeals();
+
+            values.put(KEY_MONDAY_MEALS, listOfMeals.get(0));
+            values.put(KEY_TUESDAY_MEALS,listOfMeals.get(1));
+            values.put(KEY_WEDNESDAY_MEALS, listOfMeals.get(2));
+            values.put(KEY_THURSDAY_MEALS,listOfMeals.get(3));
+            values.put(KEY_FRIDAY_MEALS, listOfMeals.get(4));
+            values.put(KEY_SATURDAY_MEALS, listOfMeals.get(5));
+            values.put(KEY_SUNDAY_MEALS, listOfMeals.get(6));
+
+            db.insertOrThrow(TABLE_MEAL_SCHEDULE, null, values);
+            db.close(); // Closing database connection
+
+        }catch (Exception e){
+
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
+        }
+
+    }
+
+    public void setCurrentTenantDetails(TenantDetailsVO tenantDetails) {
+
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(KEY_USER_NAME, tenantDetails.getTenantName());
+            values.put(KEY_EMAIL_ADDRESS, tenantDetails.getTenantEmailAddress());
+            values.put(KEY_CONTACT_NUMBER, tenantDetails.getTenantContactNumber());
+            values.put(KEY_DATE_OF_BIRTH, tenantDetails.getTenantDateOfBirth());
+            values.put(KEY_GENDER, tenantDetails.getTenantGender());
+            values.put(KEY_PROPERTY_ID, tenantDetails.getPropertyId());
+            values.put(KEY_START_DATE, tenantDetails.getStartDate());
+            values.put(KEY_IS_RENT_PAID, String.valueOf(tenantDetails.isRentPaid()));
+            values.put(KEY_IS_APPROVED, String.valueOf(tenantDetails.isApproved()));
+            values.put(KEY_STAY_FREQUENCY, tenantDetails.getFrequencyOfStay());
+            values.put(KEY_ID_PROOFS, tenantDetails.getListOfIdProofsPicSource());
+            values.put(KEY_ID_PROOFS_TYPES, tenantDetails.getTenantUploadedIdProofs());
+            values.put(KEY_PROFILE_PIC, tenantDetails.getTenantProfilePic());
+            values.put(KEY_PROFESSION, tenantDetails.getTenantProfession());
+            values.put(KEY_ROOM_NUMBER, tenantDetails.getTenantRoomNumber());
+            values.put(KEY_COMPLAINTS_LOGGED, tenantDetails.getTenantLoggedComplaints());
+
+            db.insertOrThrow(TABLE_TENANT_DETAILS, null, values);
+            db.close();
+
+        }catch (Exception e){
+
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
+        }
+    }
+
+    /*public UserDetailsVO getUserDetails(int id) {
 
         UserDetailsVO userDetails = new UserDetailsVO();
         Cursor cursor=null;
@@ -184,8 +375,7 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
         }finally {
 
             if(cursor!=null){
@@ -196,56 +386,14 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
             return userDetails;
 
-    }
+    }*/
 
-    public int updateUserDetails(UserDetailsVO userDetails) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_GENDER, userDetails.getGender());
-        values.put(KEY_USER_NAME, userDetails.getUserName());
-
-        // updating row
-        return db.update(TABLE_USER_DETAILS, values, KEY_ID + " = ?",
-                new String[] { String.valueOf(userDetails.getUserId()) });
-    }
-
-    public void deleteUserDetailsRecord(UserDetailsVO userDetails) {
+    /*public void deleteUserDetailsRecord(UserDetailsVO userDetails) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_USER_DETAILS, KEY_ID + " = ?",
                 new String[] { String.valueOf(userDetails.getUserId()) });
         db.close();
-    }
-
-    public void setPropertyDetails(PropertyDetailsVO propertyDetails) {
-
-        try {
-            SQLiteDatabase db = this.getWritableDatabase();
-
-            ContentValues values = new ContentValues();
-            values.put(KEY_PROPERTY_ID, propertyDetails.getPropertyId());
-            values.put(KEY_PROPERTY_NAME, propertyDetails.getPropertyName());
-            values.put(KEY_ADDRESS_LINE_ONE, propertyDetails.getAddressLineOne());
-            values.put(KEY_ADDRESS_LINE_TWO, propertyDetails.getAddressLineTwo());
-            values.put(KEY_POSTAL_CODE, propertyDetails.getPostalCode());
-            values.put(KEY_STATE, propertyDetails.getState());
-            values.put(KEY_GEO_LOCATION, propertyDetails.getGeoLocation());
-            values.put(KEY_PROPERTY_TYPE, propertyDetails.getPropertyType());
-            values.put(KEY_IS_MEAL_OFFERED, propertyDetails.isMealOffered());
-            values.put(KEY_IS_MEAL_SCHEDULE_AVAILABLE, propertyDetails.isMealScheduleAvailable());
-            values.put(KEY_FACILITIES_PROVIDED, propertyDetails.getFacilitiesProvided());
-            values.put(KEY_ROOM_TYPES, propertyDetails.getRoomTypes());
-            values.put(KEY_FURNISHED_FLAT_ITEMS,propertyDetails.getFurnishedFlatItems());
-
-            // Inserting Row
-            db.insertOrThrow(TABLE_PROPERTY_DETAILS, null, values);
-            db.close(); // Closing database connection
-        }catch (Exception e){
-
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
-        }
-    }
+    }*/
 
     public PropertyDetailsVO getPropertyDetailsVO(int propertyId){
 
@@ -258,62 +406,54 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
             String query="Select * from "+TABLE_PROPERTY_DETAILS+" where "+KEY_PROPERTY_ID +"="+propertyId;
 
             cursor = db.rawQuery(query,null);
-            if (cursor != null)
+            if (cursor != null) {
+
                 cursor.moveToFirst();
 
-            propertyDetailsVO.setPropertyId(propertyId);
-            propertyDetailsVO.setPropertyName(cursor.getString(2));
-            propertyDetailsVO.setAddressLineOne(cursor.getString(3));
-            propertyDetailsVO.setAddressLineTwo(cursor.getString(4));
-            propertyDetailsVO.setPostalCode(Integer.valueOf(cursor.getString(5)));
-            propertyDetailsVO.setState(cursor.getString(6));
-            propertyDetailsVO.setGeoLocation(cursor.getString(7));
-            propertyDetailsVO.setPropertyType(cursor.getString(8));
-            if(cursor.getString(9).equalsIgnoreCase("true")){
-                propertyDetailsVO.setMealOffered(true);
-            }else{
-                propertyDetailsVO.setMealOffered(false);
-            }
-            if(cursor.getString(10).equalsIgnoreCase("true")){
-                propertyDetailsVO.setMealScheduleAvailable(true);
-            }else{
-                propertyDetailsVO.setMealScheduleAvailable(false);
-            }
-
-            if(cursor.getString(11)!=null){
-
-                propertyDetailsVO.setFacilitiesProvided(cursor.getString(11));
-
-                ArrayList<String> listOfFacilities=new ArrayList<>();
-                String[] facilities=cursor.getString(11).split(":");
-
-                for(int i=0;i<facilities.length;i++){
-
-                    listOfFacilities.add(facilities[i]);
+                propertyDetailsVO.setPropertyId(propertyId);
+                propertyDetailsVO.setPropertyName(cursor.getString(2));
+                propertyDetailsVO.setAddressLineOne(cursor.getString(3));
+                propertyDetailsVO.setAddressLineTwo(cursor.getString(4));
+                propertyDetailsVO.setPostalCode(Integer.valueOf(cursor.getString(5)));
+                propertyDetailsVO.setState(cursor.getString(6));
+                propertyDetailsVO.setGeoLocation(cursor.getString(7));
+                propertyDetailsVO.setPropertyType(cursor.getString(8));
+                if (cursor.getString(9).equalsIgnoreCase("true")) {
+                    propertyDetailsVO.setMealOffered(true);
+                } else {
+                    propertyDetailsVO.setMealOffered(false);
                 }
-                propertyDetailsVO.setListOfFacilities(listOfFacilities);
-            }
-
-            if(cursor.getString(12)!=null){
-
-                propertyDetailsVO.setRoomTypes(cursor.getString(12));
-
-                ArrayList<String> typeOfRooms=new ArrayList<>();
-                String[] roomTypes=cursor.getString(12).split(":");
-
-                for(int i=0;i<roomTypes.length;i++){
-
-                    typeOfRooms.add(roomTypes[i]);
+                if (cursor.getString(10).equalsIgnoreCase("true")) {
+                    propertyDetailsVO.setMealScheduleAvailable(true);
+                } else {
+                    propertyDetailsVO.setMealScheduleAvailable(false);
                 }
-                propertyDetailsVO.setTypeOfRooms(typeOfRooms);
-            }
 
-            propertyDetailsVO.setFurnishedFlatItems(cursor.getString(13));
+                if (cursor.getString(11) != null) {
+
+                    propertyDetailsVO.setFacilitiesProvided(cursor.getString(11));
+
+
+                    String[] facilities = cursor.getString(11).split(":");
+
+                    propertyDetailsVO.setListOfFacilities(facilities);
+                }
+
+                if (cursor.getString(12) != null) {
+
+                    propertyDetailsVO.setRoomTypes(cursor.getString(12));
+
+                    String[] roomTypes = cursor.getString(12).split(":");
+
+                    propertyDetailsVO.setTypeOfRooms(roomTypes);
+                }
+
+                propertyDetailsVO.setFurnishedFlatItems(cursor.getString(13));
+            }
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
         }finally {
 
             if(cursor!=null){
@@ -324,7 +464,77 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
         return propertyDetailsVO;
     }
 
-    public void updateBuildingDetails(PropertyDetailsVO propertyDetails,String propertyId){
+    public MealScheduleVO getMealScheduleVO(int propertyId){
+
+        MealScheduleVO mealScheduleVO=new MealScheduleVO();
+        Cursor cursor=null;
+        ArrayList<String> listOfMeals=new ArrayList<>();
+
+        try{
+
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            String query="Select * from "+TABLE_MEAL_SCHEDULE+" where "+KEY_PROPERTY_ID +"="+propertyId;
+
+            cursor = db.rawQuery(query,null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+
+                mealScheduleVO.setPropertyId(propertyId);
+
+                mealScheduleVO.setBreakfastFromTime(cursor.getString(2));
+                mealScheduleVO.setBreakfastToTime(cursor.getString(3));
+                mealScheduleVO.setLunchFromTime(cursor.getString(4));
+                mealScheduleVO.setLunchToTime(cursor.getString(5));
+                mealScheduleVO.setDinnerFromTime(cursor.getString(6));
+                mealScheduleVO.setDinnerToTime(cursor.getString(7));
+
+                String mondayMeal=cursor.getString(8);
+                String tuesdayMeal=cursor.getString(9);
+                String wednesdayMeal=cursor.getString(10);
+                String thursdayMeal=cursor.getString(11);
+                String fridayMeal=cursor.getString(12);
+                String saturdayMeal=cursor.getString(13);
+                String sundayMeal=cursor.getString(14);
+
+                listOfMeals.add(mondayMeal);
+                listOfMeals.add(tuesdayMeal);
+                listOfMeals.add(wednesdayMeal);
+                listOfMeals.add(thursdayMeal);
+                listOfMeals.add(fridayMeal);
+                listOfMeals.add(saturdayMeal);
+                listOfMeals.add(sundayMeal);
+
+                mealScheduleVO.setListOfMeals(listOfMeals);
+            }
+
+        }catch (Exception e){
+
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
+        }finally {
+
+            if(cursor!=null){
+
+                cursor.close();
+            }
+        }
+
+        return mealScheduleVO;
+    }
+
+    /*public int updateUserDetails(UserDetailsVO userDetails) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_GENDER, userDetails.getGender());
+        values.put(KEY_USER_NAME, userDetails.getUserName());
+
+        // updating row
+        return db.update(TABLE_USER_DETAILS, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(userDetails.getUserId()) });
+    }*/
+
+    public void updateBuildingDetails(PropertyDetailsVO propertyDetails){
 
         try {
             SQLiteDatabase db = this.getReadableDatabase();
@@ -337,8 +547,7 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
         }
     }
 
@@ -354,14 +563,31 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
         }
     }
 
-    public String getMaxPropertyId(){
+    public void updateMealsSchedule(MealScheduleVO mealScheduleVO){
 
-        String maxPropertyId = "";
+        try {
+
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            String query="delete from "+ TABLE_MEAL_SCHEDULE +" where " +KEY_PROPERTY_ID+"="+mealScheduleVO.getPropertyId();
+
+            db.execSQL(query);
+
+            setMealSchedule(mealScheduleVO);
+
+        }catch (Exception e) {
+
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
+        }
+    }
+
+    public int getMaxPropertyId(){
+
+        int maxPropertyId = 0;
         Cursor cursor =null;
 
         try {
@@ -374,12 +600,11 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
             if (cursor != null) {
                 cursor.moveToFirst();
 
-                maxPropertyId = cursor.getString(0);
+                maxPropertyId = cursor.getInt(0);
             }
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
         }finally {
 
             if(cursor!=null){
@@ -389,29 +614,6 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
         }
 
         return  maxPropertyId;
-    }
-
-    public void setPropertyLayoutDetails(PropertyLayoutDetailsVO layoutDetailsVO){
-
-        try {
-
-            SQLiteDatabase db = this.getWritableDatabase();
-
-            ContentValues values = new ContentValues();
-            values.put(KEY_PROPERTY_ID, layoutDetailsVO.getPropertyId());
-            values.put(KEY_FLOOR_NUMBER, layoutDetailsVO.getFloorNumber());
-            values.put(KEY_ROOM_NUMBER, layoutDetailsVO.getRoomNumber());
-            values.put(KEY_ROOM_TYPE, layoutDetailsVO.getRoomType());
-            values.put(KEY_NUMBER_OF_OCCUPANCY, layoutDetailsVO.getOccupancy());
-
-            db.insertOrThrow(TABLE_PROPERTY_LAYOUT_DETAILS, null, values);
-            db.close(); // Closing database connection
-
-        }catch (Exception e){
-
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
-        }
     }
 
     public FloorToRoomVO getPropertyLayoutDetails(int propertyId){
@@ -425,7 +627,7 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
         ArrayList<String> floorName=new ArrayList<>();
 
-        String getFloorNamesQuery="SELECT distinct "+KEY_FLOOR_NUMBER +" from "+ TABLE_PROPERTY_LAYOUT_DETAILS + " where " + KEY_PROPERTY_ID + " = " + propertyId;;
+        String getFloorNamesQuery="SELECT distinct "+KEY_FLOOR_NUMBER +" from "+ TABLE_PROPERTY_LAYOUT_DETAILS + " where " + KEY_PROPERTY_ID + " = " + propertyId;
 
         try {
 
@@ -467,8 +669,7 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
         }finally {
             if(cursor!=null) {
                 cursor.close();
@@ -478,98 +679,50 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
         return floorToRoomVO;
     }
 
-    public void setCurrentTenantDetails(TenantDetailsVO tenantDetails) {
-
-        try {
-            SQLiteDatabase db = this.getWritableDatabase();
-
-            ContentValues values = new ContentValues();
-            values.put(KEY_USER_NAME, tenantDetails.getTenantName());
-            values.put(KEY_EMAIL_ADDRESS, tenantDetails.getTenantEmailAddress());
-            values.put(KEY_CONTACT_NUMBER, tenantDetails.getTenantContactNumber());
-            values.put(KEY_DATE_OF_BIRTH, tenantDetails.getTenantDateOfBirth());
-            values.put(KEY_GENDER, tenantDetails.getTenantGender());
-            values.put(KEY_PROPERTY_ID, tenantDetails.getPropertyId());
-            values.put(KEY_START_DATE, tenantDetails.getStartDate());
-            values.put(KEY_IS_RENT_PAID, String.valueOf(tenantDetails.isRentPaid()));
-            values.put(KEY_IS_APPROVED, String.valueOf(tenantDetails.isApproved()));
-            values.put(KEY_STAY_FREQUENCY, tenantDetails.getFrequencyOfStay());
-            values.put(KEY_ID_PROOFS, tenantDetails.getListOfIdProofsPicSource());
-            values.put(KEY_ID_PROOFS_TYPES, tenantDetails.getTenantUploadedIdProofs());
-            values.put(KEY_PROFILE_PIC, tenantDetails.getTenantProfilePic());
-            values.put(KEY_PROFESSION, tenantDetails.getTenantProfession());
-            values.put(KEY_ROOM_NUMBER, tenantDetails.getTenantRoomNumber());
-            values.put(KEY_COMPLAINTS_LOGGED, tenantDetails.getTenantLoggedComplaints());
-
-            db.insertOrThrow(TABLE_TENANT_DETAILS, null, values);
-            db.close();
-
-        }catch (Exception e){
-
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
-        }
-    }
-
-    public void setTableCostAndCharges(CostAndChargesVO costAndCharges,int propertyId){
-
-        try {
-
-            LinkedHashMap<String,String> otherChargesMap=costAndCharges.getOtherChargesMap();
-            ArrayList<String> listOfRoomTypesAndChargesWithDuration=costAndCharges.getListOfRoomTypesAndChargesWithDuration();
-
-            SQLiteDatabase db = this.getWritableDatabase();
-
-            for(int i=0;i<listOfRoomTypesAndChargesWithDuration.size();i++){
-
-                String[] array=listOfRoomTypesAndChargesWithDuration.get(i).split(":");
-
-                ContentValues values = new ContentValues();
-                values.put(KEY_PROPERTY_ID, propertyId);
-                values.put(KEY_ROOM_TYPE, array[0]);
-                values.put(KEY_CHARGES, array[1]);
-                values.put(KEY_DURATION, array[2]);
-
-                db.insertOrThrow(TABLE_COST_AND_CHARGES, null, values);
-            }
-
-            Set<String> set=otherChargesMap.keySet();
-            Iterator<String> iterator=set.iterator();
-
-            while(iterator.hasNext()){
-
-                String chargeType=iterator.next();
-                String charges=otherChargesMap.get(chargeType);
-
-                ContentValues values = new ContentValues();
-                values.put(KEY_PROPERTY_ID, propertyId);
-                values.put(KEY_CHARGE_TYPE,chargeType);
-                values.put(KEY_CHARGES, charges);
-
-                db.insertOrThrow(TABLE_COST_AND_CHARGES, null, values);
-            }
-
-
-            db.close(); // Closing database connection
-
-        }catch (Exception e){
-
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
-        }
-
-    }
-
     public CostAndChargesVO getCostAndCharges(int propertyId){
 
-        CostAndChargesVO costAndChargesVO=new CostAndChargesVO();
+        CostAndChargesVO costAndCharges=new CostAndChargesVO();
 
-        return costAndChargesVO;
+        LinkedHashMap<String,String> otherChargesMap=new LinkedHashMap<>();
+        ArrayList<String> listOfRoomTypesAndChargesWithDuration=new ArrayList<>();
 
-    }
+        Cursor cursor=null;
 
-    public void updateCostAndCharges(CostAndChargesVO costAndCharges,int propertyId){
+        try {
 
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            String getFloorNamesQuery = "SELECT * from " + TABLE_COST_AND_CHARGES + " where " + KEY_PROPERTY_ID + " = " + propertyId;
+
+            cursor = db.rawQuery(getFloorNamesQuery, null);
+
+            if (cursor.moveToFirst()) {
+                do {
+
+                    if(cursor.getString(2)==null || cursor.getString(2).equalsIgnoreCase("")){
+
+                        otherChargesMap.put(cursor.getString(5),cursor.getString(3));
+                    }else{
+
+                        listOfRoomTypesAndChargesWithDuration.add(cursor.getString(2) +":"+cursor.getString(3)+":"+cursor.getString(4));
+                    }
+
+                } while (cursor.moveToNext());
+            }
+
+        }catch (Exception e){
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
+        }finally {
+            if(cursor!=null){
+                cursor.close();
+            }
+        }
+
+        costAndCharges.setList(listOfRoomTypesAndChargesWithDuration);
+        costAndCharges.setOtherChargesMap(otherChargesMap);
+        costAndCharges.setPropertyId(propertyId);
+
+        return costAndCharges;
     }
 
     public ArrayList<TenantDetailsVO> getFilteredTenantDetails(String whereClause){
@@ -630,8 +783,7 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
         }finally {
             if(cursor!=null){
                 cursor.close();
@@ -650,12 +802,6 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor=null;
 
         try {
-
-            String CREATE_CURRENT_TENANT_DETAILS = "CREATE TABLE " + TABLE_TENANT_DETAILS + "("
-                    + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PROPERTY_ID + " INTEGER," + KEY_USER_NAME + " TEXT," + KEY_EMAIL_ADDRESS + " TEXT ," + KEY_CONTACT_NUMBER
-                    + " TEXT," + KEY_DATE_OF_BIRTH + " TEXT," + KEY_GENDER + " TEXT," + KEY_START_DATE + " TEXT," + KEY_IS_RENT_PAID
-                    + " TEXT," + KEY_IS_APPROVED + " TEXT," + KEY_STAY_FREQUENCY + " TEXT," + KEY_ID_PROOFS + " TEXT," + KEY_ID_PROOFS_TYPES + " TEXT," + KEY_PROFILE_PIC + " TEXT,"
-                    + KEY_PROFESSION + " TEXT," + KEY_ROOM_NUMBER + " TEXT," + KEY_COMPLAINTS_LOGGED + " TEXT)";
 
             String query = "SELECT * from " + TABLE_TENANT_DETAILS ;
 
@@ -706,8 +852,7 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
         }finally {
             if(cursor!=null){
                 cursor.close();
@@ -742,8 +887,7 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
         }finally {
             if(cursor!=null){
                 cursor.close();
@@ -774,8 +918,7 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
         }finally {
             if(cursor!=null){
                 cursor.close();
@@ -802,18 +945,17 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
                     String[] roomTypes=cursor.getString(0).split(":");
 
-                    for(int i=0;i<roomTypes.length;i++){
+                    for(String roomType : roomTypes){
 
-                        listOfTypesOfRooms.add(roomTypes[i]);
-
+                        listOfTypesOfRooms.add(roomType);
                     }
+
                 } while (cursor.moveToNext());
             }
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
         }finally {
             if(cursor!=null){
                 cursor.close();
@@ -822,10 +964,12 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
         return listOfTypesOfRooms;
     }
 
-    public ArrayList<String> getCurrentOccupiedRoomsForFlatAndHotels(){
+    public String[] getCurrentOccupiedRoomsForFlatAndHotels(){
 
         Cursor cursor=null;
-        ArrayList<String> listOfOccupiedRooms=new ArrayList<>();
+        String[] arrayOfOccupiedRooms=null;
+
+        int count=0;
 
         try{
 
@@ -835,18 +979,21 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
             cursor = db.rawQuery(query, null);
 
+            arrayOfOccupiedRooms=new String[cursor.getCount()];
+
             if (cursor.moveToFirst()) {
                 do {
 
-                    listOfOccupiedRooms.add(cursor.getString(0));
+                    arrayOfOccupiedRooms[count]=cursor.getString(0);
+
+                    count++;
 
                 } while (cursor.moveToNext());
             }
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
 
 
         }finally {
@@ -855,7 +1002,7 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
             }
         }
 
-        return listOfOccupiedRooms;
+        return arrayOfOccupiedRooms;
     }
 
     public HashMap<String,Integer> getCurrentOccupiedRoomsForPg(){
@@ -904,8 +1051,7 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
 
 
         }finally {
@@ -917,12 +1063,13 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
         return mapOfOccupiedRoomsToFreeOccupancy;
     }
 
-    public ArrayList<String> getCurrentUnOccupiedRoomsForFlatAndHotels(){
+    public String[] getCurrentUnOccupiedRoomsForFlatAndHotels(){
 
         Cursor cursor=null;
-        ArrayList<String> listOfUnOccupiedRooms=new ArrayList<>();
+        String[] arrayOfUnOccupiedRooms=null;
 
-        String query="";
+        String query;
+        int count=0;
 
         try{
 
@@ -932,18 +1079,21 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
             cursor = db.rawQuery(query, null);
 
+            arrayOfUnOccupiedRooms=new String[cursor.getCount()];
+
             if (cursor.moveToFirst()) {
                 do {
 
-                    listOfUnOccupiedRooms.add(cursor.getString(0));
+                    arrayOfUnOccupiedRooms[count]=cursor.getString(0);
+
+                    count++;
 
                 } while (cursor.moveToNext());
             }
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
 
 
         }finally {
@@ -952,7 +1102,7 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
             }
         }
 
-        return listOfUnOccupiedRooms;
+        return arrayOfUnOccupiedRooms;
     }
 
     public HashMap<String,Integer> getCurrentUnOccupiedRoomsForPg(){
@@ -978,8 +1128,7 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
 
 
         }finally {
@@ -1014,8 +1163,7 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
 
         }catch (Exception e){
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
 
 
         }finally {
@@ -1030,5 +1178,37 @@ public class OwnerLocalDatabaseHandler extends SQLiteOpenHelper {
     public void deleteDatabase(Context context){
 
         context.deleteDatabase(DATABASE_NAME);
+    }
+
+    public void deleteProperty(int propertyId){
+
+        try {
+
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            String query = "delete from " + TABLE_PROPERTY_DETAILS  + " where " + KEY_PROPERTY_ID + " = " + propertyId;
+
+            db.execSQL(query);
+
+            query = "delete from " +  TABLE_PROPERTY_LAYOUT_DETAILS  + " where " + KEY_PROPERTY_ID + " = " + propertyId;
+
+            db.execSQL(query);
+
+            query = "delete from " +  TABLE_COST_AND_CHARGES  + " where " + KEY_PROPERTY_ID + " = " + propertyId;
+
+            db.execSQL(query);
+
+            query = "delete from " +  TABLE_MEAL_SCHEDULE  + " where " + KEY_PROPERTY_ID + " = " + propertyId;
+
+            db.execSQL(query);
+
+            query = "delete from " +   TABLE_TENANT_DETAILS + " where " + KEY_PROPERTY_ID + " = " + propertyId;
+
+            db.execSQL(query);
+
+        }catch (Exception e){
+
+            CommonFunctionality.generatePopUpMessageForExceptions(activity);
+        }
     }
 }

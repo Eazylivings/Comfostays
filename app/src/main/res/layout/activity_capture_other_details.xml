@@ -6,7 +6,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    tools:context="com.comfostays.activities.buildingsetup.CaptureOtherDetailsActivity">
+    tools:context=".activities.owner_activities.building_setup.CaptureOtherDetailsActivity">
 
     <include android:id="@+id/layout_header"
         layout="@layout/layout_header"/>
@@ -62,6 +62,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:id="@+id/captureOtherDetails_imageView_twoWheelerParking"
+                    android:contentDescription="@string/description"
                     android:layout_row="0"
                     android:layout_column="0"
                     android:src="@drawable/two_wheeler_parking_icon" />
@@ -74,13 +75,14 @@
                     android:layout_row="0"
                     android:layout_column="1"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp" />
+                    android:layout_marginStart="5dp" />
 
 
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:id="@+id/captureOtherDetails_imageView_fourWheelerParking"
+                    android:contentDescription="@string/description"
                     android:layout_row="1"
                     android:layout_column="0"
                     android:src="@drawable/four_wheeler_parking_icon" />
@@ -94,12 +96,13 @@
                     android:layout_row="1"
                     android:layout_column="1"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp" />
+                    android:layout_marginStart="5dp" />
 
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:id="@+id/captureOtherDetails_imageView_allTimeElectricity"
+                    android:contentDescription="@string/description"
                     android:layout_row="2"
                     android:layout_column="0"
                     android:src="@drawable/electricity_icon" />
@@ -109,15 +112,17 @@
                     android:layout_height="wrap_content"
                     android:text="@string/_24_7_electricity"
                     android:id="@+id/captureOtherDetails_checkBox_allTimeElectricity"
+                    android:contentDescription="@string/description"
                     android:layout_row="2"
                     android:layout_column="1"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp" />
+                    android:layout_marginStart="5dp" />
 
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:id="@+id/captureOtherDetails_imageView_laundry"
+                    android:contentDescription="@string/description"
                     android:layout_row="3"
                     android:layout_column="0"
                     android:src="@drawable/clothes_washing_icon" />
@@ -130,12 +135,13 @@
                     android:layout_row="3"
                     android:layout_column="1"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp" />
+                    android:layout_marginStart="5dp" />
 
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:id="@+id/captureOtherDetails_imageView_wifi"
+                    android:contentDescription="@string/description"
                     android:layout_row="4"
                     android:layout_column="0"
                     android:src="@drawable/free_wifi_icon" />
@@ -148,7 +154,7 @@
                     android:layout_row="4"
                     android:layout_column="1"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp" />
+                    android:layout_marginStart="5dp" />
 
             </GridLayout>
 
@@ -162,7 +168,7 @@
                     android:hint="@string/enter_other_facilities_seperated_by_comma"
                     android:background="@drawable/layout_border"
                     android:layout_marginTop="15dp"
-                    />
+                    android:capitalize="words" />
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -215,7 +221,7 @@
                     android:text="@string/weekly_food_schedule_available"
                     android:id="@+id/captureOtherDetails_checkBox_isFixedMealScheduleAvailable"
                     android:layout_row="2"
-                    android:layout_column="1" />
+                    android:layout_column="0" />
 
             </GridLayout>
 
@@ -231,182 +237,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/gridLayout_itemsProvided">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/captureOtherDetails_imageView_tv"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:src="@drawable/tv_icon" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/television"
-                    android:id="@+id/captureOtherDetails_checkBox_tv"
-                    android:layout_row="0"
-                    android:layout_column="1" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/captureOtherDetails_imageView_fridge"
-                    android:layout_row="1"
-                    android:layout_column="0"
-                    android:src="@drawable/fridge_icon" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/refrigerator"
-                    android:id="@+id/captureOtherDetails_checkBox_fridge"
-                    android:layout_row="1"
-                    android:layout_column="1" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/captureOtherDetails_imageView_geyser"
-                    android:layout_row="2"
-                    android:layout_column="0"
-                    android:src="@drawable/gyser_icon" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/geyser"
-                    android:id="@+id/captureOtherDetails_checkBox_geyser"
-                    android:layout_row="2"
-                    android:layout_column="1" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/captureOtherDetails_imageView_washingMachine"
-                    android:layout_row="3"
-                    android:layout_column="0"
-                    android:src="@drawable/washing_machine_icon" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/washing_machine"
-                    android:id="@+id/captureOtherDetails_checkBox_washingMachine"
-                    android:layout_row="3"
-                    android:layout_column="1" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/captureOtherDetails_imageView_almirah"
-                    android:layout_row="4"
-                    android:layout_column="0"
-                    android:src="@drawable/almirah_icon" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Almirah"
-                    android:id="@+id/captureOtherDetails_checkBox_almirah"
-                    android:layout_row="4"
-                    android:layout_column="1" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/captureOtherDetails_imageView_bed"
-                    android:layout_row="5"
-                    android:layout_column="0"
-                    android:src="@drawable/bed_icon" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bed"
-                    android:id="@+id/captureOtherDetails_checkBox_bed"
-                    android:layout_row="5"
-                    android:layout_column="1" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/captureOtherDetails_imageView_cooler"
-                    android:layout_row="6"
-                    android:layout_column="0"
-                    android:src="@drawable/cooler_icon" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cooler"
-                    android:id="@+id/captureOtherDetails_checkBox_cooler"
-                    android:layout_row="6"
-                    android:layout_column="1" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/captureOtherDetails_imageView_fan"
-                    android:layout_row="7"
-                    android:layout_column="0"
-                    android:src="@drawable/fan_icon" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/celling_fan"
-                    android:id="@+id/captureOtherDetails_checkBox_fan"
-                    android:layout_row="7"
-                    android:layout_column="1" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/captureOtherDetails_imageView_ac"
-                    android:layout_row="8"
-                    android:layout_column="0"
-                    android:src="@drawable/ac_icon" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Air Conditioner"
-                    android:id="@+id/captureOtherDetails_checkBox_ac"
-                    android:layout_row="8"
-                    android:layout_column="1" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/captureOtherDetails_imageView_sofa"
-                    android:layout_row="9"
-                    android:layout_column="0"
-                    android:src="@drawable/sofa_icon" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sofa"
-                    android:id="@+id/captureOtherDetails_checkBox_sofa"
-                    android:layout_row="9"
-                    android:layout_column="1" />
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/captureOtherDetails_imageView_chair"
-                    android:layout_row="10"
-                    android:layout_column="0"
-                    android:src="@drawable/chair_icon" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chair"
-                    android:id="@+id/captureOtherDetails_checkBox_chair"
-                    android:layout_row="10"
-                    android:layout_column="1" />
 
             </GridLayout>
 

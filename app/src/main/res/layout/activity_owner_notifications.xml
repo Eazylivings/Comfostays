@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context=".activities.owner_activities.notifications.OwnerNotificationsActivity">
+
+    <include android:id="@+id/layout_header"
+        layout="@layout/layout_header"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView3"
+        android:layout_below="@+id/layout_header"
+        android:layout_centerHorizontal="true" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/imageView_notifyTenant"
+                android:contentDescription="@string/description"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="35dp"
+                android:src="@drawable/notify_tenants"
+                android:onClick="onClickNotifyTenant" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="NOTIFY TENANT"
+                android:id="@+id/textView_notifyTenant"
+                android:layout_below="@+id/imageView_notifyTenant"
+                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true"
+                android:onClick="onClickNotifyTenant" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/imageView_notifications"
+                android:layout_below="@+id/textView_notifyTenant"
+                android:contentDescription="@string/description"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/tenant_issues_icon"
+                android:onClick="onClickTenantIssues" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="TENANT ISSUES"
+                android:id="@+id/textView_notifications"
+                android:layout_below="@+id/imageView_notifications"
+                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true"
+                android:onClick="onClickTenantIssues" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/imageView_acceptOrRejectTenant"
+                android:contentDescription="@string/description"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/textView_notifications"
+                android:src="@drawable/accept_reject"
+                android:onClick="onClickAcceptOrRejectTenant" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="TENANT REGISTRATION"
+                android:id="@+id/textView_acceptOrRejectTenant"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/imageView_acceptOrRejectTenant"
+                android:layout_marginTop="5dp"
+                android:onClick="onClickAcceptOrRejectTenant" />
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

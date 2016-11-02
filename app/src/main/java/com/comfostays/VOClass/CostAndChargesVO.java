@@ -8,7 +8,17 @@ import java.util.LinkedHashMap;
 public class CostAndChargesVO implements Serializable{
 
     private LinkedHashMap<String,String> otherChargesMap;
-    private ArrayList<String> listOfRoomTypesAndChargesWithDuration=new ArrayList<>();
+    private ArrayList<String> listOfRoomTypesAndChargesWithDuration;
+    private int propertyId;
+
+
+    public int getPropertyId() {
+        return propertyId;
+    }
+
+    public void setPropertyId(int propertyId) {
+        this.propertyId = propertyId;
+    }
 
     public ArrayList<String> getListOfRoomTypesAndChargesWithDuration() {
         return listOfRoomTypesAndChargesWithDuration;

@@ -41,61 +41,50 @@
                 android:rowOrderPreserved="false"
                 android:useDefaultMargins="true"
                 android:transitionGroup="false"
-                android:touchscreenBlocksFocus="true">
+                android:touchscreenBlocksFocus="true"
+                android:id="@+id/welcomeScreen_gridLayout">
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:id="@+id/welcomeScreen_imageView_0_0"
                     android:layout_row="0"
-                    android:layout_column="0"
-                    android:src="@drawable/my_property_new"
-                    android:onClick="onClickMyProperty" />
+                    android:layout_column="0" />
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:id="@+id/welcomeScreen_imageView_0_1"
                     android:layout_row="0"
-                    android:layout_column="1"
-                    android:src="@drawable/occupancy_new"
-                    android:onClick="onClickOccupancy" />
+                    android:layout_column="1" />
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:id="@+id/welcomeScreen_imageView_0_2"
                     android:layout_row="0"
-                    android:layout_column="2"
-                    android:src="@drawable/tenants_new"
-                    android:onClick="onClickTenant" />
+                    android:layout_column="2" />
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:id="@+id/welcomeScreen_imageView_1_0"
                     android:layout_row="1"
-                    android:layout_column="0"
-                    android:src="@drawable/my_finances"
-                    android:onClick="onClickFinances" />
+                    android:layout_column="0" />
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:id="@+id/welcomeScreen_imageView_1_1"
                     android:layout_row="1"
-                    android:layout_column="1"
-                    android:src="@drawable/add_property_new"
-                    android:onClick="onClickAddProperty" />
+                    android:layout_column="1" />
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:id="@+id/welcomeScreen_imageView_1_2"
                     android:layout_row="1"
-                    android:layout_column="2"
-                    android:src="@drawable/notifications_new"
-                    android:onClick="onClickNotifications" />
+                    android:layout_column="2" />
             </GridLayout>
         </RelativeLayout>
     </LinearLayout>

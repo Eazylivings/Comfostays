@@ -3,7 +3,6 @@ package com.comfostays.activities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.EditText;
 
 import com.comfostays.CommonFunctionality;
@@ -14,7 +13,6 @@ import com.comfostays.sharedpreference.SharedPreference;
 
 public class ContactUsActivity extends AppCompatActivity {
 
-    CommonFunctionality commonFunctionality;
     SharedPreference sharedPreference;
 
     @Override
@@ -25,16 +23,11 @@ public class ContactUsActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_contact_us);
 
-            commonFunctionality = new CommonFunctionality(getApplicationContext(), this);
+            CommonFunctionality.setScreenForActivity(this,R.id.backButton, R.id.titleBar, R.id.homeButton, Constants.TITLE_CONTACT_US);
+
             sharedPreference=new SharedPreference(getApplicationContext());
 
-            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
             String userName=sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_USERNAME);
-
-            commonFunctionality.setTitleBar(R.id.backButton, R.id.titleBar, R.id.homeButton, Constants.TITLE_CONTACT_US);
-            commonFunctionality.onClickListenerForImage(R.id.backButton);
-            commonFunctionality.onClickListenerForImage(R.id.homeButton);
 
             EditText messageText=(EditText)findViewById(R.id.contactUs_editText_messageText);
 
@@ -43,24 +36,24 @@ public class ContactUsActivity extends AppCompatActivity {
             }
         }catch(Exception e){
 
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(this);
         }
     }
 
     @Override
     public void onBackPressed(){
 
-        commonFunctionality.onBackPressed(WelcomeScreen.class);
+        CommonFunctionality.onBackPressed(this,WelcomeScreen.class);
     }
 
     public void onClickBackButton(View view){
 
-        commonFunctionality.onBackPressed(WelcomeScreen.class);
+        CommonFunctionality.onBackPressed(this,WelcomeScreen.class);
     }
 
     public void onClickHomeButton(View view){
 
-        commonFunctionality.onClickHomeButton();
+        CommonFunctionality.onClickHomeButton(this);
     }
 
     public void onClickSubmitButton(View view){

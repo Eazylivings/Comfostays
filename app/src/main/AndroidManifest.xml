@@ -49,101 +49,89 @@
             android:label="@string/title_activity_tutorial"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activities.MyPropertiesActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".activities.buildingsetup.AddPropertyActivity"
+            android:name=".activities.owner_activities.MyPropertiesActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.buildingsetup.SetBuildingLayoutActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".activities.OccupancyActivity"
+            android:name=".activities.owner_activities.building_setup.AddPropertyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.TenantsActivity"
+            android:name=".activities.owner_activities.building_setup.SetBuildingLayoutActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.NotificationsActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.occupancy.OccupancyActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.buildingsetup.FinalPortfolioActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.tenant_activities.TenantsActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.buildingsetup.CostAndChargesActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.notifications.OwnerNotificationsActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.buildingsetup.ViewAddedRoomsActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.building_setup.FinalPortfolioActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.editactivities.EditBuildingDetailsActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.building_setup.AddCostAndChargesActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.editactivities.EditFacilitiesProvidedActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.edit_activities.EditBuildingDetailsActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.editactivities.EditCostAndChargesActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.edit_activities.EditFacilitiesProvidedActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.GeneratePieChartActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.edit_activities.EditCostAndChargesActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.PieChartActivity"
-            android:theme="@android:style/Theme.Dialog"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".activities.TenantsDetailsActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.tenant_activities.TenantsDetailsActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.ContactUsActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.buildingsetup.SetColorActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.building_setup.CaptureOtherDetailsActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.buildingsetup.CaptureOtherDetailsActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.building_setup.RoomConfigurationActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.buildingsetup.AddMealsScheduleActivity"
-            android:label="@string/title_activity_add_meals_schedule"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".activities.buildingsetup.RoomConfigurationActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".activities.MyFinancesActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".activities.editactivities.EditMealsActivity"
-            android:label="@string/title_activity_edit_meals"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".activities.MealsActivity"
-            android:label="@string/title_activity_meals"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.MyFinancesActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.PopUpIdProofs"
-            android:theme="@android:style/Theme.Dialog"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" />
         <activity
-            android:name=".activities.MealPollingActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.MealPollingActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ViewPropertyActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.ViewPropertyActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.RoomLevelOccupancy"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.occupancy.RoomLevelOccupancy"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.FilterTenantsActivity"
-            android:theme="@android:style/Theme.Dialog"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.tenant_activities.FilterTenantsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" />
         <activity
-            android:name=".activities.NotifyTenantActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.owner_activities.notifications.NotifyTenantActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.owner_activities.notifications.TenantIssuesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.owner_activities.notifications.AcceptRejectTenantActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.owner_activities.building_setup.AddMealScheduleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.MealActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.owner_activities.edit_activities.EditMealActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.customer_activities.JoinPropertyActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".activities.owner_activities.building_setup.AddMealScheduleActivity">
+
+    <include android:id="@+id/layout_header"
+        layout="@layout/layout_header"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView_addMealSchedule"
+        android:layout_below="@+id/layout_header"
+        android:layout_above="@+id/button_next"
+        android:layout_alignParentStart="true" >
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/horizontalScrollView_addMealSchedule" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/gridLayout_timings"
+                    android:layout_marginStart="10dp">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView_timings"
+                        android:contentDescription="@string/description"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:src="@drawable/timings_icon"
+                        android:layout_marginStart="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/timings"
+                        android:id="@+id/textView_timings"
+                        android:layout_row="0"
+                        android:layout_column="2"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:textAlignment="gravity"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="10dp" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView_breakfast"
+                        android:contentDescription="@string/description"
+                        android:layout_row="1"
+                        android:layout_column="0"
+                        android:src="@drawable/breakfast_icon"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/breakfast"
+                        android:id="@+id/textView_breakfast"
+                        android:layout_row="1"
+                        android:layout_column="1"
+                        android:textAlignment="gravity"
+                        android:gravity="center"
+                        android:layout_marginTop="5dp" />
+
+                    <EditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="time"
+                        android:ems="10"
+                        android:id="@+id/editText_fromBreakfast"
+                        android:layout_row="1"
+                        android:layout_column="2"
+                        android:gravity="center_horizontal"
+                        android:hint="@string/_08_00" />
+
+                    <EditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="time"
+                        android:ems="10"
+                        android:id="@+id/editText_toBreakfast"
+                        android:layout_row="1"
+                        android:layout_column="3"
+                        android:gravity="center_horizontal"
+                        android:hint="@string/_10_00" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView_lunch"
+                        android:contentDescription="@string/description"
+                        android:layout_row="2"
+                        android:layout_column="0"
+                        android:src="@drawable/lunch_icon"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/lunch"
+                        android:id="@+id/textView_lunch"
+                        android:layout_row="2"
+                        android:layout_column="1"
+                        android:layout_marginTop="5dp" />
+
+                    <EditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="time"
+                        android:ems="10"
+                        android:id="@+id/editText_fromLunch"
+                        android:layout_row="2"
+                        android:layout_column="2"
+                        android:hint="@string/_14_00"
+                        android:gravity="center_horizontal" />
+
+                    <EditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="time"
+                        android:ems="10"
+                        android:id="@+id/editText_toLunch"
+                        android:layout_row="2"
+                        android:layout_column="3"
+                        android:gravity="center_horizontal"
+                        android:hint="@string/_16_00" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView_dinner"
+                        android:contentDescription="@string/description"
+                        android:layout_row="3"
+                        android:layout_column="0"
+                        android:src="@drawable/dinner_icon"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/dinner"
+                        android:id="@+id/textView_dinner"
+                        android:layout_row="3"
+                        android:layout_column="1"
+                        android:layout_marginTop="5dp" />
+
+                    <EditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="time"
+                        android:ems="10"
+                        android:id="@+id/editText_fromDinner"
+                        android:layout_row="3"
+                        android:layout_column="2"
+                        android:hint="@string/_20_00"
+                        android:gravity="center_horizontal" />
+
+                    <EditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="time"
+                        android:ems="10"
+                        android:id="@+id/editText_toDinner"
+                        android:layout_row="3"
+                        android:layout_column="3"
+                        android:gravity="center_horizontal"
+                        android:hint="@string/_22_00" />
+
+
+                </GridLayout>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/gridLayout_timings"
+                    android:id="@+id/gridLayout_schedule"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView_schedule"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:src="@drawable/schedule_icon"
+                        android:layout_marginStart="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="SCHEDULE"
+                        android:id="@+id/textView_schedule"
+                        android:layout_row="0"
+                        android:layout_column="2"
+                        android:layout_marginTop="15dp" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView_monday"
+                        android:layout_row="2"
+                        android:layout_column="0"
+                        android:src="@drawable/monday_icon"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Monday"
+                        android:id="@+id/textView_monday"
+                        android:layout_row="2"
+                        android:layout_column="1" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_mondayBreakfast"
+                        android:layout_row="1"
+                        android:layout_column="2"
+                        android:hint="Monday&apos;s Breakfast" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_mondayLunch"
+                        android:layout_row="2"
+                        android:layout_column="2"
+                        android:hint="Monday&apos;s Lunch" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_mondayDinner"
+                        android:layout_row="3"
+                        android:layout_column="2"
+                        android:hint="Monday&apos;s Dinner" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView_tuesday"
+                        android:layout_row="5"
+                        android:layout_column="0"
+                        android:src="@drawable/tuesday_icon"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Tuesday"
+                        android:id="@+id/textView_tuesday"
+                        android:layout_row="5"
+                        android:layout_column="1" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_tuesdayBreakfast"
+                        android:layout_row="4"
+                        android:layout_column="2"
+                        android:hint="Tuesday&apos;s Breakfast" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_tuesdayLunch"
+                        android:layout_row="5"
+                        android:layout_column="2"
+                        android:hint="Tuesday&apos;s Lunch" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_tuesdayDinner"
+                        android:layout_row="6"
+                        android:layout_column="2"
+                        android:hint="Tuesday&apos;s Dinner" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView_wednesday"
+                        android:layout_row="8"
+                        android:layout_column="0"
+                        android:src="@drawable/wednesday_icon"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Wednesday"
+                        android:id="@+id/textView_wednesday"
+                        android:layout_row="8"
+                        android:layout_column="1" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_wednesdayBreakfast"
+                        android:layout_row="7"
+                        android:layout_column="2"
+                        android:hint="Wednesday&apos;s Breakfast" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_wednesdayLunch"
+                        android:layout_row="8"
+                        android:layout_column="2"
+                        android:hint="Wednesday&apos;s Lunch" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_wednesdayDinner"
+                        android:layout_row="9"
+                        android:layout_column="2"
+                        android:hint="Wednesday&apos;s Dinner" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView_thursday"
+                        android:layout_row="11"
+                        android:layout_column="0"
+                        android:src="@drawable/thursday_icon"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Thursday"
+                        android:id="@+id/textView_thursday"
+                        android:layout_row="11"
+                        android:layout_column="1" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_thursdayBreakfast"
+                        android:layout_row="10"
+                        android:layout_column="2"
+                        android:hint="Thursday&apos;s Breakfast" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_thursdayLunch"
+                        android:layout_row="11"
+                        android:layout_column="2"
+                        android:hint="Thursday&apos;s Lunch" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_thursdayDinner"
+                        android:layout_row="12"
+                        android:layout_column="2"
+                        android:hint="Thursday&apos;s Dinner" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView_friday"
+                        android:layout_row="14"
+                        android:layout_column="0"
+                        android:src="@drawable/friday_icon"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Friday"
+                        android:id="@+id/textView_friday"
+                        android:layout_row="14"
+                        android:layout_column="1" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_fridayBreakfast"
+                        android:layout_row="13"
+                        android:layout_column="2"
+                        android:hint="Friday&apos;s Breakfast" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_fridayLunch"
+                        android:layout_row="14"
+                        android:layout_column="2"
+                        android:hint="Friday&apos;s Lunch" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_fridayDinner"
+                        android:layout_row="15"
+                        android:layout_column="2"
+                        android:hint="Friday&apos;s Dinner" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView_saturday"
+                        android:layout_row="17"
+                        android:layout_column="0"
+                        android:src="@drawable/saturday_icon"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Saturday"
+                        android:id="@+id/textView_saturday"
+                        android:layout_row="17"
+                        android:layout_column="1" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_saturdayBreakfast"
+                        android:layout_row="16"
+                        android:layout_column="2"
+                        android:hint="Saturday&apos;s Breakfast" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_saturdayLunch"
+                        android:layout_row="17"
+                        android:layout_column="2"
+                        android:hint="Saturday&apos;s Lunch" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_saturdayDinner"
+                        android:layout_row="18"
+                        android:layout_column="2"
+                        android:hint="Saturday&apos;s Dinner" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView_sunday"
+                        android:layout_row="20"
+                        android:layout_column="0"
+                        android:src="@drawable/sunday_icon"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Sunday"
+                        android:id="@+id/textView_sunday"
+                        android:layout_row="20"
+                        android:layout_column="1" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_sundayBreakfast"
+                        android:layout_row="19"
+                        android:layout_column="2"
+                        android:hint="Sunday&apos;s Breakfast" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_sundayLunch"
+                        android:layout_row="20"
+                        android:layout_column="2"
+                        android:hint="Sunday&apos;s Lunch" />
+
+                    <EditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_sundayDinner"
+                        android:layout_row="21"
+                        android:layout_column="2"
+                        android:hint="Sunday&apos;s Dinner" />
+
+                </GridLayout>
+
+            </RelativeLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/button_next"
+        android:onClick="onClickNext"
+        android:background="#2E9AFE"
+        android:textColor="@drawable/button_text_color"
+        android:text="@string/next"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

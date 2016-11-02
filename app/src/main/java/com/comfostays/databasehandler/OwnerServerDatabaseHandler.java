@@ -13,13 +13,17 @@ import com.comfostays.CommonFunctionality;
 import com.comfostays.R;
 import com.comfostays.Constants;
 import com.comfostays.RedirectClass;
+import com.comfostays.VOClass.CostAndChargesVO;
+import com.comfostays.VOClass.MealScheduleVO;
 import com.comfostays.VOClass.PropertyDetailsVO;
 import com.comfostays.VOClass.PropertyLayoutDetailsVO;
 import com.comfostays.VOClass.TenantDetailsVO;
 import com.comfostays.VOClass.UserDetailsVO;
 import com.comfostays.WelcomeScreen;
-import com.comfostays.activities.OccupancyActivity;
-import com.comfostays.activities.RoomLevelOccupancy;
+import com.comfostays.activities.owner_activities.notifications.AcceptRejectTenantActivity;
+import com.comfostays.activities.owner_activities.notifications.TenantIssuesActivity;
+import com.comfostays.activities.owner_activities.occupancy.OccupancyActivity;
+import com.comfostays.activities.owner_activities.occupancy.RoomLevelOccupancy;
 import com.comfostays.activities.loginactivities.LoginActivity;
 import com.comfostays.activities.loginactivities.RegisterActivity;
 import com.comfostays.sharedpreference.SharedPreference;
@@ -41,8 +45,14 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
     ArrayList<TenantDetailsVO> listOfTenantsDetailsVO;
     String upperLevelRoomOccupancyCoordinates;
     String roomLevelOccupancy;
+    String tenantIssues;
+    String statuses;
 
     ArrayList<PropertyLayoutDetailsVO> listOfPropertyLayoutDetailsVO;
+
+    CostAndChargesVO costAndChargesVO;
+
+    MealScheduleVO mealScheduleVO;
 
     public OwnerServerDatabaseHandler(Context context, Activity baseActivity){
         this.applicationContext=context;
@@ -90,7 +100,7 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_USER_DETAILS)) {
 
             TestClass testClass = new TestClass();
-            userDetails=testClass.getUserDetails(applicationContext,activity);
+            userDetails=testClass.getUserDetails(params[1]);
             result=Constants.AUTHENTICATION_USER_DETAILS_FETCHED_SUCCESS;
 
             // Through queries we will check if user is existing or not. At server only we will check and return th result accordingly.
@@ -167,6 +177,22 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
             post_data = URLEncoder.encode(Constants.SERVER_HANDLER_EMAIL_ADDRESS, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[1], Constants.SERVER_HANDLER_UTF);*/
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_NOTIFY_TENANTS)){
 
+        }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_NOTIFICATIONS)){
+
+            TestClass testClass = new TestClass();
+            tenantIssues =testClass.getNotifications();
+            statuses=Constants.ACKNOWLEDGED+":" + "NONE" + ":"+ Constants.DISMISSED;
+
+        }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_COST_AND_CHARGES)){
+
+            TestClass testClass = new TestClass();
+            costAndChargesVO=testClass.getCostAndChargesVO();
+
+        }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_MEAL_TIMING_AND_SCHEDULE)){
+
+            TestClass testClass = new TestClass();
+            mealScheduleVO=testClass.getMealScheduleVO();
+
         }
 
             /*HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
@@ -237,8 +263,6 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String accountAuthenticationString) {
 
-        CommonFunctionality commonFunctionality = new CommonFunctionality(applicationContext, activity);
-
         if (currentAction.equalsIgnoreCase(Constants.ACTION_LOGIN) && accountAuthenticationString.equalsIgnoreCase(Constants.AUTHENTICATION_LOGIN_SUCCESS)) {
             ProgressBar progressBar = (ProgressBar) activity.findViewById(R.id.loginPage_progressBar_progress);
 
@@ -261,7 +285,7 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
             if (progressBar != null) {
                 progressBar.setVisibility(View.INVISIBLE);
             }
-            commonFunctionality.generatePopupMessage(Constants.ALERT_MESSAGE,Constants.POPUP_MESSAGE_LOGIN_FAILED);
+            CommonFunctionality.generatePopupMessage(activity,Constants.ALERT_MESSAGE,Constants.POPUP_MESSAGE_LOGIN_FAILED);
 
         } else if (currentAction.equalsIgnoreCase(Constants.ACTION_REGISTER) && accountAuthenticationString.equalsIgnoreCase(Constants.AUTHENTICATION_REGISTER_SUCCESS)) {
 
@@ -280,7 +304,7 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
 
         } else if (currentAction.equalsIgnoreCase(Constants.ACTION_REGISTER) && accountAuthenticationString.equalsIgnoreCase(Constants.AUTHENTICATION_REGISTER_FAIL)) {
 
-            commonFunctionality.generatePopupMessage(Constants.ALERT_MESSAGE,Constants.POPUP_MESSAGE_REGISTER_FAILED);
+            CommonFunctionality.generatePopupMessage(activity,Constants.ALERT_MESSAGE,Constants.POPUP_MESSAGE_REGISTER_FAILED);
 
         } else if (currentAction.equalsIgnoreCase(Constants.ACTION_FORGOT_PASSWORD) && accountAuthenticationString.equalsIgnoreCase(Constants.AUTHENTICATION_PASSWORD_RESET_SUCCESS)) {
 
@@ -290,7 +314,7 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
             activity.finish();
 
         } else if (currentAction.equalsIgnoreCase(Constants.ACTION_FORGOT_PASSWORD) && accountAuthenticationString.equalsIgnoreCase(Constants.AUTHENTICATION_PASSWORD_RESET_FAIL)) {
-            commonFunctionality.generatePopupMessage(Constants.ALERT_MESSAGE,Constants.POPUP_MESSAGE_PASSWORD_NOT_RESET);
+            CommonFunctionality.generatePopupMessage(activity,Constants.ALERT_MESSAGE,Constants.POPUP_MESSAGE_PASSWORD_NOT_RESET);
 
         } else if (currentAction.equalsIgnoreCase(Constants.ACTION_FORGOT_PASSWORD) && accountAuthenticationString.equalsIgnoreCase(Constants.AUTHENTICATION_EXISTING_USER_FAIL)) {
             generateSignUpPopupMessage(Constants.POPUP_MESSAGE_USER_NOT_PRESENT);
@@ -351,6 +375,27 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_NOTIFY_TENANTS)){
 
             generatePopupMessage(Constants.POPUP_MESSAGE_TENANTS_NOTIFIED,WelcomeScreen.class);
+        }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_NOTIFICATIONS)){
+
+            Intent intent=new Intent(applicationContext, TenantIssuesActivity.class);
+            intent.putExtra(Constants.INTENT_TENANT_ISSUES, tenantIssues);
+            intent.putExtra(Constants.INTENT_TENANT_ISSUES_STATUS, statuses);
+            activity.startActivity(intent);
+            activity.finish();
+        }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_TENANTS_FOR_REGISTRATION)){
+
+            Intent intent=new Intent(applicationContext, AcceptRejectTenantActivity.class);
+            activity.startActivity(intent);
+            activity.finish();
+        }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_COST_AND_CHARGES)){
+
+            RedirectClass redirectClass = new RedirectClass(applicationContext, activity);
+            redirectClass.setCostAndCharges(costAndChargesVO);
+
+        }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_MEAL_TIMING_AND_SCHEDULE)){
+
+            RedirectClass redirectClass = new RedirectClass(applicationContext, activity);
+            redirectClass.setMealTimingAndSchedule(mealScheduleVO);
         }
     }
     @Override

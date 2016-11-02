@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.comfostays.activities.NotifyTenantActivity">
+    tools:context=".activities.owner_activities.notifications.NotifyTenantActivity">
 
     <include android:id="@+id/layout_header"
         layout="@layout/layout_header"/>
@@ -31,6 +31,18 @@
                 android:id="@+id/checkBox_selectAll"
                 android:layout_marginTop="20dp"
                 android:onClick="onClickSelectAll" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageView_removeFilter"
+                android:src="@drawable/remove_filter_icon"
+                android:onClick="onClickRemoveFilter"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_toStartOf="@+id/imageView_filter"
+                android:layout_marginEnd="5dp"
+                android:padding="5dp" />
 
             <ImageView
                 android:layout_width="50dp"
@@ -62,6 +74,8 @@
                 android:padding="30dp"
                 android:hint="Enter the message you want to send to the selected tenants."
                 android:background="@drawable/message_background" />
+
+
         </RelativeLayout>
     </ScrollView>
 

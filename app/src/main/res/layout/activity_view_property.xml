@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.comfostays.activities.ViewPropertyActivity">
+    tools:context=".activities.owner_activities.ViewPropertyActivity">
 
     <include android:id="@+id/layout_header"
         layout="@layout/layout_header"/>
@@ -217,6 +217,58 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/finalPortfolio_textView_costAndCharges"
                 android:id="@+id/finalPortfolio_linearLayout_costAndCharges"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/layout_border"
+                android:layout_margin="5dp">
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/finalPortfolio_imageView_mealSchedule"
+                android:contentDescription="@string/description"
+                android:src="@drawable/ic_drop_down"
+                android:layout_below="@+id/finalPortfolio_linearLayout_costAndCharges"
+                android:layout_alignParentStart="true"
+                android:onClick="onCLickMealTimingAndSchedule"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Meal Timing and Schedule"
+                android:id="@+id/finalPortfolio_textView_mealSchedule"
+                android:layout_centerVertical="true"
+                android:layout_below="@+id/finalPortfolio_linearLayout_costAndCharges"
+                android:layout_toEndOf="@+id/finalPortfolio_imageView_costAndCharges"
+                android:onClick="onCLickMealTimingAndSchedule"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/edit"
+                android:id="@+id/finalPortfolio_textView_editMealSchedule"
+                android:layout_below="@+id/finalPortfolio_linearLayout_costAndCharges"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:textStyle="bold"
+                android:textColor="#FF0000"
+                android:typeface="serif"
+                android:onClick="onClickEditMealTimingAndSchedule"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/finalPortfolio_textView_editMealSchedule"
+                android:id="@+id/finalPortfolio_linearLayout_mealSchedule"
                 android:layout_alignParentStart="true"
                 android:background="@drawable/layout_border"
                 android:layout_margin="5dp">

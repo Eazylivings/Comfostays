@@ -19,25 +19,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.comfostays.activities.ContactUsActivity;
-import com.comfostays.activities.MealsActivity;
-import com.comfostays.activities.MyFinancesActivity;
-import com.comfostays.activities.NotificationsActivity;
-import com.comfostays.activities.OccupancyActivity;
-import com.comfostays.activities.TenantsActivity;
-import com.comfostays.activities.buildingsetup.AddPropertyActivity;
+import com.comfostays.activities.MealActivity;
+import com.comfostays.activities.owner_activities.notifications.OwnerNotificationsActivity;
+import com.comfostays.activities.owner_activities.occupancy.OccupancyActivity;
+import com.comfostays.activities.owner_activities.tenant_activities.TenantsActivity;
+import com.comfostays.activities.owner_activities.building_setup.AddPropertyActivity;
 import com.comfostays.activities.loginactivities.LoginActivity;
-import com.comfostays.activities.MyPropertiesActivity;
+import com.comfostays.activities.owner_activities.MyPropertiesActivity;
 import com.comfostays.activities.TutorialActivity;
-import com.comfostays.databasehandler.OwnerServerDatabaseHandler;
 import com.comfostays.sharedpreference.SharedPreference;
 
 public class WelcomeScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     SharedPreference preference;
+
     boolean isAnyPropertyRegistered;
     boolean isMealOffered=true;
-    CommonFunctionality commonFunctionality;
+    boolean isCustomerPartOfAnyProperty;
+
     String loggedUserEmailAddress;
 
     @Override
@@ -48,15 +48,23 @@ public class WelcomeScreen extends AppCompatActivity
             setContentView(R.layout.activity_welcome_screen);
 
             preference = new SharedPreference(getApplicationContext());
-            commonFunctionality = new CommonFunctionality(getApplicationContext(), this);
 
             String userName = preference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_USERNAME);
             loggedUserEmailAddress = preference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_EMAIL_ADDRESS);
-            //String loggedPersonalityType=preference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_ACCOUNT_TYPE);
-            //String loggedPersonalityType=Constants.OWNER;
+
             setTitle(Constants.WELCOME + userName);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+
+            String accountType=preference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_ACCOUNT_TYPE);
+
+            if(accountType.equalsIgnoreCase(Constants.OWNER)){
+
+                setScreenForOwners();
+            }else{
+
+                setScreenForCustomers();
+            }
 
             FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -78,19 +86,12 @@ public class WelcomeScreen extends AppCompatActivity
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
-                drawer.setDrawerListener(toggle);
+                drawer.addDrawerListener(toggle);
                 toggle.syncState();
             }
 
-
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             if (navigationView != null) {
-
-                Menu menu = navigationView.getMenu();
-
-                if (!isMealOffered) {
-                    menu.removeItem(R.id.owner_meals);
-                }
 
                 navigationView.setNavigationItemSelectedListener(this);
 
@@ -101,30 +102,10 @@ public class WelcomeScreen extends AppCompatActivity
                 drawerUserName.setText(userName);
                 drawerEmailAddress.setText(loggedUserEmailAddress);
 
-                isAnyPropertyRegistered = preference.getBooleanValueFromSharedPreference(Constants.SHARED_PREFERENCE_IS_ANY_PROPERTY_REGISTERED);
-
-                if (!isAnyPropertyRegistered) {
-
-                    ImageView view_0_0 = (ImageView) findViewById(R.id.welcomeScreen_imageView_0_0);
-                    ImageView view_0_1 = (ImageView) findViewById(R.id.welcomeScreen_imageView_0_1);
-                    ImageView view_0_2 = (ImageView) findViewById(R.id.welcomeScreen_imageView_0_2);
-                    ImageView view_1_0 = (ImageView) findViewById(R.id.welcomeScreen_imageView_1_0);
-                    ImageView view_1_1 = (ImageView) findViewById(R.id.welcomeScreen_imageView_1_1);
-                    ImageView view_1_2 = (ImageView) findViewById(R.id.welcomeScreen_imageView_1_2);
-
-                    if (view_0_0 != null && view_0_1 != null && view_0_2 != null && view_1_0 != null && view_1_1 != null && view_1_2 != null) {
-                        view_0_0.setColorFilter(Color.argb(150, 200, 200, 200));
-                        view_0_1.setColorFilter(Color.argb(150, 200, 200, 200));
-                        view_0_2.setColorFilter(Color.argb(150, 200, 200, 200));
-                        view_1_0.setColorFilter(Color.argb(150, 200, 200, 200));
-                        view_1_1.setColorFilter(Color.argb(150, 200, 200, 200));
-                        view_1_2.setColorFilter(Color.argb(150, 200, 200, 200));
-                    }
-                }
             }
         }catch(Exception e){
 
-            commonFunctionality.generatePopUpMessageForExceptions();
+            CommonFunctionality.generatePopUpMessageForExceptions(this);
         }
     }
 
@@ -167,7 +148,7 @@ public class WelcomeScreen extends AppCompatActivity
                 startActivity(intent);
                 finish();
             }else{
-                commonFunctionality.generateActivityRedirectPopupMessage(Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
+                CommonFunctionality.generateActivityRedirectPopupMessage(this,Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
             }
 
         } else if (id == R.id.owner_add_properties) {
@@ -190,19 +171,19 @@ public class WelcomeScreen extends AppCompatActivity
                 finish();
 
             }else{
-                commonFunctionality.generateActivityRedirectPopupMessage(Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
+                CommonFunctionality.generateActivityRedirectPopupMessage(this,Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
             }
 
         }else if (id == R.id.owner_meals) {
 
             if(isAnyPropertyRegistered){
 
-                Intent intent=new Intent(getApplicationContext(), MealsActivity.class);
+                Intent intent=new Intent(getApplicationContext(), MealActivity.class);
                 startActivity(intent);
                 finish();
 
             }else{
-                commonFunctionality.generateActivityRedirectPopupMessage(Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
+                CommonFunctionality.generateActivityRedirectPopupMessage(this,Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
             }
 
         } else if (id == R.id.owner_contact_us) {
@@ -230,52 +211,212 @@ public class WelcomeScreen extends AppCompatActivity
         return true;
     }
 
-    public void onClickMyProperty(View view){
+    public void onClickAddProperty(View view){
 
-        if(isAnyPropertyRegistered){
+        preference.clearAddProperty();
 
-            Intent intent=new Intent(getApplicationContext(),MyPropertiesActivity.class);
-            startActivity(intent);
-            finish();
+        Intent intent=new Intent(getApplicationContext(),AddPropertyActivity.class);
+        intent.putExtra(Constants.INTENT_PREVIOUS_ACTIVITY,Constants.ACTIVITY_WELCOME_SCREEN);
+        startActivity(intent);
+        finish();
+    }
 
-        }else{
+    private void setScreenForCustomers(){
 
-            commonFunctionality.generateActivityRedirectPopupMessage(Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
+        ImageView view1=(ImageView)findViewById(R.id.welcomeScreen_imageView_0_0) ;
+
+        String currentStayType=preference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_PROPERTY_TYPE);
+
+        if(view1!=null){
+
+            view1.setImageResource(R.drawable.current_stay_icon);
+
+            view1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(isAnyPropertyRegistered){
+
+                        Intent intent=new Intent(getApplicationContext(),MyPropertiesActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }else{
+
+                        CommonFunctionality.generateActivityRedirectPopupMessage(WelcomeScreen.this,Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
+                    }
+                }
+            });
         }
+
+        ImageView view2=(ImageView)findViewById(R.id.welcomeScreen_imageView_0_1);
+
+        if(view2!=null){
+
+            view2.setImageResource(R.drawable.my_property_new);
+        }
+
+        ImageView view3=(ImageView)findViewById(R.id.welcomeScreen_imageView_0_2) ;
+
+        if(view3!=null){
+
+            if(currentStayType.equalsIgnoreCase(Constants.PGs)){
+
+                view3.setImageResource(R.drawable.coming_birthdays_icon);
+            }else{
+
+                view3.setImageResource(R.drawable.my_property_new);
+            }
+        }
+
+        ImageView view4=(ImageView)findViewById(R.id.welcomeScreen_imageView_1_0) ;
+
+        if(view4!=null){
+
+            if(currentStayType.equalsIgnoreCase(Constants.PGs)){
+
+                view4.setImageResource(R.drawable.group_chat_icon);
+
+            }else{
+
+                view4.setImageResource(R.drawable.group_chat_icon);
+            }
+        }
+
+        ImageView view5=(ImageView)findViewById(R.id.welcomeScreen_imageView_1_1) ;
+
+        if(view5!=null){
+
+            view5.setImageResource(R.drawable.past_stays_icon);
+        }
+
+        ImageView view6=(ImageView)findViewById(R.id.welcomeScreen_imageView_1_2) ;
+
+        if(view6!=null){
+
+            view6.setImageResource(R.drawable.notifications_new);
+        }
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        if (navigationView != null) {
+
+            Menu menu = navigationView.getMenu();
+
+            if(menu!=null){
+
+                if(isCustomerPartOfAnyProperty){
+
+                    menu.removeItem(R.id.customer_settle_yourself);
+                }else{
+
+                    menu.removeItem(R.id.customer_unsettle_yourself);
+                }
+
+                menu.removeItem(R.id.owner_my_properties);
+                menu.removeItem(R.id.owner_add_properties);
+                menu.removeItem(R.id.owner_occupancy);
+
+            }
+
+            if (!isMealOffered) {
+                menu.removeItem(R.id.owner_meals);
+            }
+        }
+
 
     }
 
-    public void onClickOccupancy(View view){
+    private void setScreenForOwners(){
 
-        if(isAnyPropertyRegistered){
-            preference.setBooleanValueInSharedPreference(Constants.SHARED_PREFERENCE_IS_OCCUPANCY_LOADED_FOR_FIRST_TIME,true);
-            preference.setBooleanValueInSharedPreference(Constants.SHARED_PREFERENCE_IS_CURRENT_OCCUPANCY_CHECKED_BOX_CHECKED,false);
+        ImageView view1=(ImageView)findViewById(R.id.welcomeScreen_imageView_0_0) ;
 
-            Intent intent=new Intent(getApplicationContext(), OccupancyActivity.class);
-            startActivity(intent);
-            finish();
+        if(view1!=null){
 
-        }else{
-            commonFunctionality.generateActivityRedirectPopupMessage(Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
+            view1.setImageResource(R.drawable.my_property_new);
+
+            view1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(isAnyPropertyRegistered){
+
+                        Intent intent=new Intent(getApplicationContext(),MyPropertiesActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }else{
+
+                        CommonFunctionality.generateActivityRedirectPopupMessage(WelcomeScreen.this,Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
+                    }
+                }
+            });
         }
-    }
 
-    public void onClickTenant(View view){
+        ImageView view2=(ImageView)findViewById(R.id.welcomeScreen_imageView_0_1);
 
-        if(isAnyPropertyRegistered){
+        if(view2!=null){
 
-            Intent intent=new Intent(getApplicationContext(),TenantsActivity.class);
-            startActivity(intent);
-            finish();
+            view2.setImageResource(R.drawable.occupancy_new);
 
-        }else{
-            commonFunctionality.generateActivityRedirectPopupMessage(Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
+            view2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(isAnyPropertyRegistered){
+
+                        preference.setBooleanValueInSharedPreference(Constants.SHARED_PREFERENCE_IS_OCCUPANCY_LOADED_FOR_FIRST_TIME,true);
+                        preference.setBooleanValueInSharedPreference(Constants.SHARED_PREFERENCE_IS_CURRENT_OCCUPANCY_CHECKED_BOX_CHECKED,false);
+
+                        Intent intent=new Intent(getApplicationContext(), OccupancyActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }else{
+
+                        CommonFunctionality.generateActivityRedirectPopupMessage(WelcomeScreen.this,Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
+                    }
+                }
+            });
+
+
         }
-    }
 
-    public void onClickFinances(View view){
+        ImageView view3=(ImageView)findViewById(R.id.welcomeScreen_imageView_0_2) ;
 
-        commonFunctionality.generatePopupMessage(Constants.ALERT_MESSAGE,Constants.POPUP_MESSAGE_BUY_PAID_VERSION);
+        if(view3!=null){
+
+            view3.setImageResource(R.drawable.tenants_new);
+
+            view3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(isAnyPropertyRegistered){
+
+                        Intent intent=new Intent(getApplicationContext(),TenantsActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }else{
+
+                        CommonFunctionality.generateActivityRedirectPopupMessage(WelcomeScreen.this,Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
+                    }
+                }
+            });
+        }
+
+        ImageView view4=(ImageView)findViewById(R.id.welcomeScreen_imageView_1_0) ;
+
+        if(view4!=null){
+
+            view4.setImageResource(R.drawable.my_finances);
+
+            view4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    CommonFunctionality.generatePopupMessage(WelcomeScreen.this,Constants.ALERT_MESSAGE,Constants.POPUP_MESSAGE_BUY_PAID_VERSION);
 
        /* Intent intent=new Intent(getApplicationContext(), MyFinancesActivity.class);
         startActivity(intent);
@@ -294,30 +435,83 @@ public class WelcomeScreen extends AppCompatActivity
         }else{
             commonFunctionality.generateActivityRedirectPopupMessage(Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
         }*/
-
-    }
-
-    public void onClickAddProperty(View view){
-
-        preference.clearAddProperty();
-
-        Intent intent=new Intent(getApplicationContext(),AddPropertyActivity.class);
-        intent.putExtra(Constants.INTENT_PREVIOUS_ACTIVITY,Constants.ACTIVITY_WELCOME_SCREEN);
-        startActivity(intent);
-        finish();
-    }
-
-    public void onClickNotifications(View view){
-
-        if(isAnyPropertyRegistered){
-
-            Intent intent=new Intent(getApplicationContext(), NotificationsActivity.class);
-            startActivity(intent);
-            finish();
-
-        }else{
-            commonFunctionality.generateActivityRedirectPopupMessage(Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
+                }
+            });
         }
 
+        ImageView view5=(ImageView)findViewById(R.id.welcomeScreen_imageView_1_1) ;
+
+        if(view5!=null){
+
+            view5.setImageResource(R.drawable.add_property_new);
+
+            view5.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    preference.clearAddProperty();
+
+                    Intent intent=new Intent(getApplicationContext(),AddPropertyActivity.class);
+                    intent.putExtra(Constants.INTENT_PREVIOUS_ACTIVITY,Constants.ACTIVITY_WELCOME_SCREEN);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        }
+
+        ImageView view6=(ImageView)findViewById(R.id.welcomeScreen_imageView_1_2) ;
+
+        if(view6!=null){
+
+            view6.setImageResource(R.drawable.notifications_new);
+
+            view6.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(isAnyPropertyRegistered){
+
+                        Intent intent=new Intent(getApplicationContext(), OwnerNotificationsActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }else{
+
+                        CommonFunctionality.generateActivityRedirectPopupMessage(WelcomeScreen.this,Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
+                    }
+                }
+            });
+        }
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        if (navigationView != null) {
+
+            Menu menu = navigationView.getMenu();
+
+            if(menu!=null){
+
+                if (!isMealOffered) {
+                    menu.removeItem(R.id.owner_meals);
+                }
+
+                menu.removeItem(R.id.customer_settle_yourself);
+                menu.removeItem(R.id.customer_unsettle_yourself);
+            }
+        }
+
+        isAnyPropertyRegistered = preference.getBooleanValueFromSharedPreference(Constants.SHARED_PREFERENCE_IS_ANY_PROPERTY_REGISTERED);
+
+        if (!isAnyPropertyRegistered) {
+
+            if (view1 != null && view2 != null && view3 != null && view4 != null && view5 != null && view6 != null) {
+                view1.setColorFilter(Color.argb(150, 200, 200, 200));
+                view1.setColorFilter(Color.argb(150, 200, 200, 200));
+                view1.setColorFilter(Color.argb(150, 200, 200, 200));
+                view1.setColorFilter(Color.argb(150, 200, 200, 200));
+                view1.setColorFilter(Color.argb(150, 200, 200, 200));
+                view1.setColorFilter(Color.argb(150, 200, 200, 200));
+            }
+        }
     }
 }

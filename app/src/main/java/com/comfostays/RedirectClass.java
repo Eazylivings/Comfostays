@@ -4,11 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import com.comfostays.VOClass.CostAndChargesVO;
+import com.comfostays.VOClass.MealScheduleVO;
 import com.comfostays.VOClass.PropertyDetailsVO;
 import com.comfostays.VOClass.PropertyLayoutDetailsVO;
 import com.comfostays.VOClass.TenantDetailsVO;
 import com.comfostays.VOClass.UserDetailsVO;
-import com.comfostays.activities.TenantsActivity;
 import com.comfostays.databasehandler.OwnerLocalDatabaseHandler;
 import com.comfostays.databasehandler.OwnerServerDatabaseHandler;
 import com.comfostays.sharedpreference.SharedPreference;
@@ -49,6 +50,11 @@ public class RedirectClass {
 
             OwnerServerDatabaseHandler serverDatabaseHandler = new OwnerServerDatabaseHandler(context, activity);
             serverDatabaseHandler.execute(Constants.ACTION_GET_OWNER_REGISTERED_PROPERTIES_DETAILS, userDetails.getEmailAddress());
+        }else{
+
+            Intent intent=new Intent(context,WelcomeScreen.class);
+            activity.startActivity(intent);
+            activity.finish();
         }
     }
 
@@ -97,8 +103,31 @@ public class RedirectClass {
             databaseHandler.setCurrentTenantDetails(listOfTenantDetails.get(i));
         }
 
+        OwnerServerDatabaseHandler serverDatabaseHandler = new OwnerServerDatabaseHandler(context, activity);
+        serverDatabaseHandler.execute(Constants.ACTION_GET_COST_AND_CHARGES,"");
+    }
+
+    public void setCostAndCharges(CostAndChargesVO costAndChargesVO){
+
+        OwnerLocalDatabaseHandler databaseHandler=new OwnerLocalDatabaseHandler(context,activity);
+
+        databaseHandler.setCostAndCharges(costAndChargesVO);
+
+        OwnerServerDatabaseHandler serverDatabaseHandler = new OwnerServerDatabaseHandler(context, activity);
+        serverDatabaseHandler.execute(Constants.ACTION_GET_MEAL_TIMING_AND_SCHEDULE,"");
+    }
+
+    public void setMealTimingAndSchedule(MealScheduleVO mealScheduleVO){
+
+        OwnerLocalDatabaseHandler databaseHandler=new OwnerLocalDatabaseHandler(context,activity);
+
+        databaseHandler.setMealSchedule(mealScheduleVO);
+
         Intent intent=new Intent(context,WelcomeScreen.class);
         activity.startActivity(intent);
         activity.finish();
+
+
+
     }
 }

@@ -2,7 +2,6 @@ package com.comfostays;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
@@ -12,24 +11,14 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 public class CommonFunctionality {
 
-    Context context;
-    Activity activity;
 
-    public CommonFunctionality(Context context, Activity activity){
-
-        this.activity=activity;
-        this.context=context;
-    }
-
-    public void setTitleBar(int backButtonId,int titleBarId, int homeButtonId, String titleBarText){
+    public static void setTitleBar(Activity activity,int backButtonId,int titleBarId, int homeButtonId, String titleBarText){
 
         try{
 
@@ -57,11 +46,13 @@ public class CommonFunctionality {
 
         }catch(Exception e){
 
+            generatePopUpMessageForExceptions(activity);
+
         }
 
     }
 
-    public void onClickListenerForImage(int imageId){
+    public static void onClickListenerForImage(Activity activity,int imageId){
 
         ImageView imageView = (ImageView) activity.findViewById(imageId);
 
@@ -97,7 +88,16 @@ public class CommonFunctionality {
 
     }
 
-    public void onClickListenerForText(int textId){
+    public static void setScreenForActivity(Activity activity,int backButtonId,int titleBarId, int homeButtonId, String titleBarText){
+
+        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        setTitleBar(activity,backButtonId,titleBarId,homeButtonId,titleBarText);
+        onClickListenerForImage(activity,backButtonId);
+        onClickListenerForImage(activity,homeButtonId);
+    }
+
+    public static void onClickListenerForText(Activity activity,int textId){
 
         TextView textView = (TextView) activity.findViewById(textId);
 
@@ -127,22 +127,22 @@ public class CommonFunctionality {
 
     }
 
-    public void onBackPressed(Class cls){
+    public static void onBackPressed(Activity activity,Class cls){
 
-        Intent intent = new Intent(context,cls);
+        Intent intent = new Intent(activity,cls);
         activity.startActivity(intent);
         activity.finish();
     }
 
-    public void onClickHomeButton(){
+    public static void onClickHomeButton(Activity activity){
 
-        Intent intent = new Intent(context, WelcomeScreen.class);
+        Intent intent = new Intent(activity, WelcomeScreen.class);
         activity.startActivity(intent);
         activity.finish();
     }
 
 
-    public void generatePopupMessage(String alertTile,String message){
+    public static void generatePopupMessage(Activity activity,String alertTile,String message){
         AlertDialog alertDialog = new AlertDialog.Builder(activity).create();
         alertDialog.setTitle(alertTile);
         alertDialog.setMessage(message);
@@ -155,7 +155,7 @@ public class CommonFunctionality {
         alertDialog.show();
     }
 
-    public void generatePopUpMessageForExceptions(){
+    public static void  generatePopUpMessageForExceptions(Activity activity){
 
         AlertDialog alertDialog = new AlertDialog.Builder(activity).create();
         LayoutInflater factory = LayoutInflater.from(activity);
@@ -172,7 +172,7 @@ public class CommonFunctionality {
 
     }
 
-    public void generateActivityRedirectPopupMessage(String alertTitle,String positiveHeading,String message,final Class cls){
+    public static void generateActivityRedirectPopupMessage(final Activity activity,String alertTitle,String positiveHeading,String message,final Class cls){
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(activity);
 
         builder.setTitle(alertTitle);
@@ -182,7 +182,7 @@ public class CommonFunctionality {
 
             public void onClick(DialogInterface dialog, int which) {
 
-                Intent intent=new Intent(context,cls);
+                Intent intent=new Intent(activity,cls);
                 activity.startActivity(intent);
                 activity.finish();
                 dialog.dismiss();
@@ -200,7 +200,7 @@ public class CommonFunctionality {
         alert.show();
     }
 
-    public int getScreenWidth(){
+    public static int getScreenWidth(Activity activity){
 
         Display display = activity.getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -209,7 +209,7 @@ public class CommonFunctionality {
         return size.x;
     }
 
-    public int getScreenHeight(){
+    public static int getScreenHeight(Activity activity){
 
         Display display = activity.getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -218,50 +218,45 @@ public class CommonFunctionality {
         return size.y;
     }
 
-    public void hideSoftKeyboard() {
-        InputMethodManager inputMethodManager =
-                (InputMethodManager) activity.getSystemService(
-                        Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(
-                activity.getCurrentFocus().getWindowToken(), 0);
-    }
+    public static String[] getColorCodes(){
 
-    public ArrayList<String> getColorCodes(){
+        String[] colorCodes=new String[31];
 
-        ArrayList<String> listOfColorCodes=new ArrayList<>();
-
-        listOfColorCodes.add("#7FFFD4");
-        listOfColorCodes.add("#DC143C");
-        listOfColorCodes.add("#6495ED");
-        listOfColorCodes.add("#FF69B4");
-        listOfColorCodes.add("#F08080");
-        listOfColorCodes.add("#98FB98");
-        listOfColorCodes.add("#DDA0DD");
-        listOfColorCodes.add("#FA8072");
-        listOfColorCodes.add("#00FF7F");
-        listOfColorCodes.add("#F5DEB3");
-        listOfColorCodes.add("#FF6347");
-        listOfColorCodes.add("#1aff1a");
-        listOfColorCodes.add("#7FFFD4");
-        listOfColorCodes.add("#DC143C");
-        listOfColorCodes.add("#6495ED");
-        listOfColorCodes.add("#FF69B4");
-        listOfColorCodes.add("#F08080");
-        listOfColorCodes.add("#98FB98");
-        listOfColorCodes.add("#DDA0DD");
-        listOfColorCodes.add("#FA8072");
-        listOfColorCodes.add("#00FF7F");
-        listOfColorCodes.add("#F5DEB3");
-        listOfColorCodes.add("#FF6347");
-        listOfColorCodes.add("#FF6347");
-        listOfColorCodes.add("#1aff1a");
-        listOfColorCodes.add("#7FFFD4");
-        listOfColorCodes.add("#DC143C");
-        listOfColorCodes.add("#6495ED");
-        listOfColorCodes.add("#FF69B4");
+        colorCodes[0]="#7FFFD4";
+        colorCodes[1]="#FF69B4";
+        colorCodes[2]="#F08080";
+        colorCodes[3]="#98FB98";
+        colorCodes[4]="#DDA0DD";
+        colorCodes[5]="#FA8072";
+        colorCodes[6]="#00FF7F";
+        colorCodes[7]="#F5DEB3";
+        colorCodes[8]="#FF6347";
+        colorCodes[9]="#1aff1a";
+        colorCodes[10]="#DC143C";
+        colorCodes[11]="#6495ED";
+        colorCodes[12]="#FF69B4";
+        colorCodes[13]="#F08080";
+        colorCodes[14]="#98FB98";
+        colorCodes[15]="#DDA0DD";
+        colorCodes[16]="#FA8072";
+        colorCodes[17]="#00FF7F";
+        colorCodes[18]="#F5DEB3";
+        colorCodes[19]="#FF6347";
+        colorCodes[20]="#7FFFD4";
+        colorCodes[21]="#FF6347";
+        colorCodes[22]="#7FFFD4";
+        colorCodes[23]="#1aff1a";
+        colorCodes[24]="#7FFFD4";
+        colorCodes[25]="#7FFFD4";
+        colorCodes[26]="#DC143C";
+        colorCodes[27]="#6495ED";
+        colorCodes[28]="#7FFFD4";
+        colorCodes[29]="#FF69B4";
+        colorCodes[30]="#DDA0DD";
 
 
-        return listOfColorCodes;
+
+        return colorCodes;
 
     }
 }

@@ -19,9 +19,8 @@ import com.comfostays.databasehandler.OwnerServerDatabaseHandler;
 
 public class LoginActivity extends AppCompatActivity {
 
-    CommonFunctionality commonFunctionality;
-    ProgressBar progressBar;
-    CoordinatorLayout coordinatorLayout;
+    private ProgressBar progressBar;
+    private CoordinatorLayout coordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +55,9 @@ public class LoginActivity extends AppCompatActivity {
             if (progressBar != null) {
                 progressBar.setVisibility(View.INVISIBLE);
             }
-            commonFunctionality = new CommonFunctionality(getApplicationContext(), this);
+
         }catch(Exception e){
-            commonFunctionality.generatePopupMessage(Constants.ALERT_EXCEPTION,Constants.EXCEPTION_LOGIN);
+            CommonFunctionality.generatePopUpMessageForExceptions(this);
         }
     }
 
@@ -85,8 +84,6 @@ public class LoginActivity extends AppCompatActivity {
 
         try {
 
-            commonFunctionality.hideSoftKeyboard();
-
             coordinatorLayout=(CoordinatorLayout)findViewById(R.id.coordinatorLayout);
 
             if (Validators.isInternetAvailable(getApplicationContext())) {
@@ -111,13 +108,13 @@ public class LoginActivity extends AppCompatActivity {
                     if (progressBar != null) {
                         progressBar.setVisibility(View.INVISIBLE);
                     }
-                    commonFunctionality.generatePopupMessage(Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_EMAIL_ADDRESS);
+                    CommonFunctionality.generatePopupMessage(this,Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_EMAIL_ADDRESS);
                 }else if(!isPasswordNotNull){
 
                     if (progressBar != null) {
                         progressBar.setVisibility(View.INVISIBLE);
                     }
-                    commonFunctionality.generatePopupMessage(Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_PASSWORD);
+                    CommonFunctionality.generatePopupMessage(this,Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_PASSWORD);
 
                 }
             } else if(coordinatorLayout!=null){
@@ -125,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                 snackBar.show();
             }
         }catch(Exception e){
-            commonFunctionality.generatePopupMessage(Constants.ALERT_EXCEPTION,Constants.EXCEPTION_LOGIN);
+            CommonFunctionality.generatePopUpMessageForExceptions(this);
         }
     }
 

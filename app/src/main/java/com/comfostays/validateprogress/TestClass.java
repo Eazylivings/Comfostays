@@ -7,6 +7,8 @@ import android.util.Log;
 import com.comfostays.CommonFunctionality;
 import com.comfostays.Constants;
 import com.comfostays.R;
+import com.comfostays.VOClass.CostAndChargesVO;
+import com.comfostays.VOClass.MealScheduleVO;
 import com.comfostays.VOClass.PropertyDetailsVO;
 import com.comfostays.VOClass.PropertyLayoutDetailsVO;
 import com.comfostays.VOClass.TenantDetailsVO;
@@ -23,6 +25,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class TestClass {
@@ -78,16 +81,36 @@ public class TestClass {
         return writeToFile(finalUserDetails,loginDetails, context);
     }
 
-    public UserDetailsVO getUserDetails(Context context, Activity activity){
+    public UserDetailsVO getUserDetails(String userName){
 
         UserDetailsVO userDetails=new UserDetailsVO();
-        userDetails.setUserId(1);
-        userDetails.setUserName("Shwetang");
-        userDetails.setAccountType("Owner");
-        userDetails.setEmailAddress("shwetangagarwal@gmail.com");
-        userDetails.setDateOfBirth("20-Aug-1992");
-        userDetails.setContactNumber("7674013173");
-        userDetails.setGender("Male");
+
+        if(userName.equalsIgnoreCase(Constants.OWNER)){
+
+            userDetails.setUserId(1);
+            userDetails.setUserName("Shwetang");
+            userDetails.setAccountType(Constants.OWNER);
+            userDetails.setEmailAddress("shwetangagarwal@gmail.com");
+            userDetails.setDateOfBirth("20-Aug-1992");
+            userDetails.setContactNumber("7674013173");
+            userDetails.setGender("Male");
+
+
+        }else{
+
+            userDetails.setUserId(1);
+            userDetails.setUserName("Shwetang");
+            userDetails.setAccountType(Constants.CUSTOMER);
+            userDetails.setEmailAddress("shwetangagarwal@gmail.com");
+            userDetails.setDateOfBirth("20-Aug-1992");
+            userDetails.setContactNumber("7674013173");
+            userDetails.setGender("Male");
+
+
+        }
+
+
+
         return userDetails;
     }
 
@@ -177,7 +200,7 @@ public class TestClass {
         tenantDetailsVO.setTenantLoggedComplaints("5");
         tenantDetailsVO.setRentPaid(true);
         tenantDetailsVO.setTenantResidingProperty("SN Plaza");
-        tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_one+"");
+        //tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_one+"");
 
         listOfTenants.add(tenantDetailsVO);
 
@@ -196,7 +219,7 @@ public class TestClass {
         tenantDetailsVO.setTenantLoggedComplaints("1");
         tenantDetailsVO.setRentPaid(true);
         tenantDetailsVO.setTenantResidingProperty("SN Plaza");
-        tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_two+"");
+        //tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_two+"");
 
         listOfTenants.add(tenantDetailsVO);
 
@@ -215,7 +238,7 @@ public class TestClass {
         tenantDetailsVO.setTenantLoggedComplaints("5");
         tenantDetailsVO.setRentPaid(false);
         tenantDetailsVO.setTenantResidingProperty("SN Plaza");
-        tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_three+"");
+        //tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_three+"");
 
         listOfTenants.add(tenantDetailsVO);
 
@@ -234,7 +257,7 @@ public class TestClass {
         tenantDetailsVO.setTenantLoggedComplaints("0");
         tenantDetailsVO.setRentPaid(true);
         tenantDetailsVO.setTenantResidingProperty("SN Plaza");
-        tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_one+"");
+        //tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_one+"");
 
         listOfTenants.add(tenantDetailsVO);
         return listOfTenants;
@@ -283,8 +306,8 @@ public class TestClass {
         propertyDetails.setPostalCode(500032);
         propertyDetails.setState("Hyderabad");
         propertyDetails.setPropertyType(Constants.PGs);
-        propertyDetails.setMealOffered(false);
-        propertyDetails.setMealScheduleAvailable(false);
+        propertyDetails.setMealOffered(true);
+        propertyDetails.setMealScheduleAvailable(true);
         propertyDetails.setFacilitiesProvided("TV:GYM:4 Wheeler Parking");
         propertyDetails.setRoomTypes("Single Sharing:Double Sharing:Triple Sharing");
 
@@ -310,36 +333,53 @@ public class TestClass {
         }
     }
 
+    public String getNotifications(){
 
-    private String readFromFile() {
-
-        String ret = "";
-
-        try {
-            FileInputStream in = new FileInputStream("SignUpDetails.txt");
-
-            if ( in != null ) {
-                InputStreamReader inputStreamReader = new InputStreamReader(in);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
-
-                while ( (receiveString = bufferedReader.readLine()) != null ) {
-                    stringBuilder.append(receiveString);
-                }
-
-                in.close();
-                ret = stringBuilder.toString();
-            }
-        }
-        catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
-        } catch (IOException e) {
-            Log.e("login activity", "Can not read file: " + e.toString());
-        }
-        return ret;
+        return "Water is not coming in 201 : Electricity not coming in 301 : Food is not good";
     }
 
+    public CostAndChargesVO getCostAndChargesVO(){
 
+        CostAndChargesVO costAndChargesVO=new CostAndChargesVO();
+
+        LinkedHashMap<String,String> otherChargesMap=new LinkedHashMap<>();
+        ArrayList<String> listOfRoomTypesAndChargesWithDuration=new ArrayList<>();
+
+        listOfRoomTypesAndChargesWithDuration.add("");
+
+        costAndChargesVO.setList(listOfRoomTypesAndChargesWithDuration);
+        costAndChargesVO.setOtherChargesMap(otherChargesMap);
+        costAndChargesVO.setPropertyId(1);
+
+        return costAndChargesVO;
+    }
+
+    public MealScheduleVO getMealScheduleVO(){
+
+        MealScheduleVO mealScheduleVO=new MealScheduleVO();
+
+        mealScheduleVO.setPropertyId(1);
+
+        mealScheduleVO.setBreakfastFromTime("08 : 00");
+        mealScheduleVO.setBreakfastToTime("10 : 00");
+        mealScheduleVO.setLunchFromTime("14 : 00");
+        mealScheduleVO.setLunchToTime("16 : 00");
+        mealScheduleVO.setDinnerFromTime("20 : 00");
+        mealScheduleVO.setDinnerToTime("22 : 00");
+
+        List<String> listOfMeals=new ArrayList<>();
+
+        listOfMeals.add("IDLI~CURRY~CHUTNEY");
+        listOfMeals.add("UPMA~RICE~CHUTNEY");
+        listOfMeals.add("IDLI~CHAPATI~CHUTNEY");
+        listOfMeals.add("IDLI~DAAL~CHUTNEY");
+        listOfMeals.add("IDLI~CURRY~CHUTNEY");
+        listOfMeals.add("BONDA~CURRY and Chapati~CHUTNEY");
+        listOfMeals.add("IDLI~CURRY~CHUTNEY");
+
+        mealScheduleVO.setListOfMeals(listOfMeals);
+
+        return mealScheduleVO;
+    }
 
 }

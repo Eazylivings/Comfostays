@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.comfostays.activities.loginactivities.LoginActivity;
-import com.comfostays.databasehandler.OwnerLocalDatabaseHandler;
 import com.comfostays.sharedpreference.SharedPreference;
 
 public class MainActivity extends Activity {

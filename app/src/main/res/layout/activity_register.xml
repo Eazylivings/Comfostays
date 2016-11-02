@@ -6,13 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.loginactivities.RegisterActivity">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView_register"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <ImageView
@@ -114,12 +118,24 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp" />
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="date"
+            android:ems="10"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:id="@+id/editText_dateOfBirth"
+            android:layout_below="@+id/register_editText_password"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Date Of Birth" />
+
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/register_radioGroup"
         android:orientation="horizontal"
-        android:layout_below="@+id/register_editText_password"
+        android:layout_below="@+id/editText_dateOfBirth"
         android:layout_alignRight="@+id/customerSignUp_textView_alreadyRegistered"
         android:layout_alignEnd="@+id/customerSignUp_textView_alreadyRegistered">
 
@@ -185,5 +201,9 @@
         android:layout_below="@+id/register_editText_Name"
         android:layout_centerHorizontal="true" />
 
-</RelativeLayout>
+
+
+    </RelativeLayout>
+
+    </ScrollView>
 </android.support.design.widget.CoordinatorLayout>

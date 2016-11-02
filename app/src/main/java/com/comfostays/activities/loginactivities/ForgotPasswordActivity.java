@@ -2,6 +2,7 @@ package com.comfostays.activities.loginactivities;
 
 import android.content.Intent;
 import android.graphics.Point;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,8 +21,6 @@ import com.comfostays.databasehandler.OwnerServerDatabaseHandler;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
-    CommonFunctionality commonFunctionality;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -30,23 +29,24 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             setContentView(R.layout.activity_forgot_password);
 
             setTitleBar(R.id.forgot_password_backButton,R.id.forgot_password_titleBar,Constants.TITLE_FORGOT_PASSWORD);
-            commonFunctionality=new CommonFunctionality(getApplicationContext(),this);
-            commonFunctionality.onClickListenerForImage(R.id.register_backButton);
+
+            CommonFunctionality.onClickListenerForImage(this,R.id.register_backButton);
         }
         catch(Exception e){
-            commonFunctionality.generatePopupMessage(Constants.ALERT_EXCEPTION,Constants.EXCEPTION_RESET_PASSWORD);
+
+            CommonFunctionality.generatePopUpMessageForExceptions(this);
         }
     }
 
     @Override
     public void onBackPressed(){
 
-        commonFunctionality.onBackPressed(LoginActivity.class);
+        CommonFunctionality.onBackPressed(this,LoginActivity.class);
     }
 
     public void onClickBackButton(View view){
 
-        commonFunctionality.onBackPressed(LoginActivity.class);
+        CommonFunctionality.onBackPressed(this,LoginActivity.class);
     }
 
     public void onClickRetrievePassword(View view){
@@ -63,14 +63,19 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     handler.execute(Constants.ACTION_FORGOT_PASSWORD, emailAddress.getText().toString());
 
                 } else {
-                    commonFunctionality.generatePopupMessage(Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_EMAIL_ADDRESS);
+                    CommonFunctionality.generatePopupMessage(this,Constants.ALERT_EMPTY_TEXT,Constants.POPUP_MESSAGE_NO_EMAIL_ADDRESS);
                 }
             }else{
-                Snackbar snackBar = Snackbar.make(findViewById(R.id.coordinatorLayout), Constants.POPUP_MESSAGE_NO_INTERNET, Snackbar.LENGTH_LONG);
-                snackBar.show();
+                CoordinatorLayout coordinatorLayout= (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
+
+                if(coordinatorLayout!=null){
+
+                    Snackbar snackBar = Snackbar.make(coordinatorLayout, Constants.POPUP_MESSAGE_NO_INTERNET, Snackbar.LENGTH_LONG);
+                    snackBar.show();
+                }
             }
         }catch(Exception e){
-            commonFunctionality.generatePopupMessage(Constants.ALERT_EMPTY_TEXT,Constants.EXCEPTION_RESET_PASSWORD);
+            CommonFunctionality.generatePopUpMessageForExceptions(this);
         }
 
     }
@@ -107,6 +112,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         } catch (Exception e) {
 
+            CommonFunctionality.generatePopUpMessageForExceptions(this);
         }
     }
 }

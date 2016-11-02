@@ -5,7 +5,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.buildingsetup.AddPropertyActivity">
+    tools:context=".activities.owner_activities.building_setup.AddPropertyActivity">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -28,7 +28,7 @@
         android:gravity="center"
         android:textColor="#000000"
         android:hint="@string/building_name"
-        android:inputType="textCapSentences"
+        android:inputType="textCapCharacters"
         android:background="@drawable/rounded_edittext"
         android:layout_marginTop="40dp"
         android:layout_below="@+id/layout_header"
