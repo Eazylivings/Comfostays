@@ -131,7 +131,11 @@
         <activity
             android:name=".activities.owner_activities.edit_activities.EditMealActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.customer_activities.JoinPropertyActivity"></activity>
+        <activity android:name=".activities.customer_activities.JoinPropertyActivity" />
+        <activity android:name=".activities.customer_activities.events.UpcomingOrPastEventsCustomerActivity" />
+        <activity android:name=".activities.customer_activities.events.OrganizeEventCustomerActivity" />
+        <activity android:name=".activities.customer_activities.events.CheckEventCustomerActivity" />
+        <activity android:name=".activities.owner_activities.tenant_activities.OwnerAddTenantActivity"></activity>
     </application>
 
 </manifest>

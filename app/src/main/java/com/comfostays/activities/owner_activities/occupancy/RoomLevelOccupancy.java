@@ -188,8 +188,8 @@ public class RoomLevelOccupancy extends AppCompatActivity {
             int count=0;
 
             final String partialFilledColor="#F9E79F";
-            final String completelyFilledColor="#00FF00";
-            final String completelyEmptyColor="#ff7f7f";
+            final String completelyFilledColor="#ff7f7f";
+            final String completelyEmptyColor="#96e896";
 
             OwnerLocalDatabaseHandler localDatabaseHandler=new OwnerLocalDatabaseHandler(getApplicationContext(),this);
             HashMap<String,Integer> mapOfRooms;

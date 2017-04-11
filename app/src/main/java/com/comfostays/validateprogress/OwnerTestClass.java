@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class TestClass {
+public class OwnerTestClass {
 
     public String checkEmailAndPassword(String emailAddress, String password){
 
@@ -95,7 +95,6 @@ public class TestClass {
             userDetails.setContactNumber("7674013173");
             userDetails.setGender("Male");
 
-
         }else{
 
             userDetails.setUserId(1);
@@ -106,10 +105,7 @@ public class TestClass {
             userDetails.setContactNumber("7674013173");
             userDetails.setGender("Male");
 
-
         }
-
-
 
         return userDetails;
     }
@@ -200,6 +196,7 @@ public class TestClass {
         tenantDetailsVO.setTenantLoggedComplaints("5");
         tenantDetailsVO.setRentPaid(true);
         tenantDetailsVO.setTenantResidingProperty("SN Plaza");
+        tenantDetailsVO.setListOfIdProofsPicSource("https://upload.wikimedia.org/wikipedia/commons/3/31/A_sample_of_Permanent_Account_Number_%28PAN%29_Card.jpg~http://images.jagran.com/voter-id-b-18-5-2012.jpg");
         //tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_one+"");
 
         listOfTenants.add(tenantDetailsVO);
@@ -219,6 +216,7 @@ public class TestClass {
         tenantDetailsVO.setTenantLoggedComplaints("1");
         tenantDetailsVO.setRentPaid(true);
         tenantDetailsVO.setTenantResidingProperty("SN Plaza");
+        tenantDetailsVO.setListOfIdProofsPicSource("https://upload.wikimedia.org/wikipedia/commons/3/31/A_sample_of_Permanent_Account_Number_%28PAN%29_Card.jpg~http://images.jagran.com/voter-id-b-18-5-2012.jpg");
         //tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_two+"");
 
         listOfTenants.add(tenantDetailsVO);
@@ -238,6 +236,7 @@ public class TestClass {
         tenantDetailsVO.setTenantLoggedComplaints("5");
         tenantDetailsVO.setRentPaid(false);
         tenantDetailsVO.setTenantResidingProperty("SN Plaza");
+        tenantDetailsVO.setListOfIdProofsPicSource("https://upload.wikimedia.org/wikipedia/commons/3/31/A_sample_of_Permanent_Account_Number_%28PAN%29_Card.jpg~http://images.jagran.com/voter-id-b-18-5-2012.jpg");
         //tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_three+"");
 
         listOfTenants.add(tenantDetailsVO);
@@ -257,6 +256,7 @@ public class TestClass {
         tenantDetailsVO.setTenantLoggedComplaints("0");
         tenantDetailsVO.setRentPaid(true);
         tenantDetailsVO.setTenantResidingProperty("SN Plaza");
+        tenantDetailsVO.setListOfIdProofsPicSource("https://upload.wikimedia.org/wikipedia/commons/3/31/A_sample_of_Permanent_Account_Number_%28PAN%29_Card.jpg~http://images.jagran.com/voter-id-b-18-5-2012.jpg");
         //tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_one+"");
 
         listOfTenants.add(tenantDetailsVO);

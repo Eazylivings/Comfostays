@@ -1,6 +1,10 @@
 package com.comfostays.activities.owner_activities.tenant_activities;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,12 +18,15 @@ import com.comfostays.Constants;
 import com.comfostays.R;
 import com.comfostays.VOClass.TenantDetailsVO;
 import com.comfostays.activities.PopUpIdProofs;
+import com.comfostays.databasehandler.OwnerServerDatabaseHandler;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class TenantsDetailsActivity extends AppCompatActivity {
 
     ArrayList<TenantDetailsVO> listOfTenantDetailsVO=new ArrayList<>();
+    static String[] arrayOfSourceOfIdProof;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,23 +52,24 @@ public class TenantsDetailsActivity extends AppCompatActivity {
             TextView tenantContactNumber=(TextView) findViewById(R.id.tenantsDetails_textView_contactDetailsValue);
             TextView tenantResidingSince=(TextView) findViewById(R.id.tenantsDetails_textView_residingSinceValue);
 
-            final ArrayList<Integer> listOfPicIds=new ArrayList<>();
-            listOfPicIds.add(R.drawable.pancard);
-            listOfPicIds.add(R.drawable.dl);
+            if(tenantDetails.getListOfIdProofsPicSource()!=null) {
+
+                arrayOfSourceOfIdProof = tenantDetails.getListOfIdProofsPicSource().split("~");
+            }
 
             if(linearLayout!=null && tenantName!=null && tenantEmailAddress!=null && tenantRoomNumber!=null &&  tenantDurationOfStay!=null && tenantComplaintsLogged!=null && tenantDescription!=null && tenantContactNumber!=null && tenantResidingSince!=null ) {
 
                 String[] idProofs = tenantDetails.getTenantUploadedIdProofs().split(",");
                 LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                lparams.rightMargin = 5;
-                lparams.topMargin = 5;
+                lparams.rightMargin = 25;
+                lparams.topMargin = 15;
 
                 for (int i = 0; i < idProofs.length; i++) {
 
                     Button button=new Button(getApplicationContext());
                     button.setLayoutParams(lparams);
-                    button.setBackgroundColor(Color.parseColor("#008B8B"));
+                    button.setBackgroundColor(Color.parseColor("#21f2f2"));
                     button.setText(idProofs[i]);
                     button.setTextColor(Color.BLACK);
 
@@ -72,7 +80,11 @@ public class TenantsDetailsActivity extends AppCompatActivity {
                         public void onClick(View v) {
 
                             Intent intent=new Intent(getApplicationContext(),PopUpIdProofs.class);
-                            intent.putExtra("IDs",listOfPicIds.get(count));
+                            if(arrayOfSourceOfIdProof!=null){
+
+                                intent.putExtra("IdSource",arrayOfSourceOfIdProof[count]);
+                            }
+
                             startActivity(intent);
                         }
                     });

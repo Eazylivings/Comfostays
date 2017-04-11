@@ -18,111 +18,134 @@
         android:id="@+id/scrollView_joinProperty"
         android:layout_above="@+id/button_join"
         android:layout_below="@+id/layout_header"
-        android:layout_alignParentStart="true" >
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageView_propertyid"
+                android:src="@drawable/building_icon"
+                android:padding="5dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/textView_propertyId"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Property Id"
-                android:id="@+id/textView_propertyId"
-                android:layout_marginTop="25dp" />
+                android:layout_toEndOf="@+id/imageView_propertyid"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="5dp" />
 
             <EditText
-                android:layout_width="150dp"
-                android:layout_height="50dp"
+                android:layout_width="175dp"
+                android:layout_height="40dp"
                 android:id="@+id/editText_propertyId"
                 android:hint="PROPERTY ID"
-                android:layout_alignStart="@+id/textView_propertyId"
-                android:layout_marginStart="100dp"
                 android:background="@drawable/rounded_edittext"
                 android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp" />
+
+
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageView_customerName"
+                android:layout_below="@+id/imageView_propertyid"
+                android:src="@drawable/name_icon"
+                android:padding="5dp"
                 android:layout_marginTop="10dp" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-               android:layout_below="@+id/editText_propertyId"
-                android:id="@+id/relativeLayout_buildingDetails"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Name"
-                    android:id="@+id/textView_propertyNameHeading"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
-                    android:id="@+id/textView_propertyName"
-                    android:layout_alignBottom="@+id/textView_propertyNameHeading"
-                    android:layout_centerHorizontal="true" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Address"
-                    android:id="@+id/textView_propertyAddressHeading"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/textView_propertyNameHeading" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
-                    android:id="@+id/textView_propertyAddress"
-                    android:layout_alignBottom="@+id/textView_propertyAddressHeading"
-                    android:layout_centerHorizontal="true" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Room Types"
-                    android:id="@+id/textView_propertyRoomTypesHeading"
-                    android:layout_below="@+id/textView_propertyAddress"
-                    android:layout_alignParentStart="true" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
-                    android:id="@+id/textView_propertyRoomTypes"
-                    android:layout_below="@+id/textView_propertyAddress"
-                    android:layout_alignStart="@+id/textView_propertyAddress" />
-            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/textView_customerNameHeading"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_below="@+id/relativeLayout_buildingDetails"
-                android:text="Medium Text"
-                android:id="@+id/textView_customerNameHeading" />
+                android:layout_below="@+id/textView_propertyId"
+                android:layout_toEndOf="@+id/imageView_customerName"
+                android:text="NAME"
+                android:layout_marginTop="30dp" />
 
             <EditText
+                android:layout_width="175dp"
+                android:layout_height="40dp"
+                android:id="@+id/editText_customerName"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_below="@+id/textView_propertyId"
+                android:background="@drawable/rounded_edittext"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:hint="NAME"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageView_roomNumber"
+                android:layout_below="@+id/imageView_customerName"
+
+                android:src="@drawable/room_number_icon"
+                android:padding="5dp" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/textView_customerRoomNumberHeading"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_below="@+id/textView_customerNameHeading"
+                android:text="Room No."
+                android:layout_toEndOf="@+id/imageView_roomNumber"
+
+                android:layout_marginTop="30dp" />
+
+            <EditText
+                android:layout_width="175dp"
+                android:layout_height="40dp"
                 android:inputType="textPersonName"
-                android:text="Name"
                 android:ems="10"
-                android:id="@+id/editText_customerName"
-                android:layout_alignEnd="@+id/textView_customerNameHeading"
-                android:layout_below="@+id/relativeLayout_buildingDetails"/>
+                android:id="@+id/editText_customerRoom"
+                android:layout_below="@+id/editText_customerName"
+                android:background="@drawable/rounded_edittext"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:hint="ROOM NUMBER"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/editText_customerRoom"
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/radiogroup_rent">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Rent Paid"
+                    android:id="@+id/radioButton_rentPaid" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Rent Not Paid"
+                    android:id="@+id/radioButton_rentNotPaid" />
+            </RadioGroup>
 
 
         </RelativeLayout>

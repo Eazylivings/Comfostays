@@ -6,6 +6,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
+import java.util.List;
+
 
 public class GPSTracker implements LocationListener{
 
@@ -31,7 +33,7 @@ public class GPSTracker implements LocationListener{
     private static final long MIN_TIME_BW_UPDATES = 1; // 1 minute
 
     // Declaring a Location Manager
-    protected LocationManager locationManager;
+    private static  LocationManager locationManager;
 
     public GPSTracker(Context context) {
         this.mContext = context;
@@ -92,6 +94,7 @@ public class GPSTracker implements LocationListener{
                         if (locationManager != null) {
                             location = locationManager
                                     .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                            location = getLastKnownLocation();
                             if (location != null) {
                                 latitude = location.getLatitude();
                                 longitude = location.getLongitude();
@@ -106,6 +109,33 @@ public class GPSTracker implements LocationListener{
         }
 
         return location;
+    }
+
+    private Location getLastKnownLocation() {
+
+        try {
+
+            List<String> providers = locationManager.getProviders(true);
+            Location bestLocation = null;
+            for (String provider : providers) {
+                Location l = locationManager.getLastKnownLocation(provider);
+
+                if (l == null) {
+                    continue;
+                }
+                if (bestLocation == null
+                        || l.getAccuracy() < bestLocation.getAccuracy()) {
+                    bestLocation = l;
+                }
+            }
+            if (bestLocation == null) {
+                return null;
+            }
+            return bestLocation;
+
+        }catch(SecurityException e){
+            return null;
+        }
     }
 
 

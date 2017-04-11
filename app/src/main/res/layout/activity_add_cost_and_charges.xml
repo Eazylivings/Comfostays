@@ -85,6 +85,18 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Additional Charges"
+                    android:id="@+id/costAndCharges_textView_extraChargesHeading"
+                    android:padding="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:singleLine="false" />
+
                 <GridLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"

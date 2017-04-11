@@ -36,21 +36,6 @@
                 android:layout_centerHorizontal="true"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/edit"
-                android:id="@+id/textView_editBuildingLayout"
-                android:textStyle="bold"
-                android:textColor="#FF0000"
-                android:typeface="serif"
-                android:onClick="onClickEditBuildingLayout"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_above="@+id/finalPortfolio_linearLayout"
-                android:layout_alignParentEnd="true" />
-
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="250dp"

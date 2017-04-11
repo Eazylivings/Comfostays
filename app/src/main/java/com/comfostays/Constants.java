@@ -26,6 +26,7 @@ public class Constants {
     public static final String SHARED_PREFERENCE_CURRENT_YEAR="occupancyCurrentYear";
     public static final String SHARED_PREFERENCE_CURRENT_MONTH="occupancyCurrentMonth";
     public static final String SHARED_PREFERENCE_TYPE_OF_CHART="typeOfChart";
+    public static final String SHARED_PREFERENCE_IS_CUSTOMER_PART_OF_ANY_PROPERTY="isCustomerPartOfAnyProperty";
 
     public static final String INTENT_PREVIOUS_ACTIVITY ="previousActivity";
     public static final String INTENT_SELECTED_PROPERTY_ID="selectedPropertyId";
@@ -41,8 +42,13 @@ public class Constants {
     public static final String INTENT_LIST_OF_TENANT_DETAILS_VO ="tenantDetailsVo";
     public static final String INTENT_TENANT_SELECTION="tenantSelection";
     public static final String INTENT_MAP_OF_TENANT_FILTER="tenantsFilterMap";
+    public static final String INTENT_PROPERTY_DETAILS_VO="propertyDetailsVO";
 
     public static final String INTENT_IS_TENANT_FILTER_APPLIED="isTenantFilterApplied";
+    public static final String INTENT_IS_ACTIVITY_LOADED_FOR_FIRST_TIME="isActivityLoadedForFirstTime";
+    public static final String INTENT_DOES_PROPERTY_EXISTS="doesPropertyExists";
+    public static final String INTENT_PROPERTY_ID="propertyId";
+    public static final String INTENT_SELECTED_EVENT="selectedEvent";
 
     public static final String ALERT_TITLE="Wrong Input";
     public static final String ALERT_SUCCESS="Successful";
@@ -75,6 +81,7 @@ public class Constants {
     public static final String POPUP_MESSAGE_FLOOR_NOT_REMOVED="Please select last added floor";
     public static final String POPUP_MESSAGE_NO_PROPERTY_FOUND="Please register property in order to use all features";
     public static final String POPUP_MESSAGE_ENTER_ROOM_NUMBERS="Please enter room number for all the floors";
+    public static final String POPUP_MESSAGE_ENTER_ROOM_NUMBERS_LESS_THAN_30="Each floor can accommodate maximum of 25 Rooms. Please enter number less than or equal to 25.";
     public static final String POPUP_MESSAGE_BUY_PAID_VERSION="This facility is availabe to Paid Version of App.";
     public static final String POPUP_MESSAGE_CHARGES_FOR_ALL_ROOMS="Please provide charges for all rooms.";
     public static final String POPUP_MESSAGE_TENANTS_NOTIFIED="Selected tenants have been notified.";
@@ -100,6 +107,10 @@ public class Constants {
     public static final String ACTION_NOTIFY_TENANTS="notifyTenants";
     public static final String ACTION_GET_NOTIFICATIONS="getNotifications";
     public static final String ACTION_GET_MEAL_TIMING_AND_SCHEDULE="getMealTimingAndSchedule";
+    public static final String ACTION_GET_CLICKED_IMAGE="getClickedImage";
+
+    public static final String ACTION_CUSTOMER_GET_PROPERTY_DETAILS="getPropertyDetails";
+    public static final String ACTION_CUSTOMER_JOIN_PROPERTY="customerJoinProperty";
 
     public static final String AUTHENTICATION_LOGIN_SUCCESS="Login Successful";
     public static final String AUTHENTICATION_LOGIN_FAIL="Login Failed";
@@ -136,6 +147,9 @@ public class Constants {
     public static final String TITLE_EDIT_COST_AND_CHARGES="Edit Cost and Charges";
     public static final String TITLE_ACCEPT_REJECT_TENANTS="Tenants Regisstration";
     public static final String TITLE_EDIT_MEALS_SCHEDULE="Edit Meal Schedule";
+    public static final String TITLE_JOIN_PROPERTY="Join Property";
+    public static final String TITLE_EVENTS_LIST="List of Events";
+    public static final String TITLE_EVENT_DESCRIPTION="Event Details";
     public static final String ALERT_TITLE_DELETE="";
 
     public static final String CUSTOMER="Customer";

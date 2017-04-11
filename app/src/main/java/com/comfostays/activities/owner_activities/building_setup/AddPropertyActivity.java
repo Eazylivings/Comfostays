@@ -1,9 +1,12 @@
 package com.comfostays.activities.owner_activities.building_setup;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -145,10 +148,14 @@ public class AddPropertyActivity extends AppCompatActivity {
 
         try {
 
-            CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
+
+
+            /*CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
             ImageButton button = (ImageButton) findViewById(R.id.addProperty_imageButton_myLocation);
 
             GPSTracker mGPS = new GPSTracker(this);
+
+
             if (mGPS.canGetLocation) {
                 mGPS.getLocation();
                 mGPS.getLatitude();
@@ -166,7 +173,7 @@ public class AddPropertyActivity extends AppCompatActivity {
                     Snackbar snackBar = Snackbar.make(coordinatorLayout, Constants.POPUP_MESSAGE_GPS_TRACK_FAIL, Snackbar.LENGTH_LONG);
                     snackBar.show();
                 }
-            }
+            }*/
         }catch(Exception e){
 
             CommonFunctionality.generatePopUpMessageForExceptions(this);
@@ -196,6 +203,48 @@ public class AddPropertyActivity extends AppCompatActivity {
         }catch(Exception e){
 
             CommonFunctionality.generatePopUpMessageForExceptions(this);
+        }
+    }
+
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
+                    ImageButton button = (ImageButton) findViewById(R.id.addProperty_imageButton_myLocation);
+
+                    GPSTracker mGPS = new GPSTracker(this);
+
+                    if (mGPS.canGetLocation) {
+                        mGPS.getLocation();
+                        mGPS.getLatitude();
+                        mGPS.getLongitude();
+                        locationOfBuilding = locationOfBuilding + mGPS.getLatitude() + ":" + mGPS.getLongitude();
+                        if (coordinatorLayout != null && button != null) {
+
+                            button.setColorFilter(Color.BLACK);
+                            Snackbar snackBar = Snackbar.make(coordinatorLayout, Constants.POPUP_MESSAGE_GPS_TRACK_SUCCESS, Snackbar.LENGTH_LONG);
+                            snackBar.show();
+                        }
+                    } else {
+                        if (coordinatorLayout != null) {
+
+                            Snackbar snackBar = Snackbar.make(coordinatorLayout, Constants.POPUP_MESSAGE_GPS_TRACK_FAIL, Snackbar.LENGTH_LONG);
+                            snackBar.show();
+                        }
+                    }
+
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+            // other 'case' lines to check for other
+            // permissions this app might request
         }
     }
 }

@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.comfostays.activities.ContactUsActivity;
 import com.comfostays.activities.MealActivity;
+import com.comfostays.activities.customer_activities.JoinPropertyActivity;
+import com.comfostays.activities.customer_activities.events.UpcomingOrPastEventsCustomerActivity;
 import com.comfostays.activities.owner_activities.notifications.OwnerNotificationsActivity;
 import com.comfostays.activities.owner_activities.occupancy.OccupancyActivity;
 import com.comfostays.activities.owner_activities.tenant_activities.TenantsActivity;
@@ -51,6 +53,7 @@ public class WelcomeScreen extends AppCompatActivity
 
             String userName = preference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_USERNAME);
             loggedUserEmailAddress = preference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_EMAIL_ADDRESS);
+            isCustomerPartOfAnyProperty=preference.getBooleanValueFromSharedPreference(Constants.SHARED_PREFERENCE_IS_CUSTOMER_PART_OF_ANY_PROPERTY);
 
             setTitle(Constants.WELCOME + userName);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -202,6 +205,16 @@ public class WelcomeScreen extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+        } else if (id == R.id.customer_settle_yourself) {
+
+            Intent intent=new Intent(getApplicationContext(),JoinPropertyActivity.class);
+            intent.putExtra(Constants.INTENT_IS_ACTIVITY_LOADED_FOR_FIRST_TIME,true);
+            intent.putExtra(Constants.INTENT_IS_ACTIVITY_LOADED_FOR_FIRST_TIME,true);
+            startActivity(intent);
+            finish();
+
+        }else if (id == R.id.customer_unsettle_yourself) {
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -253,7 +266,24 @@ public class WelcomeScreen extends AppCompatActivity
 
         if(view2!=null){
 
-            view2.setImageResource(R.drawable.my_property_new);
+            view2.setImageResource(R.drawable.events_icon);
+
+            view2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    //if(isAnyPropertyRegistered){
+
+                        Intent intent=new Intent(getApplicationContext(),UpcomingOrPastEventsCustomerActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    //}else{
+
+                       // CommonFunctionality.generateActivityRedirectPopupMessage(WelcomeScreen.this,Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
+                    //}
+                }
+            });
         }
 
         ImageView view3=(ImageView)findViewById(R.id.welcomeScreen_imageView_0_2) ;
@@ -277,9 +307,25 @@ public class WelcomeScreen extends AppCompatActivity
 
                 view4.setImageResource(R.drawable.group_chat_icon);
 
+                view4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        CommonFunctionality.generatePopupMessage(WelcomeScreen.this,Constants.ALERT_MESSAGE,Constants.POPUP_MESSAGE_BUY_PAID_VERSION);
+                    }
+                });
+
             }else{
 
                 view4.setImageResource(R.drawable.group_chat_icon);
+
+                view4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        CommonFunctionality.generatePopupMessage(WelcomeScreen.this,Constants.ALERT_MESSAGE,Constants.POPUP_MESSAGE_BUY_PAID_VERSION);
+                    }
+                });
             }
         }
 
@@ -317,14 +363,11 @@ public class WelcomeScreen extends AppCompatActivity
                 menu.removeItem(R.id.owner_add_properties);
                 menu.removeItem(R.id.owner_occupancy);
 
-            }
-
-            if (!isMealOffered) {
-                menu.removeItem(R.id.owner_meals);
+                if (!isMealOffered) {
+                    menu.removeItem(R.id.owner_meals);
+                }
             }
         }
-
-
     }
 
     private void setScreenForOwners(){
@@ -378,8 +421,6 @@ public class WelcomeScreen extends AppCompatActivity
                     }
                 }
             });
-
-
         }
 
         ImageView view3=(ImageView)findViewById(R.id.welcomeScreen_imageView_0_2) ;

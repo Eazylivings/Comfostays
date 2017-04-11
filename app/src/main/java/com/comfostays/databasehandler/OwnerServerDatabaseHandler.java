@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -12,7 +14,7 @@ import android.widget.ProgressBar;
 import com.comfostays.CommonFunctionality;
 import com.comfostays.R;
 import com.comfostays.Constants;
-import com.comfostays.RedirectClass;
+import com.comfostays.OwnerRedirectClass;
 import com.comfostays.VOClass.CostAndChargesVO;
 import com.comfostays.VOClass.MealScheduleVO;
 import com.comfostays.VOClass.PropertyDetailsVO;
@@ -20,6 +22,7 @@ import com.comfostays.VOClass.PropertyLayoutDetailsVO;
 import com.comfostays.VOClass.TenantDetailsVO;
 import com.comfostays.VOClass.UserDetailsVO;
 import com.comfostays.WelcomeScreen;
+import com.comfostays.activities.PopUpIdProofs;
 import com.comfostays.activities.owner_activities.notifications.AcceptRejectTenantActivity;
 import com.comfostays.activities.owner_activities.notifications.TenantIssuesActivity;
 import com.comfostays.activities.owner_activities.occupancy.OccupancyActivity;
@@ -27,8 +30,12 @@ import com.comfostays.activities.owner_activities.occupancy.RoomLevelOccupancy;
 import com.comfostays.activities.loginactivities.LoginActivity;
 import com.comfostays.activities.loginactivities.RegisterActivity;
 import com.comfostays.sharedpreference.SharedPreference;
-import com.comfostays.validateprogress.TestClass;
+import com.comfostays.validateprogress.OwnerTestClass;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,16 +81,16 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
 
         if(currentAction.equalsIgnoreCase(Constants.ACTION_LOGIN)) {
 
-            TestClass testClass = new TestClass();
-            result= testClass.checkEmailAndPassword(params[1], params[2]);
+            OwnerTestClass ownerTestClass = new OwnerTestClass();
+            result= ownerTestClass.checkEmailAndPassword(params[1], params[2]);
 
             /*url = new URL(Constants.URL_LOGIN);
             post_data = URLEncoder.encode(Constants.SERVER_HANDLER_USERNAME, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(emailAddress, Constants.SERVER_HANDLER_UTF) + "&"
                     + URLEncoder.encode(Constants.SERVER_HANDLER_PASSWORD,Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[2], Constants.SERVER_HANDLER_UTF);*/
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_REGISTER)){
 
-            TestClass testClass = new TestClass();
-            result= testClass.userRegistration(params[1],params[2],params[3],params[4],params[5],applicationContext);
+            OwnerTestClass ownerTestClass = new OwnerTestClass();
+            result= ownerTestClass.userRegistration(params[1],params[2],params[3],params[4],params[5],applicationContext);
 
                 /*url = new URL(Constants.URL_CUSTOMER_REGISTER);
                 userDetails=new UserDetails();
@@ -99,8 +106,8 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
 
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_USER_DETAILS)) {
 
-            TestClass testClass = new TestClass();
-            userDetails=testClass.getUserDetails(params[1]);
+            OwnerTestClass ownerTestClass = new OwnerTestClass();
+            userDetails= ownerTestClass.getUserDetails(params[1]);
             result=Constants.AUTHENTICATION_USER_DETAILS_FETCHED_SUCCESS;
 
             // Through queries we will check if user is existing or not. At server only we will check and return th result accordingly.
@@ -109,8 +116,8 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
             post_data = URLEncoder.encode(Constants.SERVER_HANDLER_EMAIL_ADDRESS, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[1], Constants.SERVER_HANDLER_UTF);*/
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_FORGOT_PASSWORD)) {
 
-            TestClass testClass = new TestClass();
-            result= testClass.passwordResetSuccessfully(params[1]);
+            OwnerTestClass ownerTestClass = new OwnerTestClass();
+            result= ownerTestClass.passwordResetSuccessfully(params[1]);
 
             // Through queries we will check if user is existing or not. At server only we will check and return th result accordingly.
 
@@ -118,8 +125,8 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
             post_data = URLEncoder.encode(Constants.SERVER_HANDLER_EMAIL_ADDRESS, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[1], Constants.SERVER_HANDLER_UTF);*/
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_OWNER_REGISTERED_PROPERTIES_DETAILS)) {
 
-            TestClass testClass = new TestClass();
-            listOfPropertyDetails=testClass.getOwnerRegisteredProperties(params[1]);
+            OwnerTestClass ownerTestClass = new OwnerTestClass();
+            listOfPropertyDetails= ownerTestClass.getOwnerRegisteredProperties(params[1]);
 
             // Through queries we will check if user is existing or not. At server only we will check and return th result accordingly.
 
@@ -127,13 +134,13 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
             post_data = URLEncoder.encode(Constants.SERVER_HANDLER_EMAIL_ADDRESS, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[1], Constants.SERVER_HANDLER_UTF);*/
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_OWNER_REGISTERED_PROPERTY_LAYOUT_DETAILS)){
 
-            TestClass testClass = new TestClass();
-            listOfPropertyLayoutDetailsVO =testClass.getPropertyLayoutDetailsVO();
+            OwnerTestClass ownerTestClass = new OwnerTestClass();
+            listOfPropertyLayoutDetailsVO = ownerTestClass.getPropertyLayoutDetailsVO();
 
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_CURRENT_TENANT_DETAILS)) {
 
-            TestClass testClass = new TestClass();
-            listOfTenantsDetailsVO =testClass.getListOfTenantDetailsVO();
+            OwnerTestClass ownerTestClass = new OwnerTestClass();
+            listOfTenantsDetailsVO = ownerTestClass.getListOfTenantDetailsVO();
 
             // Through queries we will check if user is existing or not. At server only we will check and return th result accordingly.
 
@@ -147,8 +154,8 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
 
             if(isCurrentOccupancyCheckedBoxChecked){
 
-                TestClass testClass = new TestClass();
-                upperLevelRoomOccupancyCoordinates=testClass.getUpperLevelRoomOccupancy(2016,2016,8,8);
+                OwnerTestClass ownerTestClass = new OwnerTestClass();
+                upperLevelRoomOccupancyCoordinates= ownerTestClass.getUpperLevelRoomOccupancy(2016,2016,8,8);
 
             }else{
 
@@ -157,8 +164,8 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
                 int fromMonthInt=Integer.parseInt(sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_OCCUPANCY_FROM_MONTH));
                 int toMonthInt=Integer.parseInt(sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_OCCUPANCY_TO_MONTH));
 
-                TestClass testClass = new TestClass();
-                upperLevelRoomOccupancyCoordinates=testClass.getUpperLevelRoomOccupancy(fromYearInt,toYearInt,fromMonthInt,toMonthInt);
+                OwnerTestClass ownerTestClass = new OwnerTestClass();
+                upperLevelRoomOccupancyCoordinates= ownerTestClass.getUpperLevelRoomOccupancy(fromYearInt,toYearInt,fromMonthInt,toMonthInt);
             }
 
 
@@ -168,8 +175,8 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
             post_data = URLEncoder.encode(Constants.SERVER_HANDLER_EMAIL_ADDRESS, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[1], Constants.SERVER_HANDLER_UTF);*/
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_ROOM_OCCUPANCY_ROOM_LEVEL)) {
 
-            TestClass testClass = new TestClass();
-            roomLevelOccupancy=testClass.getRoomLevelRoomOccupancy(params[1]);
+            OwnerTestClass ownerTestClass = new OwnerTestClass();
+            roomLevelOccupancy= ownerTestClass.getRoomLevelRoomOccupancy(params[1]);
 
             // Through queries we will check if user is existing or not. At server only we will check and return th result accordingly.
 
@@ -179,22 +186,21 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
 
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_NOTIFICATIONS)){
 
-            TestClass testClass = new TestClass();
-            tenantIssues =testClass.getNotifications();
+            OwnerTestClass ownerTestClass = new OwnerTestClass();
+            tenantIssues = ownerTestClass.getNotifications();
             statuses=Constants.ACKNOWLEDGED+":" + "NONE" + ":"+ Constants.DISMISSED;
 
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_COST_AND_CHARGES)){
 
-            TestClass testClass = new TestClass();
-            costAndChargesVO=testClass.getCostAndChargesVO();
+            OwnerTestClass ownerTestClass = new OwnerTestClass();
+            costAndChargesVO= ownerTestClass.getCostAndChargesVO();
 
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_MEAL_TIMING_AND_SCHEDULE)){
 
-            TestClass testClass = new TestClass();
-            mealScheduleVO=testClass.getMealScheduleVO();
+            OwnerTestClass ownerTestClass = new OwnerTestClass();
+            mealScheduleVO= ownerTestClass.getMealScheduleVO();
 
         }
-
             /*HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
             httpUrlConnection.setRequestMethod("POST");
             httpUrlConnection.setDoOutput(true);
@@ -273,8 +279,8 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
             OwnerLocalDatabaseHandler localDatabaseHandler=new OwnerLocalDatabaseHandler(applicationContext,activity);
             localDatabaseHandler.deleteDatabase(applicationContext);
 
-            RedirectClass redirectClass = new RedirectClass(applicationContext, activity);
-            redirectClass.getUserDetails(emailAddress);
+            OwnerRedirectClass ownerRedirectClass = new OwnerRedirectClass(applicationContext, activity);
+            ownerRedirectClass.getUserDetails(emailAddress);
 
         } else if (currentAction.equalsIgnoreCase(Constants.ACTION_LOGIN) && accountAuthenticationString.equalsIgnoreCase(Constants.AUTHENTICATION_LOGIN_FAIL)) {
 
@@ -321,8 +327,8 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
 
         } else if (currentAction.equalsIgnoreCase(Constants.ACTION_GET_USER_DETAILS) && accountAuthenticationString.equalsIgnoreCase(Constants.AUTHENTICATION_USER_DETAILS_FETCHED_SUCCESS)) {
 
-            RedirectClass redirectClass = new RedirectClass(applicationContext, activity);
-            redirectClass.getOwnerRegisteredPropertyDetails(userDetails);
+            OwnerRedirectClass ownerRedirectClass = new OwnerRedirectClass(applicationContext, activity);
+            ownerRedirectClass.getOwnerRegisteredPropertyDetails(userDetails);
 
 
         } else if (currentAction.equalsIgnoreCase(Constants.ACTION_GET_OWNER_REGISTERED_PROPERTIES_DETAILS)) {
@@ -341,14 +347,14 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
             }else{
                 sharedPreference.setBooleanValueInSharedPreference(Constants.SHARED_PREFERENCE_IS_ANY_PROPERTY_REGISTERED,true);
 
-                RedirectClass redirectClass = new RedirectClass(applicationContext, activity);
-                redirectClass.getBuildingLayoutDetails(listOfPropertyDetails);
+                OwnerRedirectClass ownerRedirectClass = new OwnerRedirectClass(applicationContext, activity);
+                ownerRedirectClass.getBuildingLayoutDetails(listOfPropertyDetails);
             }
 
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_OWNER_REGISTERED_PROPERTY_LAYOUT_DETAILS)){
 
-            RedirectClass redirectClass = new RedirectClass(applicationContext, activity);
-            redirectClass.setPropertyLayoutDetails(listOfPropertyLayoutDetailsVO);
+            OwnerRedirectClass ownerRedirectClass = new OwnerRedirectClass(applicationContext, activity);
+            ownerRedirectClass.setPropertyLayoutDetails(listOfPropertyLayoutDetailsVO);
 
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_ROOM_OCCUPANCY_UPPER_LEVEL)){
 
@@ -370,8 +376,8 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
             activity.finish();
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_CURRENT_TENANT_DETAILS)){
 
-            RedirectClass redirectClass = new RedirectClass(applicationContext, activity);
-            redirectClass.setListOfTenantDetails(listOfTenantsDetailsVO);
+            OwnerRedirectClass ownerRedirectClass = new OwnerRedirectClass(applicationContext, activity);
+            ownerRedirectClass.setListOfTenantDetails(listOfTenantsDetailsVO);
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_NOTIFY_TENANTS)){
 
             generatePopupMessage(Constants.POPUP_MESSAGE_TENANTS_NOTIFIED,WelcomeScreen.class);
@@ -389,13 +395,13 @@ public class OwnerServerDatabaseHandler extends AsyncTask<String,Void,String> {
             activity.finish();
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_COST_AND_CHARGES)){
 
-            RedirectClass redirectClass = new RedirectClass(applicationContext, activity);
-            redirectClass.setCostAndCharges(costAndChargesVO);
+            OwnerRedirectClass ownerRedirectClass = new OwnerRedirectClass(applicationContext, activity);
+            ownerRedirectClass.setCostAndCharges(costAndChargesVO);
 
         }else if(currentAction.equalsIgnoreCase(Constants.ACTION_GET_MEAL_TIMING_AND_SCHEDULE)){
 
-            RedirectClass redirectClass = new RedirectClass(applicationContext, activity);
-            redirectClass.setMealTimingAndSchedule(mealScheduleVO);
+            OwnerRedirectClass ownerRedirectClass = new OwnerRedirectClass(applicationContext, activity);
+            ownerRedirectClass.setMealTimingAndSchedule(mealScheduleVO);
         }
     }
     @Override

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".activities.customer_activities.events.OrganizeEventCustomerActivity">
+
+    <include android:id="@+id/layout_header"
+        layout="@layout/layout_header"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_eventsTagLine"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Time is terrible thing to waste. Lets roll somewhere"
+        android:layout_below="@+id/layout_header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView_event"
+        android:layout_below="@+id/textView_eventsTagLine"
+        android:layout_marginTop="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageView_eventName"
+                android:contentDescription="@string/description"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/event_name_icon"
+                android:padding="5dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/editText_eventName"
+                android:background="@drawable/rounded_edittext"
+                android:gravity="center"
+                android:hint="EVENT NAME"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageView_eventDate"
+                android:contentDescription="@string/description"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/imageView_eventName"
+                android:src="@drawable/event_date_icon"
+                android:layout_marginTop="10dp"
+                android:padding="5dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/editText_eventDate"
+                android:layout_below="@+id/editText_eventName"
+                android:background="@drawable/rounded_edittext"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:hint="EVENT DATE"
+                android:layout_marginTop="10dp" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageView_eventLocation"
+                android:contentDescription="@string/description"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/imageView_eventDate"
+                android:src="@drawable/event_location_icon"
+                android:layout_marginTop="10dp"
+                android:padding="5dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:id="@+id/editText_eventLocation"
+                android:layout_below="@+id/editText_eventDate"
+                android:background="@drawable/rounded_edittext"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:hint="EVENT LOCATION"
+                android:layout_marginTop="10dp"
+                android:inputType="text" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageView_eventExpenditure"
+                android:contentDescription="@string/description"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/imageView_eventLocation"
+                android:src="@drawable/event_expense_icon"
+                android:layout_marginTop="10dp"
+                android:padding="5dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:id="@+id/editText_eventExpenditure"
+                android:layout_below="@+id/editText_eventLocation"
+                android:background="@drawable/rounded_edittext"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:hint="EXPENDITURE(Apprx.)"
+                android:layout_marginTop="10dp"
+                android:inputType="text" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:id="@+id/editText_description"
+                android:inputType="textMultiLine"
+                android:layout_below="@+id/editText_eventExpenditure"
+                android:ems="10"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/rounded_edittext"
+                android:gravity="center"
+                android:hint="EVENT DESCRIPTION"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/button"
+        android:onClick="onClickCreateEvent"
+        android:background="#2E9AFE"
+        android:textColor="@drawable/button_text_color"
+        android:text="CREATE EVENT"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

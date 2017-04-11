@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".activities.customer_activities.events.CheckEventCustomerActivity">
+
+    <include android:id="@+id/layout_header"
+        layout="@layout/layout_header"/>
+
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/imageView_eventLogo"
+        android:layout_below="@+id/layout_header"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Event Name"
+        android:id="@+id/textView_eventNameHeading"
+        android:layout_below="@+id/layout_header"
+        android:layout_toEndOf="@+id/imageView_eventLogo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Event Organizer"
+        android:id="@+id/textView_eventOrganizerHeading"
+        android:layout_below="@+id/imageView_eventLogo"
+        android:layout_toStartOf="@+id/imageView_eventLogo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/textView_eventOrganizer"
+        android:layout_alignBottom="@+id/textView_eventOrganizerHeading"
+        android:layout_toEndOf="@+id/textView_eventOrganizerHeading"
+        android:layout_marginStart="26dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Event Date"
+        android:id="@+id/textView_eventDateHeading"
+        android:layout_below="@+id/textView_eventOrganizerHeading"
+        android:layout_alignStart="@+id/textView_eventOrganizerHeading" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/textView_eventDate"
+        android:layout_alignBottom="@+id/textView_eventDateHeading"
+        android:layout_alignStart="@+id/textView_eventOrganizer" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Event Location"
+        android:id="@+id/textView_eventLocationHeading"
+        android:layout_below="@+id/textView_eventDateHeading"
+        android:layout_alignStart="@+id/textView_eventDateHeading" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/textView_eventLocation"
+        android:layout_alignBottom="@+id/textView_eventLocationHeading"
+        android:layout_alignStart="@+id/textView_eventDate" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Approx. Expenditure"
+        android:id="@+id/textView_eventExpenditureHeading"
+        android:layout_below="@+id/textView_eventLocation"
+        android:layout_alignStart="@+id/textView_eventLocationHeading" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/textView_eventExpenditure"
+        android:layout_alignBottom="@+id/textView_eventExpenditureHeading"
+        android:layout_toEndOf="@+id/textView_eventLocationHeading" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/textView_eventDescription"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/textView_eventExpenditureHeading" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="INTERESTED"
+        android:id="@+id/textView_interested"
+        android:layout_below="@+id/textView_eventDescription"
+        android:layout_alignStart="@+id/textView_eventDescription"
+        android:layout_marginTop="32dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="NOT INTERESTED"
+        android:id="@+id/textView_notInterested"
+        android:layout_alignBottom="@+id/textView_interested"
+        android:layout_toEndOf="@+id/textView_eventExpenditureHeading" />
+
+</RelativeLayout>

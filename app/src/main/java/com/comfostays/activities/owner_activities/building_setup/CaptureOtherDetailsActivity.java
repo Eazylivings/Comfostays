@@ -327,6 +327,18 @@ public class CaptureOtherDetailsActivity extends AppCompatActivity {
 
             isMealsCheckBoxChecked=true;
             captureOtherDetailsGridLayoutMealsOptions.setVisibility(View.VISIBLE);
+
+            final ScrollView scrollView=(ScrollView)findViewById(R.id.captureOtherDetails_scrollView);
+            if(scrollView!=null){
+
+                scrollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollView.fullScroll(View.FOCUS_DOWN);
+                    }
+                });
+            }
+
         }else{
 
             isMealsCheckBoxChecked=false;
@@ -351,11 +363,15 @@ public class CaptureOtherDetailsActivity extends AppCompatActivity {
 
             itemsProvidedForFurnishedFlats.setVisibility(View.VISIBLE);
 
-            ScrollView scrollView=(ScrollView)findViewById(R.id.captureOtherDetails_scrollView) ;
+            final ScrollView scrollView=(ScrollView)findViewById(R.id.captureOtherDetails_scrollView);
+            if(scrollView!=null){
 
-            if(scrollView!=null) {
-
-                scrollView.scrollTo(0,scrollView.getMaxScrollAmount());
+                scrollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollView.fullScroll(View.FOCUS_DOWN);
+                    }
+                });
             }
         }else{
 

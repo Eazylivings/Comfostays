@@ -17,12 +17,12 @@ import com.comfostays.sharedpreference.SharedPreference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RedirectClass {
+public class OwnerRedirectClass {
 
     Context context;
     Activity activity;
 
-    public RedirectClass(Context context, Activity activity){
+    public OwnerRedirectClass(Context context, Activity activity){
 
         this.context=context;
         this.activity=activity;

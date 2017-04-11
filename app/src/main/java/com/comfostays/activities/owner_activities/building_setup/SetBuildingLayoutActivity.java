@@ -219,11 +219,18 @@ public class SetBuildingLayoutActivity extends AppCompatActivity {
                         String floorName = textView.getText().toString();
                         String numberOfFloors = (editText).getText().toString();
 
-                        if (numberOfFloors.equalsIgnoreCase("") || Integer.valueOf(numberOfFloors) < 0) {
+                        if (numberOfFloors.equalsIgnoreCase("") || Integer.valueOf(numberOfFloors) < 0 ) {
+
                             CommonFunctionality.generatePopupMessage(this,Constants.ALERT_MESSAGE, Constants.POPUP_MESSAGE_ENTER_ROOM_NUMBERS);
                             allValidated = false;
                             break;
-                        } else {
+
+                        } else if(Integer.valueOf(numberOfFloors) > 26){
+                            CommonFunctionality.generatePopupMessage(this,Constants.ALERT_MESSAGE, Constants.POPUP_MESSAGE_ENTER_ROOM_NUMBERS_LESS_THAN_30);
+                            allValidated = false;
+                            break;
+
+                        }else{
                             mapFloorToNumberOfRooms.put(floorName, Integer.valueOf(numberOfFloors));
                         }
                     }

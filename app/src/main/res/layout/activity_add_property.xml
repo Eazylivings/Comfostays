@@ -138,7 +138,8 @@
         android:onClick="onClickGetLocation"
         android:layout_below="@+id/addProperty_radioGroup"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:visibility="gone" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -147,7 +148,8 @@
         android:text="@string/tap_to_get_current_location"
         android:id="@+id/addProperty_textView_myLocationText"
         android:layout_below="@+id/addProperty_imageButton_myLocation"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
 
         <Button
             android:layout_height="50dp"
