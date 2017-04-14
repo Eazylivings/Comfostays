@@ -33,7 +33,7 @@ public class OccupancyActivity extends AppCompatActivity {
     LinearLayout linearLayout;
     SharedPreference sharedPreference;
 
-    private static int[] COLORS = new int[] { Color.GREEN, Color.BLUE };
+    private static int[] COLORS = new int[] {Color.parseColor("#ff7f7f"), Color.GREEN  };
 
     private double xCoordinate;
     private double yCoordinate;

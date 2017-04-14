@@ -592,7 +592,7 @@ public class ViewPropertyActivity extends AppCompatActivity {
             param.topMargin = 5;
             param.leftMargin = 10;
             param.columnSpec = GridLayout.spec(1);
-            param.rowSpec = GridLayout.spec(i+1);
+            param.rowSpec = GridLayout.spec(i);
             roomTypeColor.setLayoutParams(param);
 
             layoutForColorCodes.addView(roomType);

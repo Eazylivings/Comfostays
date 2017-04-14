@@ -57,6 +57,7 @@ public class Constants {
     public static final String ALERT_EXCEPTION="Sorry";
 
     public static final String ALERT_BOX_POSITIVE_HEADING="Add Property";
+    public static final String ALERT_BOX_JOIN_PROPERTY="Join Property";
 
     public static final String POPUP_MESSAGE_LOGIN_FAILED="Fail to login. Please check the credentials.";
     public static final String POPUP_MESSAGE_REGISTER_FAILED ="Something unusual occurred. Please come back again after sometime.";
@@ -80,6 +81,7 @@ public class Constants {
     public static final String POPUP_MESSAGE_FLOOR_REMOVED="successfully removed";
     public static final String POPUP_MESSAGE_FLOOR_NOT_REMOVED="Please select last added floor";
     public static final String POPUP_MESSAGE_NO_PROPERTY_FOUND="Please register property in order to use all features";
+    public static final String POPUP_MESSAGE_NO_PROPERTY_JOINED="Please join a property in order to use related features";
     public static final String POPUP_MESSAGE_ENTER_ROOM_NUMBERS="Please enter room number for all the floors";
     public static final String POPUP_MESSAGE_ENTER_ROOM_NUMBERS_LESS_THAN_30="Each floor can accommodate maximum of 25 Rooms. Please enter number less than or equal to 25.";
     public static final String POPUP_MESSAGE_BUY_PAID_VERSION="This facility is availabe to Paid Version of App.";
@@ -150,7 +152,7 @@ public class Constants {
     public static final String TITLE_JOIN_PROPERTY="Join Property";
     public static final String TITLE_EVENTS_LIST="List of Events";
     public static final String TITLE_EVENT_DESCRIPTION="Event Details";
-    public static final String ALERT_TITLE_DELETE="";
+    public static final String TITLE_OWNER_ADD_TENANT="Add Tenant";
 
     public static final String CUSTOMER="Customer";
     public static final String OWNER="Owner";

@@ -623,7 +623,6 @@ public class FinalPortfolioActivity extends AppCompatActivity {
             param =new GridLayout.LayoutParams();
             param.height = 50;
             param.width = 50;
-            param.topMargin = 5;
             param.leftMargin=10;
             param.columnSpec = GridLayout.spec(1);
             param.rowSpec = GridLayout.spec(i);

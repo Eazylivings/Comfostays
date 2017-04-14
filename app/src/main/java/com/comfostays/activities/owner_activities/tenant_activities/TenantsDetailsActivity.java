@@ -1,26 +1,22 @@
 package com.comfostays.activities.owner_activities.tenant_activities;
 
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.comfostays.CommonFunctionality;
 import com.comfostays.Constants;
 import com.comfostays.R;
 import com.comfostays.VOClass.TenantDetailsVO;
-import com.comfostays.activities.PopUpIdProofs;
-import com.comfostays.databasehandler.OwnerServerDatabaseHandler;
+import com.comfostays.Validators;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class TenantsDetailsActivity extends AppCompatActivity {
@@ -51,6 +47,7 @@ public class TenantsDetailsActivity extends AppCompatActivity {
             TextView tenantDescription=(TextView) findViewById(R.id.tenantsDetails_textView_aboutValue);
             TextView tenantContactNumber=(TextView) findViewById(R.id.tenantsDetails_textView_contactDetailsValue);
             TextView tenantResidingSince=(TextView) findViewById(R.id.tenantsDetails_textView_residingSinceValue);
+            ImageView tenantImage=(ImageView)findViewById(R.id.tenantsDetails_imageView_profilePic);
 
             if(tenantDetails.getListOfIdProofsPicSource()!=null) {
 
@@ -79,13 +76,19 @@ public class TenantsDetailsActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
 
-                            Intent intent=new Intent(getApplicationContext(),PopUpIdProofs.class);
-                            if(arrayOfSourceOfIdProof!=null){
+                            if(Validators.isInternetAvailable(getApplicationContext())) {
 
-                                intent.putExtra("IdSource",arrayOfSourceOfIdProof[count]);
+                                Intent intent=new Intent(getApplicationContext(),PopUpIdProofs.class);
+                                if(arrayOfSourceOfIdProof!=null){
+
+                                    intent.putExtra("IdSource",arrayOfSourceOfIdProof[count]);
+                                }
+
+                                startActivity(intent);
+                            }else{
+
+                                CommonFunctionality.generatePopupMessage(TenantsDetailsActivity.this,Constants.ALERT_MESSAGE,Constants.POPUP_MESSAGE_NO_INTERNET);
                             }
-
-                            startActivity(intent);
                         }
                     });
 
@@ -103,6 +106,24 @@ public class TenantsDetailsActivity extends AppCompatActivity {
                 tenantDescription.setText(tenantDetails.getTenantDescription());
                 tenantContactNumber.setText(tenantDetails.getTenantContactNumber());
                 tenantResidingSince.setText(tenantDetails.getTenantResidingSince());
+
+                if(tenantImage!=null && tenantDetails.getTenantProfilePic()!=null && Validators.isInternetAvailable(getApplicationContext())){
+
+                    DownloadImageFromUrl downloadImageFromUrl=new DownloadImageFromUrl(tenantImage,TenantsDetailsActivity.this);
+
+                    downloadImageFromUrl.execute(tenantDetails.getTenantProfilePic());
+
+                }else if(tenantImage!=null ){
+                    tenantImage.setImageResource(R.drawable.default_profile_pic);
+
+                    tenantImage.setVisibility(View.VISIBLE);
+
+                    ProgressBar progressBar=(ProgressBar)findViewById(R.id.progressBar_imageLoadingProgress);
+
+                    if(progressBar!=null){
+                        progressBar.setVisibility(View.GONE);
+                    }
+                }
             }
 
         }catch(Exception e){

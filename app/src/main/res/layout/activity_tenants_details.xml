@@ -28,7 +28,14 @@
                 android:contentDescription="@string/description"
                 android:id="@+id/tenantsDetails_imageView_profilePic"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/default_profile_pic" />
+                android:visibility="invisible" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar_imageLoadingProgress"
+                android:layout_centerHorizontal="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -121,7 +128,7 @@
         android:layout_marginTop="5dp"
         android:textStyle="bold" />
 
-    <TextView
+            <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"

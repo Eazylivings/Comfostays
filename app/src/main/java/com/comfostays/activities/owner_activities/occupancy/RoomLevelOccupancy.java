@@ -284,11 +284,11 @@ public class RoomLevelOccupancy extends AppCompatActivity {
             if(chartType.equalsIgnoreCase(Constants.OCCUPIED)){
 
                 arrayOfOccupiedRooms=localDatabaseHandler.getCurrentOccupiedRoomsForFlatAndHotels();
-                color="#00FF00";
+                color="#ff7f7f";
 
             }else{
                 arrayOfOccupiedRooms=localDatabaseHandler.getCurrentUnOccupiedRoomsForFlatAndHotels();
-                color="#ff7f7f";
+                color="#00FF00";
             }
 
             for(int i=0;i<arrayOfOccupiedRooms.length;i++){

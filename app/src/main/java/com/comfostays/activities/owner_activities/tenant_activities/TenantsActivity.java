@@ -120,10 +120,8 @@ public class TenantsActivity extends AppCompatActivity {
 
     public void onClickAddTenant(View view){
 
-        Intent intent=new Intent(getApplicationContext(),FilterTenantsActivity.class);
-        intent.putExtra(Constants.INTENT_PREVIOUS_ACTIVITY,Constants.ACTIVITY_TENANT_ACTIVITY);
+        Intent intent=new Intent(getApplicationContext(),OwnerAddTenantActivity.class);
         startActivity(intent);
-
     }
 
     public void onClickRemoveFilter(View view){

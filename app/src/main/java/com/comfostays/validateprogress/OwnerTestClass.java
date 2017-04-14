@@ -195,6 +195,7 @@ public class OwnerTestClass {
         tenantDetailsVO.setTenantRoomNumber("G2");
         tenantDetailsVO.setTenantLoggedComplaints("5");
         tenantDetailsVO.setRentPaid(true);
+        tenantDetailsVO.setTenantProfilePic("https://lh3.googleusercontent.com/--icSb0TAmXg/AAAAAAAAAAI/AAAAAAAAAAA/JBOXG7-egTU/photo.jpg");
         tenantDetailsVO.setTenantResidingProperty("SN Plaza");
         tenantDetailsVO.setListOfIdProofsPicSource("https://upload.wikimedia.org/wikipedia/commons/3/31/A_sample_of_Permanent_Account_Number_%28PAN%29_Card.jpg~http://images.jagran.com/voter-id-b-18-5-2012.jpg");
         //tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_one+"");
@@ -216,6 +217,7 @@ public class OwnerTestClass {
         tenantDetailsVO.setTenantLoggedComplaints("1");
         tenantDetailsVO.setRentPaid(true);
         tenantDetailsVO.setTenantResidingProperty("SN Plaza");
+        tenantDetailsVO.setTenantProfilePic("https://lh3.googleusercontent.com/-82kr_ZJ-p4I/AAAAAAAAAAI/AAAAAAAAAAA/rLYnzVBRHA4/photo.jpg");
         tenantDetailsVO.setListOfIdProofsPicSource("https://upload.wikimedia.org/wikipedia/commons/3/31/A_sample_of_Permanent_Account_Number_%28PAN%29_Card.jpg~http://images.jagran.com/voter-id-b-18-5-2012.jpg");
         //tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_two+"");
 
@@ -224,8 +226,8 @@ public class OwnerTestClass {
         tenantDetailsVO=new TenantDetailsVO();
 
 
-        tenantDetailsVO.setTenantName("Akhil Sagar");
-        tenantDetailsVO.setTenantEmailAddress("akhilsagar@gmail.com");
+        tenantDetailsVO.setTenantName("Alkesh");
+        tenantDetailsVO.setTenantEmailAddress("alkesh@gmail.com");
         tenantDetailsVO.setTenantContactNumber("9876543211");
         tenantDetailsVO.setTenantDescription("I am from Kurnool. Working with TCS since 2014.");
         tenantDetailsVO.setTenantUploadedIdProofs("PAN Card , Driving Licence");
@@ -236,6 +238,7 @@ public class OwnerTestClass {
         tenantDetailsVO.setTenantLoggedComplaints("5");
         tenantDetailsVO.setRentPaid(false);
         tenantDetailsVO.setTenantResidingProperty("SN Plaza");
+        tenantDetailsVO.setTenantProfilePic("https://qph.ec.quoracdn.net/main-thumb-103817634-200-kugwltljwnsenowynwdokhezafxynzsv.jpeg");
         tenantDetailsVO.setListOfIdProofsPicSource("https://upload.wikimedia.org/wikipedia/commons/3/31/A_sample_of_Permanent_Account_Number_%28PAN%29_Card.jpg~http://images.jagran.com/voter-id-b-18-5-2012.jpg");
         //tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_three+"");
 
@@ -256,6 +259,7 @@ public class OwnerTestClass {
         tenantDetailsVO.setTenantLoggedComplaints("0");
         tenantDetailsVO.setRentPaid(true);
         tenantDetailsVO.setTenantResidingProperty("SN Plaza");
+        tenantDetailsVO.setTenantProfilePic("https://lh5.googleusercontent.com/-HmArbUVpMmQ/AAAAAAAAAAI/AAAAAAAAAC4/q02n4JRZJPs/photo.jpg");
         tenantDetailsVO.setListOfIdProofsPicSource("https://upload.wikimedia.org/wikipedia/commons/3/31/A_sample_of_Permanent_Account_Number_%28PAN%29_Card.jpg~http://images.jagran.com/voter-id-b-18-5-2012.jpg");
         //tenantDetailsVO.setTenantProfilePic(R.drawable.profile_pic_one+"");
 

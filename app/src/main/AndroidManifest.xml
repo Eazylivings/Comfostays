@@ -97,7 +97,7 @@
             android:name=".activities.owner_activities.MyFinancesActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.PopUpIdProofs"
+            android:name=".activities.owner_activities.tenant_activities.PopUpIdProofs"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Dialog" />
         <activity

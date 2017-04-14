@@ -5,8 +5,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -22,7 +20,6 @@ import com.comfostays.VOClass.PropertyLayoutDetailsVO;
 import com.comfostays.VOClass.TenantDetailsVO;
 import com.comfostays.VOClass.UserDetailsVO;
 import com.comfostays.WelcomeScreen;
-import com.comfostays.activities.PopUpIdProofs;
 import com.comfostays.activities.owner_activities.notifications.AcceptRejectTenantActivity;
 import com.comfostays.activities.owner_activities.notifications.TenantIssuesActivity;
 import com.comfostays.activities.owner_activities.occupancy.OccupancyActivity;
@@ -32,10 +29,6 @@ import com.comfostays.activities.loginactivities.RegisterActivity;
 import com.comfostays.sharedpreference.SharedPreference;
 import com.comfostays.validateprogress.OwnerTestClass;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 

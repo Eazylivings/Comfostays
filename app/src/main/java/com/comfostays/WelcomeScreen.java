@@ -256,7 +256,7 @@ public class WelcomeScreen extends AppCompatActivity
 
                     }else{
 
-                        CommonFunctionality.generateActivityRedirectPopupMessage(WelcomeScreen.this,Constants.ALERT_MESSAGE,Constants.ALERT_BOX_POSITIVE_HEADING,Constants.POPUP_MESSAGE_NO_PROPERTY_FOUND, AddPropertyActivity.class);
+                        CommonFunctionality.generateActivityRedirectPopupMessage(WelcomeScreen.this,Constants.ALERT_MESSAGE,Constants.ALERT_BOX_JOIN_PROPERTY,Constants.POPUP_MESSAGE_NO_PROPERTY_JOINED, JoinPropertyActivity.class);
                     }
                 }
             });
@@ -290,13 +290,7 @@ public class WelcomeScreen extends AppCompatActivity
 
         if(view3!=null){
 
-            if(currentStayType.equalsIgnoreCase(Constants.PGs)){
-
-                view3.setImageResource(R.drawable.coming_birthdays_icon);
-            }else{
-
-                view3.setImageResource(R.drawable.my_property_new);
-            }
+            view3.setImageResource(R.drawable.coming_birthdays_icon);
         }
 
         ImageView view4=(ImageView)findViewById(R.id.welcomeScreen_imageView_1_0) ;

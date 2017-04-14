@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.comfostays.activities.PopUpIdProofs"
+    tools:context=".activities.owner_activities.tenant_activities.PopUpIdProofs"
     android:background="#ffffff">
 
     <ImageView
@@ -19,7 +19,8 @@
         android:scaleType="fitStart"
         android:adjustViewBounds="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp" />
+        android:layout_marginTop="42dp"
+        android:visibility="invisible" />
 
     <Button
         android:layout_width="wrap_content"
@@ -30,4 +31,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="31dp"
         android:onClick="onClickClose" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar_imageLoadingProgress"
+        android:layout_alignTop="@+id/popUpIdProofs_imageView"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
