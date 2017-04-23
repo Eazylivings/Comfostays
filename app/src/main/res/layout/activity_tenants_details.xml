@@ -28,14 +28,7 @@
                 android:contentDescription="@string/description"
                 android:id="@+id/tenantsDetails_imageView_profilePic"
                 android:layout_centerHorizontal="true"
-                android:visibility="invisible" />
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/progressBar_imageLoadingProgress"
-                android:layout_centerHorizontal="true" />
+                android:visibility="visible" />
 
             <TextView
                 android:layout_width="wrap_content"

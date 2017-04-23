@@ -39,7 +39,7 @@ public class DownloadImageFromUrl extends AsyncTask<String, Void, Bitmap> {
     // Sets the Bitmap returned by doInBackground
     @Override
     protected void onPostExecute(Bitmap result) {
-        imageView.setImageBitmap(result);
+        /*imageView.setImageBitmap(result);
 
         ProgressBar progressBar=(ProgressBar)baseActivity.findViewById(R.id.progressBar_imageLoadingProgress);
 
@@ -64,7 +64,7 @@ public class DownloadImageFromUrl extends AsyncTask<String, Void, Bitmap> {
 
                 tenantPic.setVisibility(View.VISIBLE);
             }
-        }
+        }*/
 
 
     }

@@ -186,10 +186,45 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:id="@+id/imageView_uploadIdProofOne"
+                android:id="@+id/imageView_browseIdProofOne"
                 android:layout_below="@+id/imageView_advanceAmount"
+                android:src="@drawable/browse_image"
+                android:padding="5dp"
+                android:onClick="onClickBrowseIdOne" />
+
+            <Spinner
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_idProofOne"
+                android:layout_below="@+id/textView_advanceAmount"
+                android:layout_toEndOf="@+id/imageView_browseIdProofOne" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageView_uploadIdProofOne"
+                android:layout_below="@+id/editText_advanceAmount"
                 android:src="@drawable/upload_image"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:onClick="onClickUploadOne" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageView_browseIdProofTwo"
+                android:layout_below="@+id/imageView_browseIdProofOne"
+                android:src="@drawable/browse_image"
+                android:padding="5dp"
+                android:onClick="onClickBrowseIdTwo" />
+
+            <Spinner
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_idProofTwo"
+                android:layout_below="@+id/spinner_idProofOne"
+                android:layout_toEndOf="@+id/imageView_browseIdProofTwo" />
 
             <ImageView
                 android:layout_width="50dp"
@@ -197,12 +232,15 @@
                 android:id="@+id/imageView_uploadIdProofTwo"
                 android:layout_below="@+id/imageView_uploadIdProofOne"
                 android:src="@drawable/upload_image"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:onClick="onClickUploadTwo" />
 
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/imageView_uploadIdProofTwo"
+                android:layout_below="@+id/imageView_browseIdProofTwo"
                 android:orientation="horizontal"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
@@ -248,7 +286,6 @@
                     android:text="Advance Not Paid"
                     android:id="@+id/radioButton_advanceNotPaid" />
             </RadioGroup>
-
 
         </RelativeLayout>
     </ScrollView>

@@ -16,6 +16,7 @@ import com.comfostays.Constants;
 import com.comfostays.R;
 import com.comfostays.VOClass.TenantDetailsVO;
 import com.comfostays.Validators;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -109,20 +110,14 @@ public class TenantsDetailsActivity extends AppCompatActivity {
 
                 if(tenantImage!=null && tenantDetails.getTenantProfilePic()!=null && Validators.isInternetAvailable(getApplicationContext())){
 
-                    DownloadImageFromUrl downloadImageFromUrl=new DownloadImageFromUrl(tenantImage,TenantsDetailsActivity.this);
-
-                    downloadImageFromUrl.execute(tenantDetails.getTenantProfilePic());
+                    Picasso.with(this)
+                            .load(tenantDetails.getTenantProfilePic())
+                            .placeholder(R.drawable.default_profile_pic)
+                            .error(R.drawable.error_image)
+                            .into(tenantImage);
 
                 }else if(tenantImage!=null ){
                     tenantImage.setImageResource(R.drawable.default_profile_pic);
-
-                    tenantImage.setVisibility(View.VISIBLE);
-
-                    ProgressBar progressBar=(ProgressBar)findViewById(R.id.progressBar_imageLoadingProgress);
-
-                    if(progressBar!=null){
-                        progressBar.setVisibility(View.GONE);
-                    }
                 }
             }
 
